@@ -42,6 +42,7 @@ add_library(tae
   src/version.cpp
   src/io/telemetry_header.cpp
   src/io/telemetry_frame.cpp
+  src/io/telemetry_reader.cpp
 )
 
 target_include_directories(tae PUBLIC include)
