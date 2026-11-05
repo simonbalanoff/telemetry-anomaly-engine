@@ -1,20 +1,9 @@
 import argparse
-import pickle
-import warnings
-import zipfile
 from pathlib import Path
 
 import pandas as pd
 
-FOCUS = [f"channel_{i}" for i in range(41, 47)]
-
-
-def load_channel(root: Path, name: str) -> pd.Series:
-    # NOTE: unpickling executes code from the file. Only use on trusted data.
-    with zipfile.ZipFile(root / "channels" / f"{name}.zip") as z:
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", DeprecationWarning)
-            return pickle.loads(z.read(name))[name]
+from esa import FOCUS, load_channel, read_labels, read_types
 
 
 def summarize_channel(root: Path, name: str) -> dict:
@@ -37,9 +26,8 @@ def main() -> None:
     ap.add_argument("root", type=Path)
     root = ap.parse_args().root
 
-    # --- events, one row per event ---
-    types = pd.read_csv(root / "anomaly_types.csv")
-    labels = pd.read_csv(root / "labels.csv", parse_dates=["StartTime", "EndTime"])
+    types = read_types(root)
+    labels = read_labels(root)
     rows = labels[labels.Channel.isin(FOCUS)]
     ev = (
         rows.groupby("ID")
@@ -50,9 +38,10 @@ def main() -> None:
     )
     ev["duration_min"] = (ev.end - ev.start).dt.total_seconds() / 60
     ev["is_point"] = ev.duration_min == 0
-    ev.to_csv(root.parent / "focus_events.csv", index=False)
+    out = root.parent / "focus_events.csv"
+    ev.to_csv(out, index=False)
 
-    print(f"Events touching channels 41-46: {len(ev)}")
+    print(f"Events touching channels 41-46: {len(ev)}  (full table: {out})")
     print(ev.Category.value_counts().to_string())
     print(f"Point events (zero duration): {int(ev.is_point.sum())}")
     print("Duration (min) by category:")
@@ -61,7 +50,6 @@ def main() -> None:
     print("\nEvents per year (by start time):")
     print(pd.crosstab(ev.start.dt.year, ev.Category).to_string())
 
-    # --- channel health ---
     print("\nChannel summary:")
     print(pd.DataFrame([summarize_channel(root, c) for c in FOCUS]).to_string(index=False))
 

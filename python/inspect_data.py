@@ -1,3 +1,8 @@
+"""Print what is actually in the ESA-ADB Mission1 download.
+
+Usage (from the project root, venv active):
+    python python/inspect_data.py data/ESA-Mission1
+"""
 import argparse
 import io
 import zipfile
@@ -26,20 +31,19 @@ def show_csv(path: Path, name: str) -> None:
 
 def show_channel_file(path: Path) -> None:
     print(f"\n== Sample channel file: {path.name} ==")
-    if path.suffix == ".zip":
-        with zipfile.ZipFile(path) as z:
-            names = z.namelist()
-            print(f"  zip members: {names}")
-            member = names[0]
-            raw = z.read(member)
-            print(f"  first member: {member}, {len(raw)} bytes")
-            print(f"  first 200 bytes: {raw[:200]!r}")
-            if member.endswith(".csv"):
-                df = pd.read_csv(io.BytesIO(raw))
-                print(df.head(5).to_string())
-                print(df.dtypes)
-    else:
+    if path.suffix != ".zip":
         print(f"  not a zip (suffix {path.suffix!r}); inspect it by hand")
+        return
+    with zipfile.ZipFile(path) as z:
+        names = z.namelist()
+        print(f"  zip members: {names}")
+        raw = z.read(names[0])
+        print(f"  first member: {names[0]}, {len(raw)} bytes")
+        print(f"  first 60 bytes: {raw[:60]!r}")
+        if names[0].endswith(".csv"):
+            df = pd.read_csv(io.BytesIO(raw))
+            print(df.head(5).to_string())
+            print(df.dtypes)
 
 
 def main() -> None:
@@ -61,4 +65,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
