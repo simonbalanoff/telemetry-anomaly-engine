@@ -38,10 +38,10 @@ else()
 endif()
 
 # Core library. Add .cpp files to this list as you create them.
-
 add_library(tae
   src/version.cpp
   src/io/telemetry_header.cpp
+  src/io/telemetry_frame.cpp
 )
 
 target_include_directories(tae PUBLIC include)
