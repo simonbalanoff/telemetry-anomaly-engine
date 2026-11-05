@@ -13,7 +13,3 @@ ctest --preset debug
 ```
 
 Other presets: `release`, `asan` (address + undefined behaviour sanitizers), `tsan`.
-
-## Status
-- [x] Project skeleton and CI
-- [ ] M0: dataset exploration and decision record
