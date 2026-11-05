@@ -30,3 +30,22 @@
 *.exe
 *.out
 *.app
+
+build/
+.cache/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+compile_commands.json
+*.o
+*.a
+__pycache__/
+.venv/
+.ipynb_checkpoints/
+# Datasets and large artifacts are never committed. See docs/decisions/.
+data/*
+!data/.gitkeep
+models/*
+!models/.gitkeep
+
+.DS_Store
