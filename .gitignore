@@ -41,6 +41,8 @@ compile_commands.json
 *.a
 __pycache__/
 .venv/
+.venv-convert/
+.vscode/
 .ipynb_checkpoints/
 # Datasets and large artifacts are never committed. See docs/decisions/.
 data/*
