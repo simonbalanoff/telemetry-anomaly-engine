@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from esa import load_channel, read_labels
+from python.exploration.esa import load_channel, read_labels
 
 
 def compare(s):

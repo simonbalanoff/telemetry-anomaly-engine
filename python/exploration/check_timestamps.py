@@ -6,7 +6,7 @@ Usage:  python python/check_timestamps.py data/ESA-Mission1
 import argparse
 from pathlib import Path
 
-from esa import FOCUS, load_channel
+from python.exploration.esa import FOCUS, load_channel
 
 
 def main() -> None:

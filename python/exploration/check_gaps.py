@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from esa import load_channel
+from python.exploration.esa import load_channel
 
 
 def main() -> None:

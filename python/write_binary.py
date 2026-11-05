@@ -1,3 +1,5 @@
+import os
+import tempfile
 import math
 import struct
 from dataclasses import dataclass
@@ -173,29 +175,49 @@ class FrameWriter:
         self.previous_staleness = frame.staleness
 
 
+
 def write_binary(
     path: Path,
     header: Header,
     frames: Iterable[Frame],
 ) -> None:
+    destination = Path(path)
     header_bytes = encode_header(header)
     validator = FrameWriter()
-
     count = 0
 
-    with Path(path).open("wb") as stream:
-        stream.write(header_bytes)
+    temporary_path = None
 
-        for frame in frames:
-            if count >= header.frame_count:
-                raise ValueError("More frames than declared")
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="wb",
+            dir=destination.parent,
+            prefix=f".{destination.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as stream:
+            temporary_path = Path(stream.name)
+            stream.write(header_bytes)
 
-            encoded = encode_frame(frame)
-            validator.validate(frame, encoded)
-            stream.write(encoded)
-            count += 1
+            for frame in frames:
+                if count >= header.frame_count:
+                    raise ValueError("More frames than declared")
 
-    if count != header.frame_count:
-        raise ValueError(
-            f"Expected {header.frame_count} frames, received {count}"
-        )
+                encoded = encode_frame(frame)
+                validator.validate(frame, encoded)
+                stream.write(encoded)
+                count += 1
+
+            if count != header.frame_count:
+                raise ValueError(
+                    f"Expected {header.frame_count} frames, received {count}"
+                )
+
+            stream.flush()
+            os.fsync(stream.fileno())
+
+        os.replace(temporary_path, destination)
+
+    finally:
+        if temporary_path is not None:
+            temporary_path.unlink(missing_ok=True)

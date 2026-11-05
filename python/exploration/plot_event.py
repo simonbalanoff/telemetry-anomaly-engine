@@ -12,7 +12,7 @@ matplotlib.use("Agg")  # write to a file; no window needed
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from esa import FOCUS, load_channel, read_labels, read_types
+from python.exploration.esa import FOCUS, load_channel, read_labels, read_types
 
 
 def main() -> None:

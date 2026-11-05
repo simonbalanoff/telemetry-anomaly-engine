@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-from esa import FOCUS, load_channel, read_labels, read_types
+from python.exploration.esa import FOCUS, load_channel, read_labels, read_types
 
 
 def inspect_interval(s, start, end):

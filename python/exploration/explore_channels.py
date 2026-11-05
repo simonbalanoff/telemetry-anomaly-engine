@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from esa import FOCUS, load_channel, read_labels, read_types
+from python.exploration.esa import FOCUS, load_channel, read_labels, read_types
 
 
 def summarize_channel(root: Path, name: str) -> dict:

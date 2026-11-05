@@ -307,6 +307,58 @@ class FileTests(unittest.TestCase):
 
             with self.assertRaises(ValueError):
                 write_binary(path, header, frames)
+                
+    
+    def test_failure_does_not_overwrite_existing_file(self):
+        header = Header(
+            start_us=0,
+            frame_count=4,
+            validation_start_us=30_000_000,
+            test_start_us=60_000_000,
+        )
+
+        frames = [
+            observed(),
+            filled(1),
+        ]
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "telemetry.bin"
+            path.write_bytes(b"original content")
+
+            with self.assertRaises(ValueError):
+                write_binary(path, header, frames)
+
+            self.assertEqual(path.read_bytes(), b"original content")
+            self.assertEqual(
+                list(Path(directory).iterdir()),
+                [path],
+            )
+
+    def test_failure_does_not_leave_partial_output(self):
+        header = Header(
+            start_us=0,
+            frame_count=4,
+            validation_start_us=30_000_000,
+            test_start_us=60_000_000,
+        )
+
+        frames = [
+            observed(),
+            filled(1),
+        ]
+
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "telemetry.bin"
+
+            with self.assertRaises(ValueError):
+                write_binary(path, header, frames)
+
+            self.assertFalse(path.exists())
+            self.assertEqual(
+                list(Path(directory).iterdir()),
+                [],
+            )
 
 
 if __name__ == "__main__":
