@@ -51,3 +51,12 @@ models/*
 !models/.gitkeep
 
 .DS_Store
+
+# Research manuscript build products
+paper/build/
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.synctex.gz

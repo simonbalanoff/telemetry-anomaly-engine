@@ -1,0 +1,21 @@
+\section{Related Work and Positioning}
+Anomaly-based data prioritization has spacecraft precedent. Finley and
+colleagues investigate inexpensive anomaly detection for prioritizing in situ
+observations~\citep{finley2023prioritization,finley2024generalized}. Our intended
+focus is engineering-fault context under explicit recording budgets, rather than
+claiming anomaly-guided downlink selection itself as a contribution. This distinction
+requires a deeper literature review before any novelty claim is justified.
+
+Joint compression and anomaly detection has also been studied in networked sensor
+systems~\citep{elsayed2023compression}. Our first implementation uses transparent
+raw and extrema records rather than a learned codec. This makes metadata costs
+and retained information auditable, while leaving stronger compression baselines
+for the full evaluation.
+
+ESA-ADB supplies annotated mission telemetry and a hierarchical evaluation
+framework~\citep{kotowski2024esa}. We build on the dataset as a candidate source
+for retention experiments. Detector performance on a complete archive and evidence
+preservation after budgeted capture are different questions. Official ESA metrics
+will complement, rather than be replaced by, the retention-specific outcomes.
+Related work on triggered acquisition, change-point detection, adaptive sampling,
+and onboard fault recorders must be expanded before submission.

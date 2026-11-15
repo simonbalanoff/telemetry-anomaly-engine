@@ -1,0 +1,1254 @@
+[
+  {
+    "first_cell": 9008366,
+    "stop_cell": 9008367,
+    "peak_cell": 9008366,
+    "first_available_us": 1216935810000000,
+    "last_available_us": 1216935810000000,
+    "duration_seconds": 30,
+    "peak_score": 157.31719003448515,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_129"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 44,
+          "contribution": 134.68339876225798,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 43,
+          "contribution": 31.941538422223914,
+          "retained_value": 0.9309460520744324,
+          "minimum": 0.9309460520744324,
+          "maximum": 0.9309460520744324
+        },
+        {
+          "channel": 41,
+          "contribution": 30.384174120272704,
+          "retained_value": 0.9617036581039429,
+          "minimum": 0.9617036581039429,
+          "maximum": 0.9632740616798401
+        },
+        {
+          "channel": 45,
+          "contribution": 30.262738960182645,
+          "retained_value": 0.9821945428848267,
+          "minimum": 0.9821945428848267,
+          "maximum": 0.9821945428848267
+        },
+        {
+          "channel": 42,
+          "contribution": 24.594587801795267,
+          "retained_value": 0.9550275206565857,
+          "minimum": 0.9502073526382446,
+          "maximum": 0.9550275206565857
+        },
+        {
+          "channel": 46,
+          "contribution": 24.412629614231562,
+          "retained_value": 0.936729371547699,
+          "minimum": 0.9341958165168762,
+          "maximum": 0.936729371547699
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9073091,
+    "stop_cell": 9073092,
+    "peak_cell": 9073091,
+    "first_available_us": 1218877560000000,
+    "last_available_us": 1218877560000000,
+    "duration_seconds": 30,
+    "peak_score": 153.22361978757027,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_130"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 46,
+          "contribution": 111.55070440534084,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 43,
+          "contribution": 32.25988515444662,
+          "retained_value": 0.9325288534164429,
+          "minimum": 0.9325288534164429,
+          "maximum": 0.9325288534164429
+        },
+        {
+          "channel": 41,
+          "contribution": 31.492515274800876,
+          "retained_value": 0.9671986103057861,
+          "minimum": 0.9671986103057861,
+          "maximum": 0.9671986103057861
+        },
+        {
+          "channel": 45,
+          "contribution": 29.503046649066878,
+          "retained_value": 0.9779553413391113,
+          "minimum": 0.9779553413391113,
+          "maximum": 0.9779553413391113
+        },
+        {
+          "channel": 44,
+          "contribution": 26.677853948440575,
+          "retained_value": 0.9550385475158691,
+          "minimum": 0.9550385475158691,
+          "maximum": 0.9550385475158691
+        },
+        {
+          "channel": 42,
+          "contribution": 22.50569590452686,
+          "retained_value": 0.9405683875083923,
+          "minimum": 0.9405683875083923,
+          "maximum": 0.9405683875083923
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9139952,
+    "stop_cell": 9139954,
+    "peak_cell": 9139952,
+    "first_available_us": 1220883390000000,
+    "last_available_us": 1220883420000000,
+    "duration_seconds": 60,
+    "peak_score": 10.516552492715876,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_18"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 10.776423220703757,
+          "retained_value": 0.7576369643211365,
+          "minimum": 0.7576369643211365,
+          "maximum": 0.7576369643211365
+        },
+        {
+          "channel": 44,
+          "contribution": 9.36504156493874,
+          "retained_value": 0.7417137622833252,
+          "minimum": 0.7417137622833252,
+          "maximum": 0.7417137622833252
+        },
+        {
+          "channel": 43,
+          "contribution": 8.641130371402728,
+          "retained_value": 0.7291713953018188,
+          "minimum": 0.7291713953018188,
+          "maximum": 0.7291713953018188
+        },
+        {
+          "channel": 45,
+          "contribution": 8.332187604579362,
+          "retained_value": 0.7668288350105286,
+          "minimum": 0.7668288350105286,
+          "maximum": 0.7668288350105286
+        },
+        {
+          "channel": 46,
+          "contribution": 6.9670062570988,
+          "retained_value": 0.7205370664596558,
+          "minimum": 0.7205370664596558,
+          "maximum": 0.7205370664596558
+        },
+        {
+          "channel": 42,
+          "contribution": 6.041350964887744,
+          "retained_value": 0.7429681420326233,
+          "minimum": 0.7429681420326233,
+          "maximum": 0.7429681420326233
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9140132,
+    "stop_cell": 9140134,
+    "peak_cell": 9140132,
+    "first_available_us": 1220888790000000,
+    "last_available_us": 1220888820000000,
+    "duration_seconds": 60,
+    "peak_score": 31.888971618574907,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_18"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 16.185742847304002,
+          "retained_value": 0.8526091575622559,
+          "minimum": 0.8526091575622559,
+          "maximum": 0.8526091575622559
+        },
+        {
+          "channel": 41,
+          "contribution": 15.186375150846644,
+          "retained_value": 0.8863557577133179,
+          "minimum": 0.8863557577133179,
+          "maximum": 0.8863557577133179
+        },
+        {
+          "channel": 45,
+          "contribution": 14.460055781070691,
+          "retained_value": 0.8940131068229675,
+          "minimum": 0.8940131068229675,
+          "maximum": 0.8940131068229675
+        },
+        {
+          "channel": 44,
+          "contribution": 12.978950183179851,
+          "retained_value": 0.8739597201347351,
+          "minimum": 0.8739597201347351,
+          "maximum": 0.8739597201347351
+        },
+        {
+          "channel": 46,
+          "contribution": 12.645096378218375,
+          "retained_value": 0.855656087398529,
+          "minimum": 0.855656087398529,
+          "maximum": 0.855656087398529
+        },
+        {
+          "channel": 42,
+          "contribution": 10.437089040701206,
+          "retained_value": 0.8570305109024048,
+          "minimum": 0.8570305109024048,
+          "maximum": 0.8570305109024048
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9535132,
+    "stop_cell": 9535133,
+    "peak_cell": 9535132,
+    "first_available_us": 1232738790000000,
+    "last_available_us": 1232738790000000,
+    "duration_seconds": 30,
+    "peak_score": 141.57761154649475,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_132"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 155.29840489061155,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 41,
+          "contribution": 31.96736233609168,
+          "retained_value": 0.9695528149604797,
+          "minimum": 0.9522855281829834,
+          "maximum": 0.9695528149604797
+        },
+        {
+          "channel": 45,
+          "contribution": 28.895192393721626,
+          "retained_value": 0.9745634198188782,
+          "minimum": 0.9745634198188782,
+          "maximum": 0.9796499013900757
+        },
+        {
+          "channel": 44,
+          "contribution": 27.20990770199684,
+          "retained_value": 0.9581875801086426,
+          "minimum": 0.9361470341682434,
+          "maximum": 0.9581875801086426
+        },
+        {
+          "channel": 46,
+          "contribution": 23.186826157387316,
+          "retained_value": 0.9282841086387634,
+          "minimum": 0.9282841086387634,
+          "maximum": 0.9333512783050537
+        },
+        {
+          "channel": 42,
+          "contribution": 21.461258566897083,
+          "retained_value": 0.9333388805389404,
+          "minimum": 0.9333388805389404,
+          "maximum": 0.9421746730804443
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9885751,
+    "stop_cell": 9885752,
+    "peak_cell": 9885751,
+    "first_available_us": 1243257360000000,
+    "last_available_us": 1243257360000000,
+    "duration_seconds": 30,
+    "peak_score": 283.9765838123718,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 163.59308056437027,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 43,
+          "contribution": 155.29840489061155,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 45,
+          "contribution": 145.75287015933128,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 44,
+          "contribution": 134.68339876225798,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 42,
+          "contribution": 113.37697862071487,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 46,
+          "contribution": 111.55070440534084,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9899311,
+    "stop_cell": 9899312,
+    "peak_cell": 9899311,
+    "first_available_us": 1243664160000000,
+    "last_available_us": 1243664160000000,
+    "duration_seconds": 30,
+    "peak_score": 855.9445588454577,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 122.28417640479016,
+          "retained_value": 0.16414481401443481,
+          "minimum": 0.16414481401443481,
+          "maximum": 0.16414481401443481
+        },
+        {
+          "channel": 41,
+          "contribution": 120.79585262209739,
+          "retained_value": 0.21218080818653107,
+          "minimum": 0.21218080818653107,
+          "maximum": 0.21218080818653107
+        },
+        {
+          "channel": 45,
+          "contribution": 105.1231934799473,
+          "retained_value": 0.226719930768013,
+          "minimum": 0.226719930768013,
+          "maximum": 0.226719930768013
+        },
+        {
+          "channel": 44,
+          "contribution": 100.78691093242912,
+          "retained_value": 0.20062097907066345,
+          "minimum": 0.20062097907066345,
+          "maximum": 0.20062097907066345
+        },
+        {
+          "channel": 42,
+          "contribution": 86.09386574445698,
+          "retained_value": 0.18885140120983124,
+          "minimum": 0.18885140120983124,
+          "maximum": 0.18885140120983124
+        },
+        {
+          "channel": 46,
+          "contribution": 83.94803304341717,
+          "retained_value": 0.19017063081264496,
+          "minimum": 0.19017063081264496,
+          "maximum": 0.19017063081264496
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9908613,
+    "stop_cell": 9908614,
+    "peak_cell": 9908613,
+    "first_available_us": 1243943220000000,
+    "last_available_us": 1243943220000000,
+    "duration_seconds": 30,
+    "peak_score": 7.96752241838082,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 43.53018194536485,
+          "retained_value": 0.5557050704956055,
+          "minimum": 0.5557050704956055,
+          "maximum": 0.5557050704956055
+        },
+        {
+          "channel": 41,
+          "contribution": 41.24773796822513,
+          "retained_value": 0.6065657734870911,
+          "minimum": 0.6065657734870911,
+          "maximum": 0.6065657734870911
+        },
+        {
+          "channel": 45,
+          "contribution": 37.962163822534514,
+          "retained_value": 0.6014889478683472,
+          "minimum": 0.6014889478683472,
+          "maximum": 0.6014889478683472
+        },
+        {
+          "channel": 44,
+          "contribution": 35.73861137957891,
+          "retained_value": 0.5856181979179382,
+          "minimum": 0.5856181979179382,
+          "maximum": 0.5856181979179382
+        },
+        {
+          "channel": 46,
+          "contribution": 30.502280363384706,
+          "retained_value": 0.5583890676498413,
+          "minimum": 0.5583890676498413,
+          "maximum": 0.5583890676498413
+        },
+        {
+          "channel": 42,
+          "contribution": 30.502140405791597,
+          "retained_value": 0.5736526250839233,
+          "minimum": 0.5736526250839233,
+          "maximum": 0.5736526250839233
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9912939,
+    "stop_cell": 9912940,
+    "peak_cell": 9912939,
+    "first_available_us": 1244073000000000,
+    "last_available_us": 1244073000000000,
+    "duration_seconds": 30,
+    "peak_score": 7.623497456230093,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 39.490493184282194,
+          "retained_value": 0.5757901668548584,
+          "minimum": 0.5757901668548584,
+          "maximum": 0.5757901668548584
+        },
+        {
+          "channel": 41,
+          "contribution": 37.20598962918393,
+          "retained_value": 0.6266040205955505,
+          "minimum": 0.6266040205955505,
+          "maximum": 0.6266040205955505
+        },
+        {
+          "channel": 45,
+          "contribution": 34.77131084693809,
+          "retained_value": 0.6192944049835205,
+          "minimum": 0.6192944049835205,
+          "maximum": 0.6192944049835205
+        },
+        {
+          "channel": 44,
+          "contribution": 32.418048918474035,
+          "retained_value": 0.6052713990211487,
+          "minimum": 0.6052713990211487,
+          "maximum": 0.6052713990211487
+        },
+        {
+          "channel": 46,
+          "contribution": 28.050474466864163,
+          "retained_value": 0.5752809643745422,
+          "minimum": 0.5752809643745422,
+          "maximum": 0.5752809643745422
+        },
+        {
+          "channel": 42,
+          "contribution": 27.782879929641094,
+          "retained_value": 0.5924751162528992,
+          "minimum": 0.5924751162528992,
+          "maximum": 0.5924751162528992
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9924442,
+    "stop_cell": 9924443,
+    "peak_cell": 9924442,
+    "first_available_us": 1244418090000000,
+    "last_available_us": 1244418090000000,
+    "duration_seconds": 30,
+    "peak_score": 9.16253167992992,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 45,
+          "contribution": 6.508881195443958,
+          "retained_value": 0.7770031690597534,
+          "minimum": 0.7770031690597534,
+          "maximum": 0.7770031690597534
+        },
+        {
+          "channel": 42,
+          "contribution": 5.228962974484448,
+          "retained_value": 0.748591423034668,
+          "minimum": 0.748591423034668,
+          "maximum": 0.748591423034668
+        },
+        {
+          "channel": 43,
+          "contribution": 4.821796770741292,
+          "retained_value": 0.7481608986854553,
+          "minimum": 0.7481608986854553,
+          "maximum": 0.7481608986854553
+        },
+        {
+          "channel": 41,
+          "contribution": 4.602329411732099,
+          "retained_value": 0.7882469892501831,
+          "minimum": 0.7882469892501831,
+          "maximum": 0.7882469892501831
+        },
+        {
+          "channel": 44,
+          "contribution": 3.646027671851977,
+          "retained_value": 0.7755625247955322,
+          "minimum": 0.7755625247955322,
+          "maximum": 0.7755625247955322
+        },
+        {
+          "channel": 46,
+          "contribution": 2.922048641488342,
+          "retained_value": 0.7484050989151001,
+          "minimum": 0.7484050989151001,
+          "maximum": 0.7484050989151001
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9931653,
+    "stop_cell": 9931655,
+    "peak_cell": 9931654,
+    "first_available_us": 1244634420000000,
+    "last_available_us": 1244634450000000,
+    "duration_seconds": 60,
+    "peak_score": 14.119983946341494,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 29.39110344673272,
+          "retained_value": 0.6260037422180176,
+          "minimum": 0.6260037422180176,
+          "maximum": 0.6260037422180176
+        },
+        {
+          "channel": 41,
+          "contribution": 27.101775072230783,
+          "retained_value": 0.6766988635063171,
+          "minimum": 0.6766988635063171,
+          "maximum": 0.6766988635063171
+        },
+        {
+          "channel": 45,
+          "contribution": 26.110271605497587,
+          "retained_value": 0.6676243543624878,
+          "minimum": 0.6676243543624878,
+          "maximum": 0.6676243543624878
+        },
+        {
+          "channel": 44,
+          "contribution": 22.908665635580977,
+          "retained_value": 0.6615539789199829,
+          "minimum": 0.6615539789199829,
+          "maximum": 0.6615539789199829
+        },
+        {
+          "channel": 46,
+          "contribution": 21.063373999425995,
+          "retained_value": 0.6234191060066223,
+          "minimum": 0.6234191060066223,
+          "maximum": 0.6234191060066223
+        },
+        {
+          "channel": 42,
+          "contribution": 19.88406584824649,
+          "retained_value": 0.6471500396728516,
+          "minimum": 0.6471500396728516,
+          "maximum": 0.6471500396728516
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9958023,
+    "stop_cell": 9958030,
+    "peak_cell": 9958023,
+    "first_available_us": 1245425520000000,
+    "last_available_us": 1245425700000000,
+    "duration_seconds": 210,
+    "peak_score": 15.598164023711027,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 7.429381662640333,
+          "retained_value": 0.847898006439209,
+          "minimum": 0.847898006439209,
+          "maximum": 0.847898006439209
+        },
+        {
+          "channel": 44,
+          "contribution": 6.5949798755419335,
+          "retained_value": 0.8361753225326538,
+          "minimum": 0.8361753225326538,
+          "maximum": 0.8361753225326538
+        },
+        {
+          "channel": 45,
+          "contribution": 6.1029490080715725,
+          "retained_value": 0.8473791480064392,
+          "minimum": 0.8473791480064392,
+          "maximum": 0.8473791480064392
+        },
+        {
+          "channel": 43,
+          "contribution": 4.09050911173664,
+          "retained_value": 0.7924723625183105,
+          "minimum": 0.7924723625183105,
+          "maximum": 0.7924723625183105
+        },
+        {
+          "channel": 42,
+          "contribution": 3.938570665775686,
+          "retained_value": 0.8120483160018921,
+          "minimum": 0.8120483160018921,
+          "maximum": 0.8120483160018921
+        },
+        {
+          "channel": 46,
+          "contribution": 2.4713031583637646,
+          "retained_value": 0.7855629920959473,
+          "minimum": 0.7855629920959473,
+          "maximum": 0.7855629920959473
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9958221,
+    "stop_cell": 9958222,
+    "peak_cell": 9958221,
+    "first_available_us": 1245431460000000,
+    "last_available_us": 1245431460000000,
+    "duration_seconds": 30,
+    "peak_score": 11.707352688018734,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 11.545440194502211,
+          "retained_value": 0.8683046698570251,
+          "minimum": 0.8683046698570251,
+          "maximum": 0.8683046698570251
+        },
+        {
+          "channel": 45,
+          "contribution": 10.053494294783764,
+          "retained_value": 0.8694238066673279,
+          "minimum": 0.8694238066673279,
+          "maximum": 0.8694238066673279
+        },
+        {
+          "channel": 44,
+          "contribution": 9.653946555635727,
+          "retained_value": 0.8542802333831787,
+          "minimum": 0.8542802333831787,
+          "maximum": 0.8542802333831787
+        },
+        {
+          "channel": 43,
+          "contribution": 8.705847407290019,
+          "retained_value": 0.8154195547103882,
+          "minimum": 0.8154195547103882,
+          "maximum": 0.8154195547103882
+        },
+        {
+          "channel": 42,
+          "contribution": 7.187726521185355,
+          "retained_value": 0.8345386981964111,
+          "minimum": 0.8345386981964111,
+          "maximum": 0.8345386981964111
+        },
+        {
+          "channel": 46,
+          "contribution": 6.516260773974222,
+          "retained_value": 0.8134310245513916,
+          "minimum": 0.8134310245513916,
+          "maximum": 0.8134310245513916
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 10226923,
+    "stop_cell": 10226924,
+    "peak_cell": 10226923,
+    "first_available_us": 1253492520000000,
+    "last_available_us": 1253492520000000,
+    "duration_seconds": 30,
+    "peak_score": 6.785716018277171,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 2.9120040942784575,
+          "retained_value": 0.7576562762260437,
+          "minimum": 0.7576562762260437,
+          "maximum": 0.7576562762260437
+        },
+        {
+          "channel": 46,
+          "contribution": 0.9607527288245687,
+          "retained_value": 0.7619175910949707,
+          "minimum": 0.7619175910949707,
+          "maximum": 0.7619175910949707
+        },
+        {
+          "channel": 42,
+          "contribution": 0.7033118232140931,
+          "retained_value": 0.7799175977706909,
+          "minimum": 0.7799175977706909,
+          "maximum": 0.7799175977706909
+        },
+        {
+          "channel": 44,
+          "contribution": 0.4770465153543457,
+          "retained_value": 0.799965500831604,
+          "minimum": 0.799965500831604,
+          "maximum": 0.799965500831604
+        },
+        {
+          "channel": 41,
+          "contribution": 0.4636997569380287,
+          "retained_value": 0.8133634328842163,
+          "minimum": 0.8133634328842163,
+          "maximum": 0.8133634328842163
+        },
+        {
+          "channel": 45,
+          "contribution": 0.43085135579214234,
+          "retained_value": 0.8109195232391357,
+          "minimum": 0.8109195232391357,
+          "maximum": 0.8109195232391357
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 10751173,
+    "stop_cell": 10751175,
+    "peak_cell": 10751173,
+    "first_available_us": 1269220020000000,
+    "last_available_us": 1269220050000000,
+    "duration_seconds": 60,
+    "peak_score": 126.95151047074071,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_140"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 44,
+          "contribution": 134.68339876225798,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.7960298657417297
+        },
+        {
+          "channel": 45,
+          "contribution": 30.870593215527897,
+          "retained_value": 0.9855864644050598,
+          "minimum": 0.8015924692153931,
+          "maximum": 0.9855864644050598
+        },
+        {
+          "channel": 43,
+          "contribution": 30.35008048978073,
+          "retained_value": 0.9230334162712097,
+          "minimum": 0.7719001173973083,
+          "maximum": 0.9230334162712097
+        },
+        {
+          "channel": 41,
+          "contribution": 29.90933908133958,
+          "retained_value": 0.959349513053894,
+          "minimum": 0.8110092282295227,
+          "maximum": 0.959349513053894
+        },
+        {
+          "channel": 42,
+          "contribution": 24.130273832231694,
+          "retained_value": 0.9518135786056519,
+          "minimum": 0.771081805229187,
+          "maximum": 0.9518135786056519
+        },
+        {
+          "channel": 46,
+          "contribution": 22.819079929477553,
+          "retained_value": 0.9257504940032959,
+          "minimum": 0.7720505595207214,
+          "maximum": 0.9257504940032959
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 10840477,
+    "stop_cell": 10840478,
+    "peak_cell": 10840477,
+    "first_available_us": 1271899140000000,
+    "last_available_us": 1271899140000000,
+    "duration_seconds": 30,
+    "peak_score": 148.20276150428364,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_142"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 155.29840489061155,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.7608218789100647
+        },
+        {
+          "channel": 41,
+          "contribution": 29.117738962251252,
+          "retained_value": 0.9554249048233032,
+          "minimum": 0.8141486048698425,
+          "maximum": 0.9554249048233032
+        },
+        {
+          "channel": 45,
+          "contribution": 28.439421869509726,
+          "retained_value": 0.972020149230957,
+          "minimum": 0.8117668032646179,
+          "maximum": 0.972020149230957
+        },
+        {
+          "channel": 44,
+          "contribution": 24.28406523768629,
+          "retained_value": 0.9408705830574036,
+          "minimum": 0.8023266196250916,
+          "maximum": 0.9408705830574036
+        },
+        {
+          "channel": 46,
+          "contribution": 23.431990309327155,
+          "retained_value": 0.9299731850624084,
+          "minimum": 0.7492496371269226,
+          "maximum": 0.9299731850624084
+        },
+        {
+          "channel": 42,
+          "contribution": 21.693307914123565,
+          "retained_value": 0.9349451065063477,
+          "minimum": 0.7831301093101501,
+          "maximum": 0.9349451065063477
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 10918176,
+    "stop_cell": 10918178,
+    "peak_cell": 10918176,
+    "first_available_us": 1274230110000000,
+    "last_available_us": 1274230140000000,
+    "duration_seconds": 60,
+    "peak_score": 10.029432701033075,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_145"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 12.042858378725208,
+          "retained_value": 0.7513582110404968,
+          "minimum": 0.7513582110404968,
+          "maximum": 0.7513582110404968
+        },
+        {
+          "channel": 45,
+          "contribution": 11.675134992846653,
+          "retained_value": 0.7481746673583984,
+          "minimum": 0.7481746673583984,
+          "maximum": 0.7481746673583984
+        },
+        {
+          "channel": 43,
+          "contribution": 10.869269780088269,
+          "retained_value": 0.71809321641922,
+          "minimum": 0.71809321641922,
+          "maximum": 0.71809321641922
+        },
+        {
+          "channel": 44,
+          "contribution": 9.631068441716872,
+          "retained_value": 0.7401392459869385,
+          "minimum": 0.7401392459869385,
+          "maximum": 0.7401392459869385
+        },
+        {
+          "channel": 46,
+          "contribution": 8.192809713943047,
+          "retained_value": 0.7120918035507202,
+          "minimum": 0.7120918035507202,
+          "maximum": 0.7120918035507202
+        },
+        {
+          "channel": 42,
+          "contribution": 8.014209577538486,
+          "retained_value": 0.7293121814727783,
+          "minimum": 0.7293121814727783,
+          "maximum": 0.7293121814727783
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 11238046,
+    "stop_cell": 11238047,
+    "peak_cell": 11238046,
+    "first_available_us": 1283826210000000,
+    "last_available_us": 1283826210000000,
+    "duration_seconds": 30,
+    "peak_score": 170.55719038205504,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_149"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 43,
+          "contribution": 155.29840489061155,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 45,
+          "contribution": 30.71849880285703,
+          "retained_value": 0.984737753868103,
+          "minimum": 0.9643890857696533,
+          "maximum": 0.984737753868103
+        },
+        {
+          "channel": 41,
+          "contribution": 28.009674321949724,
+          "retained_value": 0.9499313235282898,
+          "minimum": 0.9499313235282898,
+          "maximum": 0.9632740616798401
+        },
+        {
+          "channel": 42,
+          "contribution": 23.782191200387548,
+          "retained_value": 0.9494041800498962,
+          "minimum": 0.9228968024253845,
+          "maximum": 0.9494041800498962
+        },
+        {
+          "channel": 44,
+          "contribution": 23.618887268346782,
+          "retained_value": 0.9369336366653442,
+          "minimum": 0.9369336366653442,
+          "maximum": 0.9511029124259949
+        },
+        {
+          "channel": 46,
+          "contribution": 22.45134235299527,
+          "retained_value": 0.9232169389724731,
+          "minimum": 0.9232169389724731,
+          "maximum": 0.936729371547699
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 11380971,
+    "stop_cell": 11380972,
+    "peak_cell": 11380971,
+    "first_available_us": 1288113960000000,
+    "last_available_us": 1288113960000000,
+    "duration_seconds": 30,
+    "peak_score": 109.42134134244513,
+    "threshold": 6.785716018277171,
+    "overlapping_event_ids": [
+      "id_150"
+    ],
+    "evidence": {
+      "description": "Retained value deviation from training mean; not a rolling-score attribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 42,
+          "contribution": 113.37697862071487,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 43,
+          "contribution": 31.145809456002322,
+          "retained_value": 0.926989734172821,
+          "minimum": 0.9261990189552307,
+          "maximum": 0.926989734172821
+        },
+        {
+          "channel": 45,
+          "contribution": 28.743108662588273,
+          "retained_value": 0.9737147688865662,
+          "minimum": 0.9737147688865662,
+          "maximum": 0.9745634198188782
+        },
+        {
+          "channel": 41,
+          "contribution": 28.484521383240526,
+          "retained_value": 0.9522855281829834,
+          "minimum": 0.9522855281829834,
+          "maximum": 0.9530707001686096
+        },
+        {
+          "channel": 46,
+          "contribution": 24.780176859309275,
+          "retained_value": 0.9392616152763367,
+          "minimum": 0.9392616152763367,
+          "maximum": 0.9409506320953369
+        },
+        {
+          "channel": 44,
+          "contribution": 24.150941021903048,
+          "retained_value": 0.9400826692581177,
+          "minimum": 0.9400826692581177,
+          "maximum": 0.9400826692581177
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\title{Preserving Fault Evidence under Telemetry Budgets:\\
+A Causal Recorder and Evaluation Protocol}
+\author{Simon Balanoff}
+\date{Research draft --- \today}
+\begin{document}
+\maketitle
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\small\textbf{Draft status.}
+This manuscript describes an implemented research prototype and a proposed
+mission-data evaluation. The reported recorder results are synthetic protocol
+checks, not evidence of operational benefit, flight readiness, or a novel
+state-of-the-art method.}}
+\end{center}
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/related-work}
+\input{sections/problem}
+\input{sections/method}
+\input{sections/evaluation}
+\input{sections/results}
+\input{sections/limitations}
+\section{Conclusion}
+Budgeted telemetry retention should be evaluated by the fault evidence it leaves
+available to a receiver, not merely by the anomaly scores that selected it.
+The prototype makes packet costs and causal decisions explicit. The next step is
+a frozen, multi-budget evaluation on native mission observations, followed by
+independent mission and operator validation.
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

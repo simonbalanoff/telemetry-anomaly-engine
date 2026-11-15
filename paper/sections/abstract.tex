@@ -1,0 +1,18 @@
+\begin{abstract}
+Telemetry reduction can discard the observations needed to detect or investigate
+an unfamiliar fault. We study causal retention under a fixed serialized-byte
+budget per reporting epoch. The proposed evaluation separates capture decisions
+from downstream assessment and measures raw event coverage, onset localization,
+pre-event context, and delayed evidence delivery. We implement four reference
+policies: time-stratified sampling, fixed extrema summaries, threshold-triggered
+capture, and an adaptive recorder combining a bounded pre-trigger ring with
+reserved detector-independent background capacity. An experimental packet format
+charges headers, timestamps, record tags, and measurement payloads. Reproducible
+synthetic checks exercise a spike, a step, and a slow ramp, and verify packet
+budgets and causal prefix behavior. These checks establish software behavior,
+not superiority on spacecraft faults. A planned mission-data study will compare
+policies at common budget caps, report actual bytes and independent receiver
+performance, and examine robustness to missing observations and trigger blind
+spots. Whether adaptive retention improves diagnostically useful evidence remains
+an open empirical question.
+\end{abstract}

@@ -1,0 +1,32 @@
+\section{Problem Definition}
+Let an observation be $x_i=(t_i,\mathbf{v}_i)$ with a strictly increasing native
+microsecond timestamp and six finite binary32 measurements. Observations need
+not be uniformly spaced. An epoch $E_j=[jT,(j+1)T)$ has duration $T$ and packet
+budget $B$. A capture policy may inspect only observations and scores available
+by the current time. Event annotations are unavailable to that policy.
+
+For the emitted packet $P_j$, the operational constraint is
+\begin{equation}
+ C(P_j)=32+36N_j^{\mathrm{raw}}+64N_j^{\mathrm{summary}}\leq B.
+ \label{eq:budget}
+\end{equation}
+The 32-byte header declares the epoch, duration, budget, and record count. A raw
+record contains its type/reason/length prefix, timestamp, and six measurements.
+A summary contains a prefix, bucket start, six minima, six maxima, and sample
+count. These are experimental application bytes, not a CCSDS packet specification.
+Link framing, error correction, encryption, retransmission, and static model
+transfer are not included and must be added for a mission-specific link budget.
+
+The recorder holds at most one active packet and a configurable $H$-sample raw
+ring. Its state scales as $O(B+H)$ in record capacity; Python object overhead is
+not a measured embedded-memory bound. Completed packets leave the recorder.
+No capacity is borrowed from future epochs. Empty epochs produce no packet and
+confer no credit on later epochs.
+
+The target is a tradeoff surface, rather than one scalar score:
+\begin{equation}
+ \bigl(C(P),\;\text{event evidence},\;\text{onset error},\;
+ \text{context coverage},\;\text{delivery delay},\;\text{compute}\bigr).
+\end{equation}
+Equal budget caps do not imply equal expenditure; both allocated and actual bytes
+must be reported. A resource-efficient policy need not fill its packet.

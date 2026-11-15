@@ -22,6 +22,7 @@ add_custom_target(tae_python_fixture
 )
 
 add_executable(tae_tests
+  test_pca.cpp
   test_runtime_statistical.cpp
   test_smoke.cpp
   test_telemetry_header.cpp

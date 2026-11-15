@@ -1,0 +1,203 @@
+{
+  "kind": "synthetic_protocol_smoke_test",
+  "seed": 2026,
+  "config": {
+    "epoch_us": 600000000,
+    "budget_bytes": 1024,
+    "threshold": 2,
+    "pre_trigger_samples": 3,
+    "post_trigger_samples": 3,
+    "background_fraction": 0.2
+  },
+  "python": "3.12.2",
+  "numpy": "2.5.4",
+  "scripts": {
+    "run_retention_demo.py": "26f5179666490f8a8bc40146debc848e4ea80a7543f108b3bc8d587113ef564c",
+    "__init__.py": "e6c058331dd991fe856526ac29a191b7cc856f283b496e6b013b13063e9ade3e",
+    "codec.py": "9401522d4f06cadc64a490ba28a6f6de134cb2b3b39f39eff58240fc9f318246",
+    "evaluation.py": "fbf4ebe1b85b9d69f36bcc5f448c98663f00e02c0643d8bacc4d47bc810cb8a2",
+    "recorder.py": "f6062284ec5ca868f842e73ac41b8daaa71887a95e45c1cab1941ccec292fdfc"
+  },
+  "policies": {
+    "uniform": {
+      "packets": 3,
+      "serialized_bytes": 3012,
+      "maximum_packet_bytes": 1004,
+      "allocated_bytes": 3072,
+      "retained_raw_samples": 81,
+      "source_samples": 360,
+      "events_with_raw_samples": 2,
+      "events_with_receiver_evidence": 2,
+      "events": [
+        {
+          "event_id": "spike",
+          "source_samples": 1,
+          "retained_raw_samples": 0,
+          "raw_sample_coverage": 0.0,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 1,
+          "raw_onset_error_us": null,
+          "receiver_evidence": false,
+          "receiver_delivery_delay_us": null
+        },
+        {
+          "event_id": "step",
+          "source_samples": 6,
+          "retained_raw_samples": 1,
+          "raw_sample_coverage": 0.16666666666666666,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 1,
+          "raw_onset_error_us": 5000000,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 515000000
+        },
+        {
+          "event_id": "ramp",
+          "source_samples": 21,
+          "retained_raw_samples": 5,
+          "raw_sample_coverage": 0.23809523809523808,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 1,
+          "raw_onset_error_us": 15000000,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 500000000
+        }
+      ]
+    },
+    "summaries": {
+      "packets": 3,
+      "serialized_bytes": 2976,
+      "maximum_packet_bytes": 992,
+      "allocated_bytes": 3072,
+      "retained_raw_samples": 0,
+      "source_samples": 360,
+      "events_with_raw_samples": 0,
+      "events_with_receiver_evidence": 3,
+      "events": [
+        {
+          "event_id": "spike",
+          "source_samples": 1,
+          "retained_raw_samples": 0,
+          "raw_sample_coverage": 0.0,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 0,
+          "raw_onset_error_us": null,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 365000000
+        },
+        {
+          "event_id": "step",
+          "source_samples": 6,
+          "retained_raw_samples": 0,
+          "raw_sample_coverage": 0.0,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 0,
+          "raw_onset_error_us": null,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 515000000
+        },
+        {
+          "event_id": "ramp",
+          "source_samples": 21,
+          "retained_raw_samples": 0,
+          "raw_sample_coverage": 0.0,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 0,
+          "raw_onset_error_us": null,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 500000000
+        }
+      ]
+    },
+    "threshold": {
+      "packets": 3,
+      "serialized_bytes": 276,
+      "maximum_packet_bytes": 104,
+      "allocated_bytes": 3072,
+      "retained_raw_samples": 5,
+      "source_samples": 360,
+      "events_with_raw_samples": 2,
+      "events_with_receiver_evidence": 2,
+      "events": [
+        {
+          "event_id": "spike",
+          "source_samples": 1,
+          "retained_raw_samples": 1,
+          "raw_sample_coverage": 1.0,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 0,
+          "raw_onset_error_us": 0,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 365000000
+        },
+        {
+          "event_id": "step",
+          "source_samples": 6,
+          "retained_raw_samples": 1,
+          "raw_sample_coverage": 0.16666666666666666,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 0,
+          "raw_onset_error_us": 0,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 515000000
+        },
+        {
+          "event_id": "ramp",
+          "source_samples": 21,
+          "retained_raw_samples": 0,
+          "raw_sample_coverage": 0.0,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 0,
+          "raw_onset_error_us": null,
+          "receiver_evidence": false,
+          "receiver_delivery_delay_us": null
+        }
+      ]
+    },
+    "adaptive": {
+      "packets": 3,
+      "serialized_bytes": 1680,
+      "maximum_packet_bytes": 680,
+      "allocated_bytes": 3072,
+      "retained_raw_samples": 44,
+      "source_samples": 360,
+      "events_with_raw_samples": 3,
+      "events_with_receiver_evidence": 3,
+      "events": [
+        {
+          "event_id": "spike",
+          "source_samples": 1,
+          "retained_raw_samples": 1,
+          "raw_sample_coverage": 1.0,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 3,
+          "raw_onset_error_us": 0,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 365000000
+        },
+        {
+          "event_id": "step",
+          "source_samples": 6,
+          "retained_raw_samples": 6,
+          "raw_sample_coverage": 1.0,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 3,
+          "raw_onset_error_us": 0,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 515000000
+        },
+        {
+          "event_id": "ramp",
+          "source_samples": 21,
+          "retained_raw_samples": 4,
+          "raw_sample_coverage": 0.19047619047619047,
+          "pre_context_samples": 3,
+          "retained_pre_context_samples": 0,
+          "raw_onset_error_us": 0,
+          "receiver_evidence": true,
+          "receiver_delivery_delay_us": 500000000
+        }
+      ]
+    }
+  }
+}

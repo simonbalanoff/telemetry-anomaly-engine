@@ -1,0 +1,34 @@
+\section{Prototype Recorder}
+\subsection{Reference policies}
+\textbf{Uniform} retains the first available native sample in each of $K$ equal
+time strata, where $K=\lfloor(B-32)/36\rfloor$. It neither interpolates missing
+samples nor chooses a sample using future observations. \textbf{Summaries} divide
+an epoch into $\lfloor(B-32)/64\rfloor$ strata and record extrema and counts for
+nonempty strata. This preserves bounds at coarse resolution, not a raw trajectory.
+\textbf{Threshold} retains samples whose causal capture score exceeds a fixed
+threshold, stopping when the packet is full.
+
+\subsection{Adaptive capture with reserved background capacity}
+The adaptive policy reserves $K_b=\lceil\rho K\rceil$ raw slots for background
+sampling and $K-K_b$ for triggered detail. Background samples are the first
+available samples in $K_b$ time strata, selected independently of anomaly scores.
+This is deterministic coverage sampling, not randomized exploration. A trigger
+cannot consume the reserved capacity. Unused reserved slots are not reclaimed in
+the current prototype.
+
+On a threshold crossing, the recorder first reserves room for the current sample,
+then adds the most recent affordable, not-yet-retained observations from its
+pre-trigger ring. It records subsequent observations for a configured post-trigger
+sample count. Repeated triggers may exhaust the detail quota, but cannot overflow
+the serialized budget or eliminate the independent background reservation.
+Records are deduplicated by native timestamp and sorted when an epoch is finalized.
+The ring resets at epoch boundaries; cross-epoch prehistory is a planned ablation.
+Finalized epochs cannot be reopened to reset their budget.
+
+\subsection{Capture and delivery timing}
+The policy is causal, although packet finalization occurs at epoch end. Selecting
+an older buffered observation after a trigger is permitted: the observation was
+already available and occupied bounded memory. The first prototype assumes
+instantaneous packet delivery at epoch end. It therefore measures an epoch-batching
+delay, not detection reaction time or a realistic intermittent-contact link.
+A later contact scheduler must account for queues, missed passes, and storage eviction.

@@ -49,9 +49,20 @@ def recall_interval(hits, count):
 
 
 def event_metrics(
-    scores, eligible, events, header, threshold, anomaly_mask, tolerance_cells=0
+    scores,
+    eligible,
+    events,
+    header,
+    threshold,
+    anomaly_mask,
+    tolerance_cells=0,
+    *,
+    episodes=None,
 ):
-    alarms = alarm_intervals(scores, eligible, threshold)
+    # Optional episode policy changes alarm grouping, never scored-cell eligibility.
+    alarms = (
+        alarm_intervals(scores, eligible, threshold) if episodes is None else episodes
+    )
     groups = {}
     for event in events:
         if event["category"] != "Anomaly":

@@ -1,0 +1,33 @@
+\section{Implemented Checks and Preliminary Artifacts}
+The existing repository provides a C++ validating telemetry reader, statistical
+and PCA scorers, and a verified Mission1 export. These are supporting components;
+their detector metrics do not demonstrate recorder effectiveness. The new recorder
+is a Python research prototype. Its C++ streaming integration and embedded resource
+measurements remain future work.
+
+The reproducible smoke scenario has 360 six-channel observations at five-second
+intervals over three ten-minute epochs. Seed 2026 fixes Gaussian background noise.
+A point spike, a sustained step, and a slow ramp are injected at declared times.
+Each epoch has a 1,024-byte cap. Capture uses a first-difference threshold of 2;
+the receiver uses an amplitude threshold of 4. The adaptive ring and post-trigger
+window each contain three samples, with $\rho=0.2$ background reservation.
+These settings are illustrative and were not selected on mission data.
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\input{generated/smoke_results}
+\caption{Synthetic protocol check only. Each policy has the same three-epoch
+allocation of 3,072 bytes. Raw event coverage here counts events with at least
+one retained raw observation, not a per-event sample fraction. Receiver evidence
+for summaries is coarse bucket evidence. Actual expenditure differs by policy.}
+\label{tab:smoke}
+\end{table}
+
+The artifact checks packet-byte limits, decoding, timestamp fidelity, bounded
+record counts, background reservation under continuous triggering, and causal
+prefix behavior. Tests also reject invalid input, malformed packets, duplicate
+raw timestamps, and budget reset through reopening a finalized epoch.
+Table~\ref{tab:smoke} is generated directly from the recorded experiment artifact.
+It is not a statistical comparison, a diagnosis study, or a claim that the proposed
+policy outperforms established mission recorders.

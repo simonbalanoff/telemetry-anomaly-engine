@@ -74,3 +74,55 @@ selection on validation using a fresh results directory rather than copying the
 frozen selection from this run. Detector latency samples are local to macOS arm64
 with AppleClang 21 release optimization; they exclude I/O and are not end-to-end
 latency or portable performance guarantees.
+
+## PCA and preserved-evidence comparison: validation only
+
+The next experiment uses a common observed-cell mask and a budget of at most
+0.01 false-alarm episodes per eligible normal day. It does not evaluate the test
+partition again. A five-cell hold joins alarms only across short, usable missing
+observations; missing cells receive no event-detection credit. About 2.106% of
+validation cells are excluded or unscorable under this shared exposure policy.
+
+![Validation detection and alarm burden](evidence-comparison.svg)
+
+| Detector | Detected / eligible events | False alarm episodes | Minutes above threshold, including held gaps |
+| --- | ---: | ---: | ---: |
+| Rolling z-score | 10 / 11 | 9 | 15.0 |
+| EWMA | 2 / 11 | 9 | 18,563.5 |
+| PCA, 3 retained components | 8 / 11 | 2 | 6,645.0 |
+| Retained-value excursion | 1 / 11 | 2 | 6,641.0 |
+| Raw-sample excursion | 1 / 11 | 2 | 6,641.0 |
+| Within-cell range | 2 / 11 | 2 | 2.0 |
+
+**Recommendation:** retain rolling z-score as the primary baseline. PCA offers a
+lower false-alarm count here, with fewer detected events and much longer active
+alarm time. Sustained anomalies can legitimately require sustained alarms; duration
+needs operational interpretation, rather than being automatically good or bad.
+The raw-extrema scores do not improve event detection over the matched retained
+control at this budget. Synthetic regression tests nevertheless demonstrate that
+the sidecar preserves a transient that the keep-last grid discards.
+
+The [strict no-hold control](comparison-no-hold.json) uses the same scores, exposure,
+and candidate-grid policy, with thresholds independently selected under the same
+budget. It detects 10/11 events with 10 false alarms for z-score and 4/11 with zero
+false alarms for the selected three-component PCA. The held-alarm improvement is
+an alarm-management change, not an improvement in numerical PCA reconstruction.
+Short observed below-threshold periods remain episode breaks.
+
+Selection includes normal-score and all-score validation quantiles, including
+extreme tails. This matters: considering only the normal-score tail can skip
+useful thresholds above the maximum normal value and select silence instead.
+The finite grid remains approximate. Candidate refinement and alarm-policy design
+used validation only, so these figures are development results, not a new held-out
+estimate. Multiple model/rank candidates increase validation-selection uncertainty.
+
+Artifacts:
+
+- [Feature manifest](cell-features-manifest.json): binds 14,728,320 raw count/extrema records to the verified telemetry file.
+- [Comparison selection](comparison-selection.json): thresholds, all candidate trials, selected PCA rank, and dependency/configuration hashes.
+- [Comparison report](comparison-validation.json): every PCA rank, controls, exposure, uncertainty, alarm duration, and scored/held cell counts.
+- [Z-score alarms](comparison-zscore-alarms.json) and [PCA alarms](comparison-pca-alarms.json): inspectable episodes and channel context.
+
+Reproduce with the [comparison workflow](../evidence-comparison.md). Matplotlib is
+optional and is used only to render the SVG. The historical M1/M2 artifacts above
+are preserved; their policy and exposure differ from this experiment.

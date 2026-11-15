@@ -39,6 +39,8 @@ endif()
 
 # Core library. Add .cpp files to this list as you create them.
 add_library(tae
+  src/math/symmetric.cpp
+  src/detectors/pca.cpp
   src/detectors/statistical.cpp
   src/version.cpp
   src/io/telemetry_header.cpp

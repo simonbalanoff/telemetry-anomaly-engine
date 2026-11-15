@@ -1,0 +1,14 @@
+# Claim and evidence ledger
+
+| Statement | Status | Evidence or requirement |
+| --- | --- | --- |
+| Packet headers, record prefixes, timestamps, and measurements are charged | Implemented | `retention/codec.py`; exact-size and corruption tests |
+| Every active epoch respects its serialized packet cap | Implemented/tested | Serialization guard; randomized irregular multi-epoch tests |
+| Adaptive background capacity is independent of trigger scores | Implemented/tested | Separate quota; continuous-trigger reservation test |
+| Retained context can precede a trigger without using future observations | Implemented/tested | Bounded raw ring and prefix-invariance test |
+| The smoke table reproduces from decoded packet files | Measured synthetic check | `run_retention_demo.py`; `docs/results/retention-smoke.json` |
+| Adaptive capture improves real spacecraft event detection or diagnosis | Not established | Native mission replay and independent receiver/operator evaluation required |
+| The method is novel relative to adaptive sampling/triggered recorders | Not established | Expanded prior-art review required |
+| Native asynchronous channels and intermittent downlink are modeled | Planned | Source adapter and contact/queue model required |
+| Recorder fits an embedded CPU/RAM allocation | Not established | C++ integration and hardware/resource measurements required |
+| Existing detector results validate this recorder | Unsupported | Detector results and retention results answer different questions |

@@ -30,3 +30,30 @@ jobs:
           PYTHONPATH: python
           TAE_EXECUTABLE: build/${{ matrix.preset }}/apps/cli/tae
         run: python -m unittest discover -s python/tests -v
+
+  paper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install experiment dependencies
+        run: python -m pip install -r python/requirements-core.txt
+      - name: Regenerate synthetic paper table
+        run: |
+          python python/run_retention_demo.py --latex paper/generated/smoke_results.tex
+          git diff --exit-code -- paper/generated/smoke_results.tex
+      - name: Verify README paper snapshot
+        run: python python/snapshot_paper.py --check
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-base texlive-latex-recommended lmodern
+      - name: Build research draft
+        working-directory: paper
+        run: latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build main.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: research-paper-draft
+          path: paper/build/main.pdf

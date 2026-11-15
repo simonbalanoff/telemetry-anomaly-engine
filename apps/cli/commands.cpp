@@ -13,6 +13,7 @@
 #include <stdexcept>
 #include <vector>
 
+#include "tae/detectors/pca.hpp"
 #include "tae/detectors/statistical.hpp"
 #include "tae/io/telemetry_reader.hpp"
 
@@ -50,7 +51,7 @@ void require_distinct_paths(const std::array<std::filesystem::path, 4> &paths) {
 
 tae::detectors::Normalizer fit_normalizer(const std::filesystem::path &telemetry,
                                           const std::filesystem::path &training_mask,
-                                          io::HeaderPolicy policy) {
+                                          io::HeaderPolicy policy, math::Covariance *covariance) {
     io::TelemetryReader reader(telemetry, policy);
     const auto header = reader.header();
     if (std::filesystem::file_size(training_mask) != header.frame_count) {
@@ -71,8 +72,14 @@ tae::detectors::Normalizer fit_normalizer(const std::filesystem::path &telemetry
         if (eligible && timestamp >= header.validation_start_us) {
             throw std::runtime_error("Training mask leaks across split");
         }
-        if (eligible)
+        if (eligible) {
             normalizer.fit(*frame);
+            if (covariance && frame->observed_mask == 0x3f) {
+                math::Vector observation{};
+                std::copy(frame->values.begin(), frame->values.end(), observation.begin());
+                covariance->add(observation);
+            }
+        }
     }
     if (normalizer.count() < 2) {
         throw std::runtime_error("Insufficient eligible training data");
@@ -82,7 +89,8 @@ tae::detectors::Normalizer fit_normalizer(const std::filesystem::path &telemetry
 
 ScoringSummary write_scores(io::TelemetryReader &reader, const detectors::Normalizer &normalizer,
                             detectors::StatisticalDetector &detector,
-                            const std::filesystem::path &scores_path) {
+                            const std::filesystem::path &scores_path,
+                            const std::vector<detectors::PcaDetector> &pca_models) {
     std::ofstream output(scores_path, std::ios::binary);
     if (!output)
         throw std::runtime_error("Cannot open score output");
@@ -103,6 +111,16 @@ ScoringSummary write_scores(io::TelemetryReader &reader, const detectors::Normal
         const auto start = sample_latency ? std::chrono::steady_clock::now()
                                           : std::chrono::steady_clock::time_point{};
         const auto scores = detector.update(*frame, normalizer);
+        // PCA uses observed values only; hold the same warm-up as statistical scores.
+        std::array<double, 5> reconstruction_errors{};
+        if (scores && frame->observed_mask == 0x3f && !pca_models.empty()) {
+            const auto normalized = normalizer.transform(*frame);
+            for (std::size_t model = 0; model < pca_models.size(); ++model) {
+                reconstruction_errors[model] = pca_models[model].score(normalized).error;
+            }
+        } else {
+            reconstruction_errors.fill(missing);
+        }
         if (sample_latency) {
             const auto duration = std::chrono::steady_clock::now() - start;
             summary.latency_ns.push_back(
@@ -110,6 +128,9 @@ ScoringSummary write_scores(io::TelemetryReader &reader, const detectors::Normal
         }
         write_double(output, scores ? scores->zscore : missing);
         write_double(output, scores ? scores->ewma : missing);
+        for (std::size_t model = 0; model < pca_models.size(); ++model) {
+            write_double(output, reconstruction_errors[model]);
+        }
         if (scores)
             ++summary.scored_frames;
     }
@@ -121,7 +142,8 @@ ScoringSummary write_scores(io::TelemetryReader &reader, const detectors::Normal
 
 void write_metadata(const std::filesystem::path &path, const io::TelemetryHeader &header,
                     const detectors::Normalizer &normalizer, ScoringSummary &summary,
-                    std::size_t window, double alpha) {
+                    std::size_t window, double alpha,
+                    const std::vector<detectors::PcaDetector> &pca_models) {
     std::ofstream output(path);
     if (!output)
         throw std::runtime_error("Cannot open metadata output");
@@ -147,7 +169,34 @@ void write_metadata(const std::filesystem::path &path, const io::TelemetryHeader
         output << "\n    {\"mean\": " << moment.mean << ", \"variance\": " << moment.variance()
                << '}';
     }
-    output << "\n  ]\n}\n";
+    output << "\n  ],\n  \"score_names\": [\"zscore\", \"ewma\"";
+    for (const auto &model : pca_models) {
+        output << ", \"pca_" << model.components() << "\"";
+    }
+    output << "]";
+    if (!pca_models.empty()) {
+        const auto &eigen = pca_models.front().eigensystem();
+        output << ",\n  \"pca_eigenvalues\": [";
+        for (std::size_t index = 0; index < math::dimensions; ++index) {
+            if (index)
+                output << ',';
+            output << eigen.values[index];
+        }
+        output << "],\n  \"pca_eigenvectors\": [";
+        for (std::size_t row = 0; row < math::dimensions; ++row) {
+            if (row)
+                output << ',';
+            output << '[';
+            for (std::size_t column = 0; column < math::dimensions; ++column) {
+                if (column)
+                    output << ',';
+                output << eigen.vectors[row][column];
+            }
+            output << ']';
+        }
+        output << ']';
+    }
+    output << "\n}\n";
     output.close();
     if (!output)
         throw std::runtime_error("Failed to write metadata");
@@ -171,7 +220,8 @@ void verify(const std::filesystem::path &telemetry) {
 
 void score(const std::filesystem::path &telemetry, const std::filesystem::path &training_mask,
            const std::filesystem::path &scores, const std::filesystem::path &metadata,
-           const std::string &window_text, const std::string &alpha_text, io::HeaderPolicy policy) {
+           const std::string &window_text, const std::string &alpha_text, io::HeaderPolicy policy,
+           bool include_pca) {
     require_distinct_paths({telemetry, training_mask, scores, metadata});
     std::size_t parsed = 0;
     const auto window = std::stoull(window_text, &parsed);
@@ -182,11 +232,27 @@ void score(const std::filesystem::path &telemetry, const std::filesystem::path &
     if (parsed != alpha_text.size())
         throw std::invalid_argument("Invalid alpha");
     detectors::StatisticalDetector detector(static_cast<std::size_t>(window), alpha);
-    const auto normalizer = fit_normalizer(telemetry, training_mask, policy);
+    math::Covariance covariance;
+    const auto normalizer =
+        fit_normalizer(telemetry, training_mask, policy, include_pca ? &covariance : nullptr);
+    std::vector<detectors::PcaDetector> pca_models;
+    if (include_pca) {
+        auto standardized = covariance.sample_covariance();
+        const auto &moments = normalizer.moments();
+        for (std::size_t row = 0; row < math::dimensions; ++row) {
+            for (std::size_t column = 0; column < math::dimensions; ++column) {
+                standardized[row][column] /= std::max(1e-12, std::sqrt(moments[row].variance())) *
+                                             std::max(1e-12, std::sqrt(moments[column].variance()));
+            }
+        }
+        for (std::size_t components = 1; components < math::dimensions; ++components) {
+            pca_models.emplace_back(standardized, components);
+        }
+    }
     io::TelemetryReader reader(telemetry, policy);
-    auto summary = write_scores(reader, normalizer, detector, scores);
+    auto summary = write_scores(reader, normalizer, detector, scores, pca_models);
     write_metadata(metadata, reader.header(), normalizer, summary, static_cast<std::size_t>(window),
-                   alpha);
+                   alpha, pca_models);
     std::cout << "Scored " << summary.scored_frames << " / " << reader.header().frame_count
               << " frames\n";
 }

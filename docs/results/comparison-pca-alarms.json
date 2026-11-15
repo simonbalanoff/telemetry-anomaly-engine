@@ -1,0 +1,662 @@
+[
+  {
+    "first_cell": 9008366,
+    "stop_cell": 9008367,
+    "peak_cell": 9008366,
+    "first_available_us": 1216935810000000,
+    "last_available_us": 1216935810000000,
+    "duration_seconds": 30,
+    "peak_score": 2286.159119408754,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_129"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 1143.3230599632668,
+          "retained_value": 0.9617036581039429,
+          "minimum": 0.9617036581039429,
+          "maximum": 0.9632740616798401
+        },
+        {
+          "channel": 44,
+          "contribution": 1110.063270781143,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 45,
+          "contribution": 29.50396818350536,
+          "retained_value": 0.9821945428848267,
+          "minimum": 0.9821945428848267,
+          "maximum": 0.9821945428848267
+        },
+        {
+          "channel": 42,
+          "contribution": 1.7051603975583518,
+          "retained_value": 0.9550275206565857,
+          "minimum": 0.9502073526382446,
+          "maximum": 0.9550275206565857
+        },
+        {
+          "channel": 43,
+          "contribution": 1.4334599810340436,
+          "retained_value": 0.9309460520744324,
+          "minimum": 0.9309460520744324,
+          "maximum": 0.9309460520744324
+        },
+        {
+          "channel": 46,
+          "contribution": 0.13020010224638875,
+          "retained_value": 0.936729371547699,
+          "minimum": 0.9341958165168762,
+          "maximum": 0.936729371547699
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9073091,
+    "stop_cell": 9073092,
+    "peak_cell": 9073091,
+    "first_available_us": 1218877560000000,
+    "last_available_us": 1218877560000000,
+    "duration_seconds": 30,
+    "peak_score": 1720.5737667965986,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_130"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 46,
+          "contribution": 862.4962032813196,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 43,
+          "contribution": 833.0078435380115,
+          "retained_value": 0.9325288534164429,
+          "minimum": 0.9325288534164429,
+          "maximum": 0.9325288534164429
+        },
+        {
+          "channel": 41,
+          "contribution": 16.76361938991043,
+          "retained_value": 0.9671986103057861,
+          "minimum": 0.9671986103057861,
+          "maximum": 0.9671986103057861
+        },
+        {
+          "channel": 45,
+          "contribution": 5.285690269261781,
+          "retained_value": 0.9779553413391113,
+          "minimum": 0.9779553413391113,
+          "maximum": 0.9779553413391113
+        },
+        {
+          "channel": 42,
+          "contribution": 2.5903019661011353,
+          "retained_value": 0.9405683875083923,
+          "minimum": 0.9405683875083923,
+          "maximum": 0.9405683875083923
+        },
+        {
+          "channel": 44,
+          "contribution": 0.43010835199431785,
+          "retained_value": 0.9550385475158691,
+          "minimum": 0.9550385475158691,
+          "maximum": 0.9550385475158691
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9535132,
+    "stop_cell": 9535133,
+    "peak_cell": 9535132,
+    "first_available_us": 1232738790000000,
+    "last_available_us": 1232738790000000,
+    "duration_seconds": 30,
+    "peak_score": 2633.7967168325445,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_132"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 46,
+          "contribution": 1300.9922036055796,
+          "retained_value": 0.9282841086387634,
+          "minimum": 0.9282841086387634,
+          "maximum": 0.9333512783050537
+        },
+        {
+          "channel": 43,
+          "contribution": 1295.134638924085,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 44,
+          "contribution": 19.22231578531292,
+          "retained_value": 0.9581875801086426,
+          "minimum": 0.9361470341682434,
+          "maximum": 0.9581875801086426
+        },
+        {
+          "channel": 42,
+          "contribution": 15.893759803309914,
+          "retained_value": 0.9333388805389404,
+          "minimum": 0.9333388805389404,
+          "maximum": 0.9421746730804443
+        },
+        {
+          "channel": 45,
+          "contribution": 2.2972149162280417,
+          "retained_value": 0.9745634198188782,
+          "minimum": 0.9745634198188782,
+          "maximum": 0.9796499013900757
+        },
+        {
+          "channel": 41,
+          "contribution": 0.25658379802897674,
+          "retained_value": 0.9695528149604797,
+          "minimum": 0.9522855281829834,
+          "maximum": 0.9695528149604797
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9885751,
+    "stop_cell": 9889118,
+    "peak_cell": 9885751,
+    "first_available_us": 1243257360000000,
+    "last_available_us": 1243358340000000,
+    "duration_seconds": 101010,
+    "peak_score": 351.8783859672147,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 73.6844542310111,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 43,
+          "contribution": 70.30437183436685,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 44,
+          "contribution": 67.14685009624057,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 46,
+          "contribution": 66.652827053284,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 42,
+          "contribution": 38.321075634329695,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 45,
+          "contribution": 35.76880711798247,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9889261,
+    "stop_cell": 9898394,
+    "peak_cell": 9889261,
+    "first_available_us": 1243362660000000,
+    "last_available_us": 1243636620000000,
+    "duration_seconds": 273990,
+    "peak_score": 351.8783859672147,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 73.6844542310111,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 43,
+          "contribution": 70.30437183436685,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 44,
+          "contribution": 67.14685009624057,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 46,
+          "contribution": 66.652827053284,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 42,
+          "contribution": 38.321075634329695,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 45,
+          "contribution": 35.76880711798247,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 9898524,
+    "stop_cell": 9899306,
+    "peak_cell": 9898524,
+    "first_available_us": 1243640550000000,
+    "last_available_us": 1243663980000000,
+    "duration_seconds": 23460,
+    "peak_score": 351.8783859672147,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_134"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 1,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 73.6844542310111,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 43,
+          "contribution": 70.30437183436685,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 44,
+          "contribution": 67.14685009624057,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 46,
+          "contribution": 66.652827053284,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 42,
+          "contribution": 38.321075634329695,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 45,
+          "contribution": 35.76880711798247,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 10751173,
+    "stop_cell": 10751175,
+    "peak_cell": 10751174,
+    "first_available_us": 1269220020000000,
+    "last_available_us": 1269220050000000,
+    "duration_seconds": 60,
+    "peak_score": 2299.781481034896,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_140"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 41,
+          "contribution": 1147.892620017336,
+          "retained_value": 0.9656282663345337,
+          "minimum": 0.959349513053894,
+          "maximum": 0.9656282663345337
+        },
+        {
+          "channel": 44,
+          "contribution": 1116.150630102965,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 45,
+          "contribution": 31.93664403625397,
+          "retained_value": 0.9677795767784119,
+          "minimum": 0.9677795767784119,
+          "maximum": 0.9855864644050598
+        },
+        {
+          "channel": 42,
+          "contribution": 2.310881036746122,
+          "retained_value": 0.9301263093948364,
+          "minimum": 0.9301263093948364,
+          "maximum": 0.9518135786056519
+        },
+        {
+          "channel": 43,
+          "contribution": 1.3532059398971725,
+          "retained_value": 0.9333195090293884,
+          "minimum": 0.9230334162712097,
+          "maximum": 0.9333195090293884
+        },
+        {
+          "channel": 46,
+          "contribution": 0.13749990169791756,
+          "retained_value": 0.9426397085189819,
+          "minimum": 0.9257504940032959,
+          "maximum": 0.9426397085189819
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 10840477,
+    "stop_cell": 10840478,
+    "peak_cell": 10840477,
+    "first_available_us": 1271899140000000,
+    "last_available_us": 1271899140000000,
+    "duration_seconds": 30,
+    "peak_score": 2650.53661963008,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_142"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 46,
+          "contribution": 1308.9721475015679,
+          "retained_value": 0.9299731850624084,
+          "minimum": 0.7492496371269226,
+          "maximum": 0.9299731850624084
+        },
+        {
+          "channel": 43,
+          "contribution": 1303.5506332940247,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.7608218789100647
+        },
+        {
+          "channel": 44,
+          "contribution": 19.188016317949216,
+          "retained_value": 0.9408705830574036,
+          "minimum": 0.8023266196250916,
+          "maximum": 0.9408705830574036
+        },
+        {
+          "channel": 42,
+          "contribution": 16.434057296800663,
+          "retained_value": 0.9349451065063477,
+          "minimum": 0.7831301093101501,
+          "maximum": 0.9349451065063477
+        },
+        {
+          "channel": 45,
+          "contribution": 2.1444902978684253,
+          "retained_value": 0.972020149230957,
+          "minimum": 0.8117668032646179,
+          "maximum": 0.972020149230957
+        },
+        {
+          "channel": 41,
+          "contribution": 0.24727492186904065,
+          "retained_value": 0.9554249048233032,
+          "minimum": 0.8141486048698425,
+          "maximum": 0.9554249048233032
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 11238046,
+    "stop_cell": 11238047,
+    "peak_cell": 11238046,
+    "first_available_us": 1283826210000000,
+    "last_available_us": 1283826210000000,
+    "duration_seconds": 30,
+    "peak_score": 2633.1697154537237,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_149"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 46,
+          "contribution": 1300.8900223568114,
+          "retained_value": 0.9232169389724731,
+          "minimum": 0.9232169389724731,
+          "maximum": 0.936729371547699
+        },
+        {
+          "channel": 43,
+          "contribution": 1294.9785828937731,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 44,
+          "contribution": 18.85864940978125,
+          "retained_value": 0.9369336366653442,
+          "minimum": 0.9369336366653442,
+          "maximum": 0.9511029124259949
+        },
+        {
+          "channel": 42,
+          "contribution": 15.974884728792183,
+          "retained_value": 0.9494041800498962,
+          "minimum": 0.9228968024253845,
+          "maximum": 0.9494041800498962
+        },
+        {
+          "channel": 45,
+          "contribution": 2.25084831079964,
+          "retained_value": 0.984737753868103,
+          "minimum": 0.9643890857696533,
+          "maximum": 0.984737753868103
+        },
+        {
+          "channel": 41,
+          "contribution": 0.21672775376560968,
+          "retained_value": 0.9499313235282898,
+          "minimum": 0.9499313235282898,
+          "maximum": 0.9632740616798401
+        }
+      ]
+    }
+  },
+  {
+    "first_cell": 11380971,
+    "stop_cell": 11380972,
+    "peak_cell": 11380971,
+    "first_available_us": 1288113960000000,
+    "last_available_us": 1288113960000000,
+    "duration_seconds": 30,
+    "peak_score": 1701.6018310359948,
+    "threshold": 351.8783859672147,
+    "overlapping_event_ids": [
+      "id_150"
+    ],
+    "evidence": {
+      "description": "PCA reconstruction error contribution",
+      "raw_sample_count": 2,
+      "frame_quality": {
+        "observed_mask": 63,
+        "usable_mask": 63,
+        "staleness": 0
+      },
+      "channels": [
+        {
+          "channel": 42,
+          "contribution": 853.2102482710542,
+          "retained_value": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        {
+          "channel": 45,
+          "contribution": 814.7019445810943,
+          "retained_value": 0.9737147688865662,
+          "minimum": 0.9737147688865662,
+          "maximum": 0.9745634198188782
+        },
+        {
+          "channel": 43,
+          "contribution": 26.038917348638773,
+          "retained_value": 0.926989734172821,
+          "minimum": 0.9261990189552307,
+          "maximum": 0.926989734172821
+        },
+        {
+          "channel": 41,
+          "contribution": 3.887995772249273,
+          "retained_value": 0.9522855281829834,
+          "minimum": 0.9522855281829834,
+          "maximum": 0.9530707001686096
+        },
+        {
+          "channel": 44,
+          "contribution": 2.1768952032368314,
+          "retained_value": 0.9400826692581177,
+          "minimum": 0.9400826692581177,
+          "maximum": 0.9400826692581177
+        },
+        {
+          "channel": 46,
+          "contribution": 1.585829859721624,
+          "retained_value": 0.9392616152763367,
+          "minimum": 0.9392616152763367,
+          "maximum": 0.9409506320953369
+        }
+      ]
+    }
+  }
+]

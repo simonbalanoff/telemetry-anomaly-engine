@@ -1,0 +1,32 @@
+\section{Introduction}
+A telemetry monitor acts on the information that survives acquisition, retention,
+and transmission. A detector evaluated only on a complete archive does not answer
+which measurements a resource-constrained recorder should preserve before an
+engineer knows that a fault has occurred. ESA describes onboard processing,
+storage, and compression between ground contacts as responsibilities of spacecraft
+data systems~\citep{esa-data-systems}. These constraints motivate studying the
+retention decision itself.
+
+Consider a short excursion followed by a return to the ordinary range. Retaining
+only the final observation of a reporting cell can erase the excursion. Retaining
+extrema preserves its magnitude but not necessarily its exact timing, sequence,
+or relationship to another channel. Conversely, retaining every unusual interval
+can exhaust a budget on harmless changes. A useful recorder therefore needs both
+selective detail and a mechanism for preserving evidence outside the trigger's
+current understanding of abnormal behavior.
+
+Our research question is: \emph{under explicit byte and memory constraints, which
+causal retention policy best preserves evidence useful to an independent receiver?}
+We use ``fault evidence'' to mean measurements and temporal context that support
+subsequent assessment; it does not imply a validated root-cause diagnosis.
+
+The present contributions are an experimental serialization contract, bounded
+reference recorder policies, tests of budget and causality invariants, and a
+reproducible evaluation scaffold. We propose, but have not yet completed, a
+mission-scale investigation of evidence preservation. We do not claim that
+adaptive recording, triggered buffers, or anomaly-based prioritization are new.
+\paragraph{Hypotheses to test.}
+H1: bounded pre-trigger retention improves onset context at a common budget cap.
+H2: reserving background capacity improves evidence coverage when a capture trigger
+misses an event. H3: downstream receiver choice materially affects policy rankings.
+The synthetic checks below are insufficient to establish these hypotheses.

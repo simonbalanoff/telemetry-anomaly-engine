@@ -1,0 +1,25 @@
+{
+  "format": "TAE-CELL-FEATURES",
+  "version": 1,
+  "channels": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "telemetry_sha256": "18e15becf1647a5e4ee82938f25d993dc0c45b6fe979a4b3aa36e7fecf644c35",
+  "features_sha256": "014ee91ad70a22fe6a0e45cec49d8abae312d25a3709f08011bcba6a2c27f6a0",
+  "exporter_sha256": "826e71706e006fc8c88f803f5af8c29de52b0dedbf0694a1dd5a820f090931c7",
+  "frame_count": 14728320,
+  "grid_period_us": 30000000,
+  "source_statistics": {
+    "raw_samples": 15381169,
+    "frame_count": 14728320,
+    "occupied": 14642408,
+    "empty": 85912,
+    "collisions": 733166,
+    "start_us": 946684800000000
+  }
+}

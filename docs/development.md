@@ -81,7 +81,7 @@ The 12-frame fixture uses **synthetic split timestamps** to make a short complet
 | `python/tests/test_preprocess.py` | Keep-last gridding and five-cell filling |
 | `python/tests/test_convert_esa.py` | Six-channel loading, synchronization, grid statistics |
 
-Current local verification: 71 C++ tests pass in debug, release, ASan/UBSan, and TSan builds; 54 Python tests pass, including CLI parity against debug and ASan builds. The GitHub Actions workflow is configured but has not been run remotely in this session.
+Current local verification: 75 C++ tests pass in debug, release, ASan/UBSan, and TSan builds; 70 Python tests pass, including CLI parity against debug and ASan builds. The GitHub Actions workflow is configured but has not been run remotely in this session.
 
 ## Working with actual ESA-ADB data
 
@@ -133,3 +133,33 @@ New C++ components follow `.clang-format`. Python additions use Black; optional
 development tools are listed in `python/requirements-dev.txt`. The original
 `python/requirements.txt` includes heavier exploratory and future ML dependencies;
 these are unnecessary for M1/M2.
+
+## PCA and raw-evidence regression tests
+
+`tests/test_pca.cpp` checks covariance, eigenvector orthogonality, matrix
+reconstruction, invalid inputs, and relationship-breaking faults. The Python suite
+compares every PCA rank with independent NumPy decomposition through the real CLI,
+checks unchanged legacy score columns, validates the raw-extrema sidecar, and tests
+alarm holding without granting missing-cell detection credit. All new comparison
+paths use only `requirements-core.txt`; plotting is an optional Matplotlib tool.
+
+The [comparison workflow](evidence-comparison.md) exercises complete local telemetry.
+Its current default is validation only, with explicit exploratory test reporting.
+
+## Retention research prototype and manuscript
+
+The initial `python/retention/` package is a Python research prototype separate
+from the C++ detector engine. Run its complete synthetic replay and generated
+paper table with:
+
+```bash
+python python/run_retention_demo.py --latex paper/generated/smoke_results.tex
+PYTHONPATH=python python -m unittest discover -s python/tests -p 'test_retention.py' -v
+make -C paper pdf
+```
+
+The last command requires Tectonic. CI additionally has a paper job that regenerates
+the table and builds the standard LaTeX source with latexmk. Remote CI execution
+has not been observed in this session. See `docs/retention-research.md` for the
+byte contract and `paper/claims.md` for the distinction between software checks
+and unmeasured mission benefit.
