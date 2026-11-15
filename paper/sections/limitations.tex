@@ -12,7 +12,8 @@ capturing every unfamiliar event. The current reservation is deterministic,
 context is counted in samples rather than elapsed time, and rings reset at epoch
 boundaries. Budget exhaustion is first-come rather than an optimized eviction
 policy. The seeded controls examine alignment sensitivity, but these adaptive choices
-still require component ablations and stronger adaptive competitors.
+are examined by single-component ablations, but interactions, post-event utility,
+and stronger adaptive competitors remain untested.
 
 The packet format omits physical link overhead and a realistic contact schedule.
 Driver memory use is not onboard memory use, and Python execution says little

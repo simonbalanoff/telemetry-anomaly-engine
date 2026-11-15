@@ -1,0 +1,14 @@
+{
+  "protocol": "cross-mission-retention-v1",
+  "development_mission": "ESA-Mission1",
+  "epoch_us": 3600000000,
+  "budgets": [256, 512, 1024, 2048],
+  "threshold": 6.0,
+  "pre_trigger_samples": 8,
+  "post_trigger_samples": 4,
+  "background_fraction": 0.2,
+  "context_us": 300000000,
+  "receiver_quantile": 0.999,
+  "pca_components": 3,
+  "seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}

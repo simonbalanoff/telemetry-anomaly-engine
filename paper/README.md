@@ -73,3 +73,7 @@ GitHub sign-in, while the repository PDF follows the repository's visibility.
 
 See `docs/retention-research.md` for the implementation/protocol map and
 `paper/claims.md` for the evidence ledger.
+
+Component ablations are now measured in [16 paired development arms](../docs/results/ablation-retention.md).
+The [cross-mission runner and protocol](../docs/cross-mission-evaluation.md) are implemented
+and tested on synthetic bundles; a real independent mission evaluation is still pending.

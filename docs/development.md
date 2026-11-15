@@ -81,7 +81,7 @@ The 12-frame fixture uses **synthetic split timestamps** to make a short complet
 | `python/tests/test_preprocess.py` | Keep-last gridding and five-cell filling |
 | `python/tests/test_convert_esa.py` | Six-channel loading, synchronization, grid statistics |
 
-Current local verification: 75 C++ tests pass in debug, release, ASan/UBSan, and TSan builds; 84 Python tests pass, including CLI parity against debug and ASan builds. The GitHub Actions workflow is configured but has not been run remotely in this session.
+Current local verification: 75 C++ tests pass in debug, release, ASan/UBSan, and TSan builds; 89 Python tests pass locally, including available CLI parity checks. Earlier parity verification also covered an ASan build. The GitHub Actions workflow is configured but has not been run remotely in this session.
 
 ## Working with actual ESA-ADB data
 
@@ -180,3 +180,7 @@ epoch isolation, score independence, missed targets, caps, decoding, and an end-
 seeded comparison on a small source. The study reuses the completed native pilot's
 receiver model and validates reference hashes before replay. See
 `docs/results/randomized-retention.md` for commands and the meaning of seed ranges.
+
+Cross-mission bundle validation, code/input locks, training/evaluation split isolation,
+label-independent capture, decoded budget checks, and paired ablation replay are covered
+by `python/tests/test_retention_transfer.py`. See [the protocol](cross-mission-evaluation.md).

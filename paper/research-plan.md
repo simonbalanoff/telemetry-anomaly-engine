@@ -49,7 +49,9 @@ versus budget; workload/delivery-delay distributions; paired per-event outcomes.
 
 ## 3. Explain which mechanism helps
 
-Ablate pre-trigger context, background reservation, and post-trigger capture.
+Completed: 16 single-component ablation arms remove pre-trigger context, background
+reservation, and post-trigger capture. Full arms reproduce the original packet hashes.
+See [ablation results](../docs/results/ablation-retention.md). Interaction effects remain open.
 Measure boundary effects, triggers that miss events, noisy normal periods, outages,
 and budget exhaustion. Distinguish improved evidence preservation from changes in
 receiver thresholds or alarm grouping. Include unsuccessful cases, not just examples
@@ -82,6 +84,8 @@ results on it are exploratory, not a fresh held-out estimate.
 - A reproducibility statement, data/license details, affiliation, venue format,
   and required AI-assistance/funding/conflict disclosures.
 
-The next coding tasks are a stronger adaptive-acquisition competitor and component
-ablations in items 2–3; the seeded sampling controls are complete. The native pilot is validation development evidence; the synthetic
+The single-component ablations and [frozen cross-mission runner](../docs/cross-mission-evaluation.md)
+are implemented. Supply a documented independent-mission bundle, freeze its lock before
+evaluation, and run all declared arms. A stronger adaptive-acquisition competitor and
+component interactions remain coding tasks; the seeded sampling controls are complete. The native pilot is validation development evidence; the synthetic
 table remains a software check. Neither replaces a frozen independent evaluation.

@@ -98,8 +98,14 @@ pool, and a bounded queue. They are optional supporting tools; new recorder rese
 remains Python-first. A native implementation would need a profiling or embedded-resource
 justification. Flight deployment is not claimed.
 
-Next experiments are component ablations, stronger adaptive-acquisition competitors,
-contact/loss simulation, and a frozen independent-mission evaluation.
+Sixteen [component ablations](docs/results/ablation-retention.md) separate event evidence
+from context: removing pre-trigger capture leaves PCA evidence at 11/11 but reduces
+pre-event context from 64.3% to 1.8% at the 1,024-byte cap.
+
+The [cross-mission protocol](docs/cross-mission-evaluation.md) now provides a hash-locked
+freeze/run workflow. Independent mission results are pending; the input currently
+requires six synchronized native channels. Next experiments are that independent
+evaluation, stronger adaptive-acquisition competitors, and contact/loss simulation.
 The work targets evidence preservation; engineering review is still needed to
 establish diagnostic usefulness.
 
