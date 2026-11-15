@@ -1,113 +1,135 @@
 # Preserving Fault Evidence under Telemetry Budgets
 
-**Simon Balanoff · Research draft · Python research pipeline**
+**Simon Balanoff · Causal telemetry retention · Research draft**
 
-[Read the paper](paper/draft.pdf) · [LaTeX source](paper/main.tex) ·
-[Results and limitations](docs/results/native-retention.md) · [Reproduce](#reproduce-the-study)
+[Read the paper](paper/draft.pdf) · [Results](#results) ·
+[Reproduce](#reproduce) · [LaTeX source](paper/main.tex)
 
-Spacecraft telemetry reduction can discard the observations needed to investigate
-a fault. This project studies **which native measurements and surrounding context
-to retain under a fixed byte budget**, before the nature of a fault is known.
+When a spacecraft cannot transmit every measurement, **which observations should
+it keep so that a future fault can still be investigated?**
 
-<a href="paper/draft.pdf"><img src="paper/preview.jpg" alt="First page of the research draft by Simon Balanoff; click to read the PDF" width="380"></a>
+This project studies a causal recorder that retains original measurements,
+pre-trigger context, and background observations under a fixed serialized-byte
+budget. Capture decisions use only observations available so far; event labels
+are reserved for evaluation.
+
+**Initial finding:** on 11 Mission1 validation events, the adaptive recorder
+preserves downstream PCA evidence for **11/11 events using 6.30 MiB**, compared
+with **5/11 using 25.04 MiB** for uniform sampling, under the same hourly byte cap.
+These are development results on one mission; independent-mission performance
+and diagnostic usefulness remain untested.
+
+<a href="paper/draft.pdf"><img src="paper/preview.jpg" alt="First page of the research paper by Simon Balanoff; click to read the PDF" width="320"></a>
 
 ## Research approach
 
 The recorder combines a bounded pre-trigger buffer, post-trigger capture, and
-capacity reserved for background observations selected independently of anomaly
-scores. Every packet charges its headers, timestamps, record tags, and values.
-Uniform sampling, fixed summaries, threshold-only capture, seeded reservoir
-sampling, and randomized-phase sampling provide comparisons.
+capacity reserved for background sampling independently of anomaly scores.
+Headers, timestamps, record tags, and measurement values all count toward the cap.
 
-```mermaid
-flowchart LR
-    A[Native observations] --> B[Causal capture policy]
-    B --> C[Byte-capped packets]
-    C --> D[Frozen receiver]
-    D --> E[Evidence and cost]
-```
+The evaluation separates **capture → encoded packets → downstream assessment**.
+Detectors are calibrated on eligible training observations and frozen across
+policies. Evaluation decodes the packets and checks retained timestamps and values
+against the original observations. Forward-filled values never count as raw evidence.
 
-Capture never receives event annotations. Receivers are calibrated on eligible
-training observations, frozen across policies, and evaluated on decoded packets.
-The implementation retains original timestamps rather than treating forward-filled
-values as raw evidence.
+Comparisons include uniform sampling, fixed extrema summaries, threshold-only
+capture, reservoir sampling, and randomized-phase sampling. Component ablations
+remove pre-trigger capture, post-trigger capture, or background reservation.
 
-## Initial native-data results
+## Results
 
-The development study replays **3,248,700 Mission1 observations from 2008–2010**
-across four recording policies and four hourly byte caps. A follow-up adds **80
-randomized arms**: reservoir and randomized-phase sampling with ten seeds per cap.
-All arms use the same frozen receivers, calibrated on **8,713,221 eligible native
-training observations** from before 2008.
+The native replay covers **3,248,700 observations from 2008–2010**, with receivers
+calibrated on **8,713,221 eligible training observations** from before 2008.
+Experiments include four hourly caps, 80 seeded sampling arms, and 16 ablation arms.
 
 At a **1,024-byte cap per active hour**:
 
-| Capture policy | Actual packet bytes | Events with frozen PCA evidence |
+| Capture policy | Total encoded MiB | Events with frozen PCA evidence |
 | --- | ---: | ---: |
-| Original uniform sampling | 25.04 MiB | 5 / 11 |
-| Reservoir, ten seeds | 25.15 MiB mean | 5.1 / 11 mean; range 4–7 |
-| Randomized phase, ten seeds | 24.96 MiB mean | 5.4 / 11 mean; range 4–8 |
-| Threshold-only | 0.81 MiB | 10 / 11 |
-| Adaptive recorder | 6.30 MiB | 11 / 11 |
+| Uniform sampling | 25.04 | 5 / 11 |
+| Reservoir, ten seeds | 25.15 mean | 5.1 / 11 mean; range 4–7 |
+| Randomized phase, ten seeds | 24.96 mean | 5.4 / 11 mean; range 4–8 |
+| Threshold-only | 0.81 | 10 / 11 |
+| Adaptive recorder | 6.30 | 11 / 11 |
 
-Fixed summaries are evaluated separately: extrema provide coarse bucket evidence,
-not raw samples suitable for the same PCA receiver. All policies share a budget
-**cap**, not equal actual expenditure. The unconstrained full-archive format cost
-is calculated as 112.34 MiB.
+All policies share a **cap**, not equal actual expenditure. Fixed summaries are
+assessed separately because bucket extrema are not raw observations suitable for
+the same PCA receiver. Seed ranges describe sampling variation on the same events,
+not confidence intervals for performance on new faults.
 
-![Seeded sampling evidence and cost tradeoffs](docs/results/randomized-retention.svg)
+![Fault evidence and pre-event context versus actual encoded bytes across recording budgets](docs/results/randomized-retention.svg)
 
-Seed means and ranges describe sampling variation on the same events, not
-confidence intervals for performance on new faults. See the
-[seeded comparison](docs/results/randomized-retention.md) for per-event outcomes.
+**Event counts miss context loss.** At the same 1,024-byte cap, removing pre-trigger
+capture preserves 11/11 PCA evidence but reduces pre-event context coverage from
+**64.3% to 1.8%**. Removing background sampling reduces PCA evidence to 10/11 while
+using fewer bytes. Removing post-trigger capture barely changes these headline metrics;
+its diagnostic benefit has not been demonstrated.
 
-These are preliminary results on **11 validation events**. They do not establish
-novelty, improved physical diagnosis, or generalization to another mission. Positive
-observations outside annotated events, event-level details, summary evidence, and
-configuration hashes are reported in the [full study](docs/results/native-retention.md).
-The previously examined Mission1 test split is not used in this pilot.
+These measurements concern **11 validation events** and do not establish novelty,
+physical diagnosis, or cross-mission generalization. The previously examined
+Mission1 test split is excluded. Reports include per-event outcomes, positive
+normal observations, configurations, and artifact hashes:
 
-## Reproduce the study
+[Native study](docs/results/native-retention.md) ·
+[Seeded comparisons](docs/results/randomized-retention.md) ·
+[Component ablations](docs/results/ablation-retention.md)
 
-Requires Python 3.12 or compatible, NumPy/pandas, and trusted official ESA Mission1
-archives. See the [data guide](docs/data-pipeline.md) for preparation.
+## Reproduce
+
+The research pipeline runs entirely in Python with NumPy and pandas. Run the
+software checks without mission data using Python 3.12 or compatible:
 
 ```bash
 python -m pip install -r python/requirements-core.txt
-python python/run_retention_pilot.py --output data/results/native-reproduction
-python python/run_retention_randomized.py --baseline data/results/native-reproduction --output data/results/randomized-reproduction
 PYTHONPATH=python python -m unittest discover -s python/tests -v
 ```
 
-The pilot verifies a hash-bound native cache against the existing grid export,
-serializes packet streams, then evaluates them in a separate pass. Raw datasets
-and large artifacts remain gitignored. Small results and generated manuscript
-tables are tracked for review.
+<details>
+<summary>Replay the mission studies</summary>
 
-To rebuild the paper and README preview with Tectonic installed:
+Prepare trusted official ESA Mission1 archives and the verified dataset bundle
+following the [data guide](docs/data-pipeline.md), then run:
+
+```bash
+python python/run_retention_pilot.py --output data/results/native-reproduction
+python python/run_retention_randomized.py \
+  --baseline data/results/native-reproduction \
+  --output data/results/randomized-reproduction
+python python/run_retention_ablations.py \
+  --baseline data/results/native-reproduction \
+  --output data/results/ablation-reproduction
+```
+
+Use new output directories. Studies preserve source and implementation hashes,
+serialize packet streams, then evaluate decoded evidence. Raw datasets and large
+artifacts remain gitignored; small reports and generated manuscript tables are tracked.
+
+</details>
+
+<details>
+<summary>Build the paper and README preview</summary>
+
+With Tectonic and a thumbnail renderer installed, run:
 
 ```bash
 make -C paper preview
 ```
 
-## Implementation and next experiments
+See the [paper guide](paper/README.md) for manuscript details.
 
-The recorder, packet codec, receivers, and experiment runners are implemented in
-Python. The research workflow requires NumPy and pandas; it needs no native build.
-A compiled implementation would need a measured performance or deployment
-justification. Flight deployment is not claimed.
+</details>
 
-Sixteen [component ablations](docs/results/ablation-retention.md) separate event evidence
-from context: removing pre-trigger capture leaves PCA evidence at 11/11 but reduces
-pre-event context from 64.3% to 1.8% at the 1,024-byte cap.
+## Next research question
 
-The [cross-mission protocol](docs/cross-mission-evaluation.md) now provides a hash-locked
-freeze/run workflow. Independent mission results are pending; the input currently
-requires six synchronized native channels. Next experiments are that independent
-evaluation, stronger adaptive-acquisition competitors, and contact/loss simulation.
-The work targets evidence preservation; engineering review is still needed to
-establish diagnostic usefulness.
+Do the same retention settings preserve useful evidence on an independent mission?
+The [cross-mission protocol](docs/cross-mission-evaluation.md) locks settings, code,
+and input hashes before evaluation, with receiver calibration restricted to the
+new mission's training data. The runner is tested; independent-mission results
+are pending. The current input requires six synchronized native channels.
 
-[Protocol and implementation](docs/retention-research.md) ·
-[Research plan](paper/research-plan.md) · [Development guide](docs/development.md) ·
+Stronger adaptive competitors, realistic contact/loss modeling, and engineering
+assessment of diagnostic usefulness remain open research work.
+
+[Method and byte contract](docs/retention-research.md) ·
+[Research plan](paper/research-plan.md) · [Development](docs/development.md) ·
 [Claim/evidence ledger](paper/claims.md)
