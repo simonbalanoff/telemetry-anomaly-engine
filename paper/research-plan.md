@@ -1,10 +1,10 @@
 # From protocol draft to research paper
 
-The current manuscript is a methods/protocol draft with synthetic engineering
-checks. Its central empirical claim—better preservation of useful fault evidence
-under realistic constraints—has not yet been established.
+The manuscript now includes synthetic checks and an initial native Mission1
+validation pilot. Independent mission generalization and diagnostically useful
+evidence under realistic operational constraints remain unestablished.
 
-## 1. Run a native Mission1 validation pilot
+## 1. Native Mission1 validation pilot — initial sweep completed
 
 **Implementation:** stream original native-timestamp observations into the four
 recorder policies; never turn forward-filled grid cells into raw evidence. Fit
@@ -21,8 +21,10 @@ differently; that difference must remain visible.
 validation periods, source-observation and event counts, configuration table, and
 a diagram showing capture, serialization, delivery, and independent assessment.
 
-**Exit criterion:** reproducible multi-budget validation reports, budget/causality
-checks over the complete pilot, and no annotations entering capture decisions.
+**Completed:** a three-year native replay, four byte caps, four policies, fixed
+training-only receivers, bit-checked decoded streams, and a generated paper table.
+See [native results](../docs/results/native-retention.md). Stronger baselines and
+ablations below remain necessary.
 
 ## 2. Establish the scientific comparison
 
@@ -78,7 +80,6 @@ results on it are exploratory, not a fresh held-out estimate.
 - A reproducibility statement, data/license details, affiliation, venue format,
   and required AI-assistance/funding/conflict disclosures.
 
-The first useful next coding task is item 1. The first useful next writing task
-is to formalize item 2's receiver protocol and outcomes before collecting the
-main results. The current synthetic table remains a software check, not the main
-results table for a submission.
+The next coding tasks are stronger sampling baselines and the component ablations
+in items 2–3. The native pilot is validation development evidence; the synthetic
+table remains a software check. Neither replaces a frozen independent evaluation.

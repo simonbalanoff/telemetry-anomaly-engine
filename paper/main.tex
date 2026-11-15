@@ -5,10 +5,9 @@
 \usepackage{microtype}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
+\usepackage{graphicx}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
-\usepackage{enumitem}
-\setlist{nosep}
 \title{Preserving Fault Evidence under Telemetry Budgets:\\
 A Causal Recorder and Evaluation Protocol}
 \author{Simon Balanoff}
@@ -18,9 +17,9 @@ A Causal Recorder and Evaluation Protocol}
 \begin{center}
 \fbox{\parbox{0.92\linewidth}{\small\textbf{Draft status.}
 This manuscript describes an implemented research prototype and a proposed
-mission-data evaluation. The reported recorder results are synthetic protocol
-checks, not evidence of operational benefit, flight readiness, or a novel
-state-of-the-art method.}}
+mission-data evaluation. The reported results include synthetic checks and a native validation pilot,
+not an independent mission evaluation, operational diagnosis study, or evidence
+of a novel state-of-the-art method.}}
 \end{center}
 \input{sections/abstract}
 \input{sections/introduction}
@@ -29,6 +28,7 @@ state-of-the-art method.}}
 \input{sections/method}
 \input{sections/evaluation}
 \input{sections/results}
+\input{sections/native-study}
 \input{sections/limitations}
 \section{Conclusion}
 Budgeted telemetry retention should be evaluated by the fault evidence it leaves

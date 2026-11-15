@@ -28,6 +28,7 @@ def source_digest() -> str:
         PAPER / "references.bib",
         *sorted((PAPER / "sections").glob("*.tex")),
         *sorted((PAPER / "generated").glob("*.tex")),
+        *sorted((PAPER / "generated").glob("*.pdf")),
     ]
     checksum = hashlib.sha256()
     for path in sources:

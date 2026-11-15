@@ -41,8 +41,9 @@ TEST(SymmetricEigen, ReconstructsRandomMatricesAndOrthonormalBasis) {
         }
         const auto eigen = tae::math::symmetric_eigen(matrix);
         for (std::size_t row = 0; row < 6; ++row) {
-            if (row)
+            if (row) {
                 EXPECT_LE(eigen.values[row], eigen.values[row - 1]);
+            }
             for (std::size_t column = 0; column < 6; ++column) {
                 double reconstructed = 0, identity = 0;
                 for (std::size_t index = 0; index < 6; ++index) {

@@ -1,0 +1,75 @@
+\section{Initial Native Mission1 Validation Study}
+\subsection{Data and fixed receiver configuration}
+The first native-data pilot uses all 3,248,700 original observations from
+2008--2010 in Mission1 channels 41--46, spanning 26,304 active hourly epochs.
+The native cache contains all 15,381,169 source observations and is bound to the
+actual archives and array bytes by SHA-256. Every occupied grid cell's final
+native value and occupancy were checked against the previously verified export.
+Capture consumes the original observations, including within-cell collisions;
+forward-filled grid values are never introduced as raw evidence.
+
+Training uses 8,713,221 native observations before 2008, excluding annotations
+for anomalies, rare events, and communication gaps in any selected channel.
+Normalization and standardized covariance are fitted on these observations.
+The two frozen receivers are maximum absolute training-reference deviation and
+three-component PCA reconstruction error. Each threshold is its eligible-training
+0.999 score quantile, with strict exceedance at evaluation. These receivers differ
+from the first-difference capture score but share normalization; this is not
+independence from all modeling assumptions.
+
+Capture uses a fixed first-difference threshold of six training standard-deviation
+units and resets differences across gaps longer than 150 seconds. Each of the
+four policies runs at 256, 512, 1,024, and 2,048 bytes per active hour. Adaptive
+capture uses eight prior samples, four following samples, and a 0.2 background
+reservation. Context coverage uses the available eligible samples in the 300
+seconds before original event onset. These are development choices, not verified
+requirements from a spacecraft operator.
+
+\subsection{Decoded-packet results}
+All 16 packet streams were serialized before annotation-based evaluation.
+Concatenated TAER packets add no external framing bytes. Decoding verifies each
+retained timestamp and binary32 value against the source, and each summary against
+its true source bucket. Every arm emits one packet per active hour and respects
+its declared cap. All 11 annotated validation events have eligible source samples;
+retention failures therefore remain misses under a common denominator.
+
+\begin{table}[ht]
+\centering\footnotesize
+\input{generated/native_results}
+\caption{Native validation pilot. Cap is application bytes per active hour; MiB
+is actual serialized expenditure. Raw events counts events with retained raw
+samples. Level and PCA count events with positive frozen-receiver evidence, not
+operational event precision. Summary raw receiver results are unsupported.}
+\end{table}
+
+At a 1,024-byte cap, adaptive capture retains PCA evidence for 11 of 11 events
+using 6.30 MiB; uniform sampling retains evidence for five using 25.04 MiB.
+Adaptive pre-event raw context coverage averages 64.3\%, versus 22.9\% for uniform.
+The unconstrained format cost is calculated as 112.34 MiB from raw record and
+hourly-header counts; it is not a measured fifth packet stream. Thus the adaptive
+stream uses approximately 5.60\% of that reference cost in this pilot.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{generated/native_tradeoff.pdf}
+\caption{Evidence and context versus actual byte cost on validation. Only raw
+policies share the frozen PCA receiver. Annotations indicate per-hour caps; the
+full-archive reference cost is calculated. These curves are development outcomes,
+not independent generalization estimates.}
+\end{figure}
+
+\subsection{Failure modes and scope of the result}
+The adaptive 1,024-byte stream also contains 1,848 positive normal PCA observations,
+compared with 6,708 for uniform and 12,425 on the full archive. These are not alarm
+episode counts: sparse policies score different numbers of normal observations,
+and no operational false-alarm guarantee follows. Summary bounds overlap all 11
+events at coarse bucket resolution, but can associate unrelated extrema with an
+event; those counts are not raw receiver recall.
+
+Uniform evidence coverage is nonmonotonic across caps because changing deterministic
+strata changes sample phase. The 2,048-byte arm misses a point event retained by a
+smaller-cap arm. Stronger randomized and adaptive competitors are therefore
+important next controls. The study contains only 11 events on a mission already
+used in development, uses two simple receivers sharing normalization, and does not
+measure physical diagnosis or realistic contact delivery. A separate frozen mission
+study is required before claiming generalization or a new operational solution.

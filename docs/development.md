@@ -81,7 +81,7 @@ The 12-frame fixture uses **synthetic split timestamps** to make a short complet
 | `python/tests/test_preprocess.py` | Keep-last gridding and five-cell filling |
 | `python/tests/test_convert_esa.py` | Six-channel loading, synchronization, grid statistics |
 
-Current local verification: 75 C++ tests pass in debug, release, ASan/UBSan, and TSan builds; 70 Python tests pass, including CLI parity against debug and ASan builds. The GitHub Actions workflow is configured but has not been run remotely in this session.
+Current local verification: 75 C++ tests pass in debug, release, ASan/UBSan, and TSan builds; 77 Python tests pass, including CLI parity against debug and ASan builds. The GitHub Actions workflow is configured but has not been run remotely in this session.
 
 ## Working with actual ESA-ADB data
 
@@ -163,3 +163,12 @@ the table and builds the standard LaTeX source with latexmk. Remote CI execution
 has not been observed in this session. See `docs/retention-research.md` for the
 byte contract and `paper/claims.md` for the distinction between software checks
 and unmeasured mission benefit.
+
+## CI portability fixes
+
+The reported Ubuntu/GCC job failed because an unbraced conditional enclosed a
+GoogleTest macro with its own conditional expansion. `test_pca.cpp` now uses explicit
+braces. The paper job failed on `enumitem.sty`; the manuscript did not use a list
+requiring that package, so the unused `enumitem`/`setlist` preamble was removed.
+The matrix uses `fail-fast: false` to retain independent job diagnostics. Fixes
+are locally checked; a new remote CI run is needed after the changes are pushed.

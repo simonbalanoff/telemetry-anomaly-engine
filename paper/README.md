@@ -4,8 +4,9 @@
 
 This is an initial research draft, not a submission-ready or published paper.
 The author is Simon Balanoff; affiliation and any venue-specific disclosures remain to be confirmed. It claims an implemented
-prototype and synthetic protocol checks; it does not claim real-mission recorder
-improvement, operational diagnosis, or novelty of triggered recording itself.
+prototype, synthetic protocol checks, and an initial native validation pilot. It
+does not claim independent mission generalization, operational diagnosis, or novelty
+of triggered recording itself.
 
 ## Read the draft
 
@@ -41,7 +42,7 @@ python python/snapshot_paper.py --check
 Run these from the repository root. Thumbnail rendering uses macOS `sips` or
 Poppler's `pdftoppm`. Commit `paper/draft.pdf`, `paper/preview.jpg`, and
 `paper/snapshot.json` with manuscript changes. The manifest binds the snapshot to
-its LaTeX/BibTeX/generated-table source and hashes both artifacts; it does not
+its LaTeX/BibTeX/generated-table/figure source and hashes both artifacts; it does not
 require bit-identical output across different compilers or build dates.
 
 CI checks the source/artifact hashes, regenerates the synthetic table, and builds
@@ -63,7 +64,7 @@ GitHub sign-in, while the repository PDF follows the repository's visibility.
 
 ## Next research milestones
 
-1. Native Mission1 replay and a matched multi-budget pilot on validation.
+1. **Completed initial pilot:** native Mission1 replay with four policies and four byte caps; see `docs/results/native-retention.md`.
 2. Independent receiver models and complete event/channel accounting.
 3. Contact scheduling, losses, storage eviction, and realistic transport overhead.
 4. C++ recorder parity and measured CPU/memory constraints.

@@ -10,9 +10,11 @@ reserved detector-independent background capacity. An experimental packet format
 charges headers, timestamps, record tags, and measurement payloads. Reproducible
 synthetic checks exercise a spike, a step, and a slow ramp, and verify packet
 budgets and causal prefix behavior. These checks establish software behavior,
-not superiority on spacecraft faults. A planned mission-data study will compare
-policies at common budget caps, report actual bytes and independent receiver
-performance, and examine robustness to missing observations and trigger blind
-spots. Whether adaptive retention improves diagnostically useful evidence remains
-an open empirical question.
+not superiority on spacecraft faults. An initial native Mission1 validation pilot replays 3,248,700 observations
+across four policies and four hourly caps. At 1,024 bytes per active hour,
+adaptive capture retains frozen PCA evidence for 11 of 11 eligible events using
+6.30 MiB, versus five events and 25.04 MiB for uniform sampling. These are
+development results with simple receivers, not independent generalization or
+diagnosis evidence. Whether these retention gains translate into useful fault diagnosis on other
+missions remains an open empirical question.
 \end{abstract}
