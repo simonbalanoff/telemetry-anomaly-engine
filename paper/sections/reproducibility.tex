@@ -1,0 +1,19 @@
+\section*{Reproducibility and Data Availability}
+Source code, compact experiment reports, configuration and artifact hashes,
+generated tables and figures, and this manuscript are maintained in the project
+repository:\footnote{\url{https://github.com/simonbalanoff/telemetry-anomaly-engine}.}
+The benchmark guide documents native replay, receiver calibration, transport
+assumptions, resource profiling, and the independent-mission freeze/run workflow.
+The code uses Python with NumPy and pandas; plotting uses Matplotlib. Experiments
+record their numerical environment and refuse to overwrite completed outputs.
+The synthetic checks and small-data integration tests do not require mission data.
+
+Mission telemetry is obtained separately from the official ESA dataset
+release~\citep{kotowski2024esa}; raw archives and large packet streams are not
+redistributed in the repository. Native-cache and dataset hashes bind the reported
+experiments to their inputs. Generated manuscript tables are derived from completed
+reports rather than manually entered results. A source manifest binds the checked-in
+PDF and preview image to the manuscript, bibliography, tables, and figures.
+Protocol locks expose input or implementation changes but cannot establish prior
+label blindness. The Mission1 studies and the exploratory status of the pair
+control are reported explicitly; no independent-mission result is included.

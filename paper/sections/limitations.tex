@@ -1,32 +1,39 @@
-\section{Limitations and Work Required before Submission}
-The native pilot provides validation retention measurements, but no independent
-mission generalization or operator diagnostic benefit has yet been established.
-The synthetic events are few, simple, and known to the experiment designer. A
-summary's coarse overlap can associate unrelated extrema with an event, while
-raw event coverage says little about physical diagnosis. Neither is sufficient
-as the sole scientific endpoint.
+\section{Limitations and Future Work}
+\label{sec:limitations}
+\paragraph{Statistical scope.}
+All mission findings concern 11 validation events from six synchronized channels
+on a mission already used for development. Correlated frames, PCA ranks, budget
+caps, and repeated seeds do not increase the number of independent faults.
+The adjacent-pair policy was designed after observing a temporal validation
+failure; its eight-arm result is exploratory. A frozen independent-mission
+assessment is the next test of generalization. The available transfer interface
+has been exercised on synthetic bundles only.
 
-A recorder guided by anomaly scores inherits model blind spots. Reserved
-background sampling mitigates this structurally but offers no guarantee of
-capturing every unfamiliar event. The current reservation is deterministic,
-context is counted in samples rather than elapsed time, and rings reset at epoch
-boundaries. Budget exhaustion is first-come rather than an optimized eviction
-policy. Seeded controls examine alignment sensitivity, and single-component ablations
-examine the current adaptive choices. Component interactions, operator utility,
-and stronger established adaptive competitors remain untested.
+\paragraph{Receiver and diagnostic scope.}
+The pointwise receivers share normalization, and the AR(1) receiver is a simple
+linear model. Evidence under these models does not establish compatibility with
+arbitrary future detectors. Event coverage and raw context are not validated
+root-cause explanations or measures of operator usefulness. Summary extrema can
+associate unrelated observations with an event. Stronger temporal receivers,
+established adaptive-retention competitors, and engineering assessment are needed
+before asserting broader diagnostic benefit or superiority over prior methods.
 
-The packet format excludes physical link overhead. A separate simulator charges
-illustrative framing and finite-buffer contacts, but its schedule is not grounded
-in a mission requirement and its single loss seed does not support uncertainty claims.
-Driver memory use is not onboard memory use, and Python execution says little
-about flight suitability. Asynchronous channels, stronger temporal receivers, hardware measurements, and
-validated contact requirements remain future work. The AR(1) receiver is a simple
-linear baseline, and the adjacent-pair control was designed after inspecting the
-same validation archive. The retention experiments run entirely in Python. A native recorder is justified only if
-profiling or an embedded deployment claim requires it.
+\paragraph{Recorder design.}
+Background phase is deterministic, context lengths are counted in samples rather
+than elapsed time, and recorder state resets at epoch boundaries. Trigger capacity
+is spent chronologically rather than through an optimized eviction rule. Pairing
+trades temporal spread for consecutive inputs and can leave odd quota slots unused.
+Single-component removals do not identify interactions or optimal allocations.
+The current schema requires six synchronized channels; asynchronous observations
+and arbitrary channel counts require explicit source and format extensions.
 
-A publishable revision requires an expanded prior-art review, an independent
-mission evaluation with frozen decisions, official ESA scoring where applicable,
-a matched resource-budget study, and operational requirements from a collaborating
-engineering team. Affiliation, venue, data permissions, and any funding, conflict, or required
-AI-assistance disclosures must be confirmed before circulation as a submission.
+\paragraph{Resource and delivery scope.}
+The application-byte contract excludes physical link framing. The separate
+simulator charges illustrative overhead and finite-buffer contacts, but its
+schedule lacks mission-specific requirements and its single loss seed does not
+support an uncertainty estimate. Partial wire progress abstracts physical frame
+timing; retransmission is not modeled. Congestion comparisons also reflect
+unequal actual expenditure under shared caps. Python-traced allocations and
+single-run host throughput do not establish total memory, embedded latency, or
+flight suitability. A compiled implementation would require a measured deployment
+need rather than serving as evidence of one.

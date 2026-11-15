@@ -1,81 +1,86 @@
-\section{Evaluation Protocol}
+\section{Experimental Protocol}
+\label{sec:protocol}
 \subsection{Separation of capture and assessment}
-The recorder receives measurements and capture scores, never event labels. Packet
-bytes are written, decoded, and only then evaluated. In the synthetic check,
-capture uses the largest absolute first difference; the receiver uses absolute
-amplitude. This avoids literally reusing the same score, but both tests are simple
-and do not establish independence from shared modeling assumptions. The mission
-study must include a separately fitted forecasting or relationship-based receiver,
-and ideally a blinded engineering assessment.
+Recorders receive observations and causal scores, never evaluation event labels.
+All packet streams in an experiment are captured before annotation-based
+assessment. Decoding checks retained timestamps and binary32 values against the
+native source. Receiver normalization and thresholds are fitted on eligible
+training observations and frozen across retention policies. The initial level and
+three-component PCA receivers share normalization with capture; this separates
+decisions without claiming independence from every modeling assumption. Additional
+PCA ranks and an AR(1) receiver test sensitivity to downstream assessment.
 
-For event interval $A_e$, raw coverage is the fraction of available source
-observations inside $A_e$ retained exactly. Point events use their exact native
-instant. Pre-event coverage uses available observations in a stated interval before
-the annotated start. Raw onset error is the delay to the first retained event
-sample, when one exists. We separately record whether a receiver finds evidence
-and when the relevant packet becomes available.
+Positive-duration annotations use half-open intervals; point annotations refer to
+an exact native instant. Rare-event and communication-gap annotations exclude
+observations from the eligible event evidence. Boundary-censored events and events
+without eligible native observations are reported separately. A policy that loses
+all observations from an otherwise eligible event receives a miss, not a smaller
+denominator.
 
-A summary can overlap an event only at bucket resolution. A large extremum inside
-an overlapping bucket is therefore \emph{coarse evidence}, not proof that its
-source time matches the annotation. Summary evidence must not be presented as
-precise onset recovery or raw-sample coverage. Events without available raw
-observations require explicit reporting rather than imputed evidence.
-
-\subsection{Outcomes and denominators to freeze before the mission study}
-Let $I_e$ be the set of available native source observations in event $e$, and
-$R$ the indices recovered from decoded raw records. Positive-duration event
-intervals are half-open; a point event uses its exact native instant. Raw sample
-coverage and pre-event context coverage are
+\subsection{Outcomes and denominators}
+Let $I_e$ contain the eligible source-observation indices in event $e$, $R$ the
+indices recovered from decoded raw records, and $J_e(w)$ the eligible observations
+in the $w$ time units before onset. Raw event-sample and pre-event coverage are
 \begin{equation}
- C_e = \frac{|I_e\cap R|}{|I_e|},\qquad
- Q_e(w)=\frac{|J_e(w)\cap R|}{|J_e(w)|},
+ C_e=\frac{|I_e\cap R|}{|I_e|},\qquad
+ Q_e(w)=\frac{|J_e(w)\cap R|}{|J_e(w)|}.
 \end{equation}
-where $J_e(w)$ contains available source observations during the $w$ time units
-before onset. Empty source denominators are explicitly unavailable. If source
-observations exist but retention loses every one, coverage is zero rather than
-missing. Raw onset error is $\min_{i\in I_e\cap R}(t_i-t_e)$; a missing retained
-onset is reported as a failure, not removed from the comparison.
+Empty source denominators are unavailable; nonempty source denominators with no
+retained observations yield zero. Context is macro-averaged over eligible events
+with available context. Post-event coverage is defined analogously, with truncated
+windows flagged. Raw onset error is $\min_{i\in I_e\cap R}(t_i-t_e)$; a missing
+retained onset is a failure rather than a silently omitted comparison.
 
-For receiver event recall, the denominator is the source-eligible event set,
-shared across policies. A retention policy cannot improve recall by declaring
-lost events unscorable. Receiver false alarms and scored-time coverage must be
-reported together. The planned primary comparison freezes one receiver model and
-threshold across retention policies; model-swap sensitivity is a separate analysis.
-Receiver matching, missing-input handling, and summary interfaces must be specified
-before the principal mission experiment.
+The primary evidence count is the number of source-eligible events with at least
+one positive frozen-receiver observation. All policies share the same overall
+denominator. Receiver-specific full-archive evidence provides a separate reference:
+retention cannot recover a fault the receiver cannot recognize even with complete
+input. For the AR(1) receiver, both consecutive original endpoints must survive;
+nonadjacent retained observations are not stitched together. Packet availability
+determines delivery delay, separately from raw onset localization.
 
-\begin{table}[ht]
+Positive normal observations are reported alongside scored normal exposure. They
+are not deduplicated operational alarm episodes. Summary extrema provide only
+coarse bucket evidence: an overlapping extremum does not establish exact event
+timing, raw-sample coverage, or compatibility with a raw-input receiver.
+
+\begin{table}[htbp]
 \centering
+\small
 \begin{tabular}{ll}
 \toprule
-Design variable & Proposed pilot values \\
+Design variable & Native development configuration \\
 \midrule
+Training observations & Before 2008; annotated intervals excluded \\
+Evaluation interval & 2008--2010 Mission1 validation \\
 Reporting epoch & One hour \\
-Application-byte cap & 256, 512, 1,024, 2,048 bytes per active epoch \\
-Pre-trigger ring & 0, 4, 8 native samples \\
-Background reservation & 0 or 0.2 of raw-record capacity \\
-Evaluation setting & Native Mission1 validation observations \\
+Application-byte cap & 256, 512, 1,024, or 2,048 bytes per active epoch \\
+Pre/post-trigger context & Eight prior and four following native samples \\
+Background reservation & 0.2 of raw capacity, rounded up \\
+First-difference trigger & Six training standard-deviation units \\
+Capture/forecast gap reset & 150 seconds \\
+Receiver threshold quantile & 0.999 on eligible training scores \\
+Pre/post-event evaluation window & 300 seconds \\
 \bottomrule
 \end{tabular}
-\caption{Development grid: the native pilot runs all four caps with an eight-sample
-ring and 0.2 background reservation. Other ring/reservation values remain planned
-ablations. These are not established mission requirements.}
+\caption{Shared development settings. Component removals and alternate capture
+scores are specified in their respective experiments. These settings are not
+validated spacecraft operating requirements.}
+\label{tab:configuration}
 \end{table}
 
-\subsection{Planned mission study}
-The initial source is native ESA Mission1 observations, not the existing
-forward-filled grid. The current six-channel subset is a development setting;
-a previously untouched mission or independently obtained dataset is needed for a
-new generalization estimate. The historical Mission1 test split has already been
-examined during detector development and must not be described as pristine.
+\subsection{Scope and interpretation}
+The native source, inclusion rules, and initial results appear in
+Section~\ref{sec:native}; subsequent sections examine sampling phase, component
+removals, receiver mismatch, and delivery. Synthetic protocol checks are reported
+in Appendix~\ref{app:checks}. Repeated caps, seeds, and receiver ranks reuse the
+same events; they do not create independent fault examples. Seed ranges describe
+sampling variation, not confidence intervals for new-event performance.
 
-Fit transforms and capture models on eligible training data, choose configurations
-on validation, and freeze them before independent evaluation. Sweep common budget
-caps and report actual bytes, event evidence, onset/context preservation, receiver
-false alarms, delivery delays, and CPU/memory behavior. Use time-stratified raw
-sampling, fixed summaries, threshold-only capture, stronger adaptive sampling,
-and a full-archive reference. Include pre/post-context and background-reservation
-ablations, capture/receiver model swaps, bursty normal operations, outages, and
-faults missed by the trigger. Synthetic faults are stress tests, not replacements
-for genuine mission annotations. Pair policy comparisons by event and report
-uncertainty without treating correlated frames as independent faults.
+The six-channel Mission1 subset is a development setting. Its historical test
+period was previously examined during detector development and is excluded from
+these studies. A fresh generalization estimate requires an independent mission,
+with channel selection, splits, retention settings, and analysis locked before
+evaluation. Receiver recalibration on that mission's designated training data is
+permitted by the transfer protocol and does not constitute zero-shot transfer of
+the Mission1 receiver.

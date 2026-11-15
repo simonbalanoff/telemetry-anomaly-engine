@@ -1,6 +1,6 @@
 # Preserving Fault Evidence under Telemetry Budgets
 
-**Simon Balanoff · Causal telemetry retention · Research draft**
+**Simon Balanoff · Causal telemetry retention · Technical report v1.0**
 
 [Read the paper](paper/draft.pdf) · [Results](#results) ·
 [Reproduce](#reproduce) · [LaTeX source](paper/main.tex)

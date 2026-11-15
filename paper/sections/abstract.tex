@@ -1,29 +1,24 @@
 \begin{abstract}
-Telemetry reduction can discard the observations needed to detect or investigate
-an unfamiliar fault. We study causal retention under a fixed serialized-byte
-budget per reporting epoch. The proposed evaluation separates capture decisions
-from downstream assessment and measures raw event coverage, onset localization,
-pre-event context, and delayed evidence delivery. We implement four reference
-policies: time-stratified sampling, fixed extrema summaries, threshold-triggered
-capture, and an adaptive recorder combining a bounded pre-trigger ring with
-reserved detector-independent background capacity. An experimental packet format
-charges headers, timestamps, record tags, and measurement payloads. Reproducible
-synthetic checks exercise a spike, a step, and a slow ramp, and verify packet
-budgets and causal prefix behavior. These checks establish software behavior,
-not superiority on spacecraft faults. An initial native Mission1 validation pilot replays 3,248,700 observations
-across four policies and four hourly caps. At 1,024 bytes per active hour,
-adaptive capture retains frozen PCA evidence for 11 of 11 eligible events using
-6.30 MiB, versus five events and 25.04 MiB for uniform sampling. These are
-development results with simple receivers, not independent generalization or
-diagnosis evidence. A follow-up comparison adds 80 reservoir and randomized-phase
-arms using ten seeds and the same frozen receivers. At the 1,024-byte cap, mean PCA
-evidence counts are 5.1 and 5.4 events, respectively; seed ranges describe sampling
-variation on the same archive, not generalization confidence. Sixteen paired
-component-ablation arms show that removing pre-trigger capture preserves event
-evidence at the 1,024-byte cap but reduces pre-event context from 64.3\% to
-1.8\%; removing background sampling loses one event. A 132-arm capture/receiver comparison and a separate temporal receiver expose a
-limitation: disabling the trigger leaves singleton background capture with 4/11
-PCA events but 0/11 temporal events. An exploratory adjacent-pair control recovers
-2/11 temporal events. These findings motivate receiver-aware evaluation; independent
-mission generalization and useful fault diagnosis remain open empirical questions.
+Telemetry reduction can remove the observations needed to detect or investigate a
+fault. We study causal retention under an explicit serialized-byte budget and
+separate capture decisions from assessment of decoded packets. A bounded recorder
+combines pre-trigger context, post-trigger capture, and detector-independent
+background sampling. Comparisons use native observations, source-fixed event
+denominators, and training-calibrated receivers that remain frozen across policies.
+On 3,248,700 Mission1 validation observations containing 11 eligible events, the
+recorder preserves three-component PCA evidence for 11/11 events using 6.30 MiB,
+compared with 5/11 using 25.04 MiB for uniform sampling at the same 1,024-byte
+hourly cap. Removing pre-trigger capture leaves the event count unchanged but
+reduces pre-event context coverage from 64.3\% to 1.8\%. Seeded controls,
+component ablations, and a 132-arm capture/receiver comparison examine the scope
+of these results. A separate AR(1) receiver exposes a temporal limitation:
+with the trigger disabled, singleton background sampling preserves PCA evidence
+for 4/11 events but temporal evidence for 0/11. An adjacent-pair background control,
+developed after inspecting this failure, recovers temporal evidence for 2/11.
+Illustrative finite-buffer delivery scenarios further distinguish captured from
+delivered evidence. The results show why event counts, context, receiver input
+requirements, and actual expenditure must be evaluated together. They remain
+development evidence on one mission; the exploratory pair control, independent-
+mission generalization, and operational diagnostic usefulness require further
+validation.
 \end{abstract}

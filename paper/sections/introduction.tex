@@ -1,32 +1,44 @@
 \section{Introduction}
 A telemetry monitor acts on the information that survives acquisition, retention,
-and transmission. A detector evaluated only on a complete archive does not answer
-which measurements a resource-constrained recorder should preserve before an
-engineer knows that a fault has occurred. ESA describes onboard processing,
-storage, and compression between ground contacts as responsibilities of spacecraft
-data systems~\citep{esa-data-systems}. These constraints motivate studying the
-retention decision itself.
+and transmission. Evaluating a detector on a complete archive does not answer
+which measurements a recorder should preserve before an engineer knows that a
+fault has occurred. Onboard processing, storage, and compression between ground
+contacts are established responsibilities of spacecraft data
+systems~\citep{esa-data-systems}. These constraints motivate evaluating the retention
+decision as well as the downstream detector.
 
-Consider a short excursion followed by a return to the ordinary range. Retaining
-only the final observation of a reporting cell can erase the excursion. Retaining
-extrema preserves its magnitude but not necessarily its exact timing, sequence,
-or relationship to another channel. Conversely, retaining every unusual interval
-can exhaust a budget on harmless changes. A useful recorder therefore needs both
-selective detail and a mechanism for preserving evidence outside the trigger's
-current understanding of abnormal behavior.
+Consider a short excursion followed by a return to the ordinary range. Keeping
+only the final observation of a reporting cell can erase the excursion. Extrema
+preserve magnitude but not necessarily exact timing, sequence, or cross-channel
+relationships. Conversely, recording every unusual interval can exhaust a budget
+on harmless changes. A useful recorder needs selective detail and a way to preserve
+observations outside its trigger's current understanding of abnormal behavior.
 
-Our research question is: \emph{under explicit byte and memory constraints, which
-causal retention policy best preserves evidence useful to an independent receiver?}
-We use ``fault evidence'' to mean measurements and temporal context that support
-subsequent assessment; it does not imply a validated root-cause diagnosis.
+We ask: \emph{under an explicit byte cap and bounded recorder state, which causal
+retention choices preserve evidence useful to downstream receivers?} Here,
+``fault evidence'' means measurements and temporal context supporting subsequent
+assessment, not a validated root-cause diagnosis. A receiver may differ from the
+capture trigger, and its input requirements may change which retained observations
+are useful. Two isolated samples are not interchangeable with a consecutive pair
+needed by a forecasting model.
 
-The present contributions are an experimental serialization contract, bounded
-reference recorder policies, tests of budget and causality invariants, and a
-reproducible evaluation scaffold. We also report an initial native validation pilot; an independent mission
-investigation of evidence preservation remains future work. We do not claim that
-adaptive recording, triggered buffers, or anomaly-based prioritization are new.
-\paragraph{Hypotheses to test.}
-H1: bounded pre-trigger retention improves onset context at a common budget cap.
-H2: reserving background capacity improves evidence coverage when a capture trigger
-misses an event. H3: downstream receiver choice materially affects policy rankings.
-The synthetic checks below are insufficient to establish these hypotheses.
+This report makes three contributions:
+\begin{enumerate}
+\item An explicit application-byte contract and decoded-packet evaluation protocol
+that preserve original timestamps and values, separate capture from labels, and
+keep source-eligible event denominators fixed across policies.
+\item A reproducible Mission1 development study with common byte caps, seeded
+sampling controls, component ablations, capture/receiver mismatch, and illustrative
+finite-buffer delivery. Both evidence and actual expenditure are reported.
+\item A measured distinction between pointwise and temporal evidence preservation,
+with an exploratory adjacent-pair control that partially addresses the observed
+failure of singleton background capture.
+\end{enumerate}
+
+The analysis addresses three questions: how context changes when event counts do
+not; what survives when the capture trigger misses an event; and how receiver input
+requirements and delivery affect the evidence available for assessment. We do not
+claim that triggered buffering or anomaly-guided prioritization is new. All mission
+results concern the same 11 validation events, and the pair control was designed
+after observing those results. Independent-mission and operator validation remain
+necessary before claiming generalization or diagnostic benefit.

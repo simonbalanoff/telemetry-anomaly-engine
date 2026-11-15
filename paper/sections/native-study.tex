@@ -1,4 +1,5 @@
-\section{Initial Native Mission1 Validation Study}
+\section{Native Mission1 Validation Study}
+\label{sec:native}
 \subsection{Data and fixed receiver configuration}
 The first native-data pilot uses all 3,248,700 original observations from
 2008--2010 in Mission1 channels 41--46, spanning 26,304 active hourly epochs.
@@ -68,8 +69,9 @@ event; those counts are not raw receiver recall.
 
 Uniform evidence coverage is nonmonotonic across caps because changing deterministic
 strata changes sample phase. The 2,048-byte arm misses a point event retained by a
-smaller-cap arm. Stronger randomized and adaptive competitors are therefore
-important next controls. The study contains only 11 events on a mission already
-used in development, uses two simple receivers sharing normalization, and does not
-measure physical diagnosis or realistic contact delivery. A separate frozen mission
+smaller-cap arm. Section~\ref{sec:seeded} evaluates randomized sampling controls, and
+Section~\ref{sec:mismatch} examines alternate capture and receiver choices. The study contains only 11 events on a mission already
+used in development, initially uses two simple receivers sharing normalization and does not
+measure physical diagnosis. Illustrative delivery is examined separately in
+Section~\ref{sec:mismatch}. A separate frozen mission
 study is required before claiming generalization or a new operational solution.

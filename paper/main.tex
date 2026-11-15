@@ -8,38 +8,50 @@
 \usepackage{graphicx}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Preserving Fault Evidence under Telemetry Budgets: A Causal Recorder and Evaluation Protocol},
+  pdfauthor={Simon Balanoff},
+  pdfsubject={Causal telemetry retention, receiver mismatch, and temporal evidence},
+  pdfkeywords={spacecraft telemetry, anomaly detection, adaptive sampling, reproducible research}
+}
+\urlstyle{same}
 \title{Preserving Fault Evidence under Telemetry Budgets:\\
 A Causal Recorder and Evaluation Protocol}
 \author{Simon Balanoff}
-\date{Research draft --- \today}
+\date{Technical Report, Version 1.0\\[0.25em]November 15, 2026}
 \begin{document}
 \maketitle
-\begin{center}
-\fbox{\parbox{0.92\linewidth}{\small\textbf{Draft status.}
-This manuscript describes an implemented research prototype and an initial
-native mission validation study. The reported results include synthetic checks and a native validation pilot,
-not an independent mission evaluation, operational diagnosis study, or evidence
-of a novel state-of-the-art method.}}
-\end{center}
 \input{sections/abstract}
 \input{sections/introduction}
 \input{sections/related-work}
 \input{sections/problem}
 \input{sections/method}
 \input{sections/evaluation}
-\input{sections/results}
 \input{sections/native-study}
 \input{sections/randomized-study}
 \input{sections/ablation-study}
 \input{sections/mismatch-study}
 \input{sections/limitations}
 \section{Conclusion}
-Budgeted telemetry retention should be evaluated by the fault evidence it leaves
-available to a receiver, not merely by the anomaly scores that selected it.
-The prototype makes packet costs and causal decisions explicit. The native pilot provides development evidence under explicit byte caps. The
-next steps are stronger established competitors and a frozen independent
-mission study followed by operator validation. The receiver-mismatch experiments show
-that pointwise evidence preservation alone does not establish temporal usefulness.
+Telemetry retention should be evaluated by the evidence available after decoding
+and delivery, including the inputs required by the downstream receiver. In this
+Mission1 development study, adaptive capture preserves more frozen-receiver event
+evidence and pre-event context than the tested uniform and seeded sampling
+controls under common byte caps. Component removals show that an unchanged event
+count can conceal substantial context loss. Receiver mismatch reveals a second
+limitation: isolated background observations can preserve pointwise evidence while
+providing no usable transitions to a forecasting receiver. An adjacent-pair control
+partially addresses that failure in an exploratory validation experiment.
+
+The practical result is an auditable evaluation framework and a specific research
+question: which retention choices preserve useful evidence when the downstream
+model changes? The present results do not settle that question across missions or
+establish a novel optimal recorder. Independent evaluation, stronger established
+comparisons, and operator assessment are the next sources of evidence.
+\input{sections/reproducibility}
 \bibliographystyle{plainnat}
 \bibliography{references}
+\clearpage
+\appendix
+\input{sections/results}
 \end{document}

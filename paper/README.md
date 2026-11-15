@@ -1,86 +1,68 @@
-# Research manuscript
+# Research report
 
-**Working title:** Preserving Fault Evidence under Telemetry Budgets: A Causal Recorder and Evaluation Protocol.
+**Preserving Fault Evidence under Telemetry Budgets: A Causal Recorder and Evaluation Protocol**
 
-This is an initial research draft, not a submission-ready or published paper.
-The author is Simon Balanoff; affiliation and any venue-specific disclosures remain to be confirmed. It claims an implemented
-prototype, synthetic protocol checks, and an initial native validation pilot. It
-does not claim independent mission generalization, operational diagnosis, or novelty
-of triggered recording itself.
+**Simon Balanoff · Technical Report, Version 1.0 · November 15, 2026**
 
-## Read the draft
+[Read the current PDF](draft.pdf) · [LaTeX source](main.tex) ·
+[Research plan](research-plan.md) · [Claim/evidence ledger](claims.md)
 
-[Open the PDF snapshot](draft.pdf) · [First-page preview](preview.jpg) ·
-[Next experiments and writing gaps](research-plan.md)
+This version presents the completed Mission1 development studies as a coherent
+technical report. It is not a peer-reviewed publication or an independent-mission
+validation. The `draft.pdf` filename is retained so existing repository links keep
+working.
 
-GitHub can render the checked-in PDF when opened from the repository. The root
-README displays a clickable first-page image rather than an embedded PDF viewer.
-These links become live on GitHub after the files are committed and pushed.
+## Scope of this version
 
-## Build and reproduce
+The report covers the byte contract and causal recorder, native Mission1 replay,
+seeded sampling controls, component ablations, capture/receiver mismatch, a temporal
+AR(1) receiver, exploratory adjacent-pair background capture, and illustrative
+finite-buffer delivery. Synthetic software checks are collected in an appendix.
+The central distinction is between retaining event samples, retaining context,
+and retaining the inputs required by a particular downstream receiver.
 
-With the existing core Python environment and Tectonic installed:
+All mission results concern the same 11 validation events. The adjacent-pair control
+was developed after inspecting the temporal result. Independent-mission performance,
+novelty relative to established retention methods, and operational diagnostic value
+remain unestablished. Versioning the report does not change those evidence limits.
 
-```bash
-python python/run_retention_demo.py --latex paper/generated/smoke_results.tex
-cd paper
-make pdf
-```
+## Build and refresh
 
-The PDF is written to `paper/build/main.pdf`. The generated table is committed so
-LaTeX can also build without running an experiment. Tectonic fetches TeX packages
-on first use. A conventional pdflatex/bibtex workflow also works with this standard
-article/natbib source. The build directory and LaTeX intermediates are ignored.
-
-## Refresh the README snapshot
+From the repository root, with Tectonic and a thumbnail renderer installed:
 
 ```bash
 make -C paper preview
 python python/snapshot_paper.py --check
 ```
 
-Run these from the repository root. Thumbnail rendering uses macOS `sips` or
-Poppler's `pdftoppm`. Commit `paper/draft.pdf`, `paper/preview.jpg`, and
-`paper/snapshot.json` with manuscript changes. The manifest binds the snapshot to
-its LaTeX/BibTeX/generated-table/figure source and hashes both artifacts; it does not
-require bit-identical output across different compilers or build dates.
+The build writes `paper/build/main.pdf`, then refreshes `paper/draft.pdf`,
+`paper/preview.jpg`, and `paper/snapshot.json`. Commit the three snapshot files
+with manuscript changes. The source manifest binds the PDF and preview to the
+LaTeX, bibliography, generated tables, and figures. It does not require identical
+PDF bytes across compilers. The report date is fixed for this version; update it
+and the version deliberately for a future release.
 
-CI checks the source/artifact hashes, regenerates the synthetic table, and builds
-a fresh PDF artifact. The checked-in snapshot is refreshed explicitly; CI does
-not automatically commit files or publish a release. Workflow artifacts may require
-GitHub sign-in, while the repository PDF follows the repository's visibility.
+GitHub opens the tracked PDF from the repository. The root README links it through
+a first-page image. CI verifies snapshot hashes, regenerates the synthetic table,
+and builds the manuscript with latexmk; it does not publish or commit a release.
+A conventional pdflatex/BibTeX toolchain also supports the standard article source.
 
-## Evidence and editing rules
+## Reproduce the evidence
 
-- Update measured tables through the experiment script, not by editing numbers.
-- Keep planned work separate from implemented behavior and measured results.
-- Preserve native observations; do not call forward-filled samples raw evidence.
-- Report actual serialized bytes alongside common budget caps.
-- Treat summary overlap as coarse evidence, not precise onset recovery.
-- The historical Mission1 test period has already been examined. Plan a fresh
-  independent evaluation before claiming generalization.
-- Every external reference must be verified against its primary source. The
-  current bibliography is a starting point, not an exhaustive novelty review.
+The [benchmark guide](../docs/benchmark.md) documents experiment inputs, commands,
+receiver calibration, delivery assumptions, and independent-mission protocol locks.
+Small reports are tracked; trusted official mission archives and large packet
+streams are obtained or generated separately.
 
-## Next research milestones
+Generated tables must come from completed reports, not manual numeric edits:
 
-1. **Completed initial pilot:** native Mission1 replay with four policies and four byte caps; see `docs/results/native-retention.md`.
-2. **Completed seeded controls:** reservoir and randomized-phase sampling, ten seeds
-   per cap, using the same frozen receivers. Receiver-model swaps remain planned.
-3. Contact scheduling, losses, storage eviction, and realistic transport overhead.
-4. Measured CPU/memory constraints; optional native implementation if justified.
-5. Frozen independent-mission evaluation and engineering review.
+- `python/run_retention_demo.py`: synthetic validation table.
+- Native, randomized, and ablation runners: their respective `--latex` outputs.
+- `python/summarize_retention_benchmark.py`: mismatch/delivery tables and figure.
+- `python/summarize_retention_sequence.py`: temporal and adjacent-pair comparison.
 
-See `docs/retention-research.md` for the implementation/protocol map and
-`paper/claims.md` for the evidence ledger.
-
-Component ablations are now measured in [16 paired development arms](../docs/results/ablation-retention.md).
-The [cross-mission runner and protocol](../docs/cross-mission-evaluation.md) are implemented
-and tested on synthetic bundles; a real independent mission evaluation is still pending.
-
-The draft also reports the [receiver-mismatch/delivery study](../docs/results/receiver-mismatch.md)
-and [temporal evidence experiments](../docs/results/temporal-retention.md). Generated
-mismatch, delivery, and temporal tables come from the completed reports using
-`python/summarize_retention_benchmark.py` and `python/summarize_retention_sequence.py`.
-The [implementation roadmap](../docs/roadmap.md) tracks completed software and the
-independent-mission/operator evidence still needed.
+For future revisions, preserve source-fixed denominators, exact native observations,
+actual byte expenditure, and the distinction between exploratory and independent
+results. The [implementation roadmap](../docs/roadmap.md) separates implemented
+software from external evidence still needed. Venue-specific formatting, affiliation,
+and any required disclosures should be resolved before preparing a submission.

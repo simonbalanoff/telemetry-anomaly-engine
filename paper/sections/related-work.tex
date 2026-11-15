@@ -1,10 +1,9 @@
 \section{Related Work and Positioning}
 Anomaly-based data prioritization has spacecraft precedent. Finley and
 colleagues investigate inexpensive anomaly detection for prioritizing in situ
-observations~\citep{finley2023prioritization,finley2024generalized}. Our intended
-focus is engineering-fault context under explicit recording budgets, rather than
-claiming anomaly-guided downlink selection itself as a contribution. This distinction
-requires a deeper literature review before any novelty claim is justified.
+observations~\citep{finley2023prioritization,finley2024generalized}. Our focus is engineering-fault context under explicit recording budgets, rather than
+claiming anomaly-guided downlink selection itself as a contribution. The evaluation therefore concerns retained evidence under a declared byte
+contract, without claiming anomaly-guided downlink selection as a new contribution.
 
 Joint compression and anomaly detection has also been studied in networked sensor
 systems~\citep{elsayed2023compression}. Our first implementation uses transparent
@@ -13,13 +12,12 @@ and retained information auditable, while leaving stronger compression baselines
 for the full evaluation.
 
 ESA-ADB supplies annotated mission telemetry and a hierarchical evaluation
-framework~\citep{kotowski2024esa}. We build on the dataset as a candidate source
-for retention experiments. Detector performance on a complete archive and evidence
-preservation after budgeted capture are different questions. Official ESA metrics
-will complement, rather than be replaced by, the retention-specific outcomes.
+framework~\citep{kotowski2024esa}. We use its native Mission1 observations for retention experiments. Detector performance on a complete archive and evidence
+preservation after budgeted capture are different questions. The retention-specific outcomes do not replace its official hierarchical
+anomaly-detection metrics, which are not reported here.
 Reservoir sampling provides a classical detector-independent streaming control
 when the final observation count is unknown~\citep{vitter1985reservoir}. We use
 Algorithm R rather than Algorithm Z and add randomized temporal phase to test
 alignment sensitivity. These are established controls, not claimed innovations.
-Related work on triggered acquisition, change-point detection, stronger adaptive
-sampling, and onboard fault recorders must be expanded before submission.
+The present comparisons do not establish novelty or superiority relative to
+stronger adaptive acquisition, compression, or established onboard fault recorders.

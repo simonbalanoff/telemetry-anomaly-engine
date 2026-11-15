@@ -1,9 +1,8 @@
-\section{Implemented Checks and Preliminary Artifacts}
-The repository provides a verified Mission1 export and a Python research recorder,
-packet codec, and receiver evaluation pipeline. Independent vectorized source
-verification compares all exported frame values and quality fields. The earlier
-native detector runtime has been retired; its historical detector metrics do not
-demonstrate recorder effectiveness. Embedded resource measurements remain future work.
+\section{Synthetic Validation and Software Invariants}
+\label{app:checks}
+The synthetic scenario validates serialization and causal recorder behavior.
+It is a software check, separate from the native mission comparisons.
+
 
 The reproducible smoke scenario has 360 six-channel observations at five-second
 intervals over three ten-minute epochs. Seed 2026 fixes Gaussian background noise.
