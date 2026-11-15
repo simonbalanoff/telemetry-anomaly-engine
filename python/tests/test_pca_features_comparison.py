@@ -1,9 +1,7 @@
 """Independent numerical references and evidence-retention regression tests."""
 
 import json
-import os
 from pathlib import Path
-import subprocess
 import tempfile
 import unittest
 
@@ -11,6 +9,7 @@ import numpy as np
 
 from comparison import (
     alarm_catalog,
+    score_raw_evidence,
     grouped_metrics,
     held_alarm_intervals,
     channel_evidence,
@@ -20,7 +19,6 @@ from comparison import (
 from evaluate import label_masks, partition_events
 from dataset import sha256
 from export_features import verify_features, write_features
-from run_comparison import score_raw_evidence
 from verify_export import FRAME_DTYPE
 from write_binary import Frame, Header, PERIOD_US, write_binary
 
@@ -239,74 +237,3 @@ class ComparisonSelectionTests(unittest.TestCase):
             validation_selection(
                 {"pca_1": scores}, eligible, events, header, masks["Anomaly"], 0
             )
-
-
-class PcaCppParityTests(unittest.TestCase):
-    def test_all_five_pca_ranks_match_numpy_and_ignore_label_ineligible_training(self):
-        executable = Path(
-            os.environ.get("TAE_EXECUTABLE", "build/debug/apps/cli/tae")
-        ).resolve()
-        if not executable.exists():
-            self.skipTest("Build tae or set TAE_EXECUTABLE")
-        generator = np.random.default_rng(2026)
-        mixing = generator.normal(size=(6, 6))
-        values = (generator.normal(size=(180, 6)) @ mixing + np.arange(6)).astype(
-            np.float32
-        )
-        header = Header(0, 180, 100 * PERIOD_US, 140 * PERIOD_US)
-        frames = [Frame(tuple(row), 63, 63, 0) for row in values]
-        # An excluded training outlier must not affect normalization or covariance.
-        frames[70] = Frame((1e6,) * 6, 63, 63, 0)
-        for index in range(120, 125):
-            frames[index] = Frame(frames[119].values, 0, 63, index - 119)
-        frames[125] = Frame((0.0,) * 6, 0, 0, 6)
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            write_binary(root / "telemetry.bin", header, frames)
-            mask = np.zeros(180, dtype=np.uint8)
-            mask[:70] = 1
-            mask.tofile(root / "mask.bin")
-            command = [
-                str(executable),
-                "score-pca",
-                str(root / "telemetry.bin"),
-                str(root / "mask.bin"),
-                str(root / "scores.bin"),
-                str(root / "runtime.json"),
-                "4",
-                ".2",
-                "--synthetic-fixture",
-            ]
-            subprocess.run(command, check=True, capture_output=True)
-            runtime = json.loads((root / "runtime.json").read_text())
-            actual = np.fromfile(root / "scores.bin", dtype="<f8").reshape(-1, 7)
-            training = values[:70].astype(float)
-            mean, sigma = training.mean(axis=0), training.std(axis=0, ddof=1)
-            covariance = np.cov(((training - mean) / sigma).T)
-            eigenvalues, eigenvectors = np.linalg.eigh(covariance)
-            eigenvalues, eigenvectors = eigenvalues[::-1], eigenvectors[:, ::-1]
-            np.testing.assert_allclose(
-                runtime["pca_eigenvalues"], eigenvalues, atol=1e-11
-            )
-            basis = np.asarray(runtime["pca_eigenvectors"])
-            np.testing.assert_allclose(
-                basis @ np.diag(eigenvalues) @ basis.T, covariance, atol=1e-11
-            )
-            for rank in range(1, 6):
-                expected = np.full(180, np.nan)
-                for index, frame in enumerate(frames):
-                    if np.isfinite(actual[index, 0]) and frame.observed_mask:
-                        normalized = (np.asarray(frame.values) - mean) / sigma
-                        projector = eigenvectors[:, :rank] @ eigenvectors[:, :rank].T
-                        expected[index] = np.mean(
-                            (normalized - projector @ normalized) ** 2
-                        )
-                np.testing.assert_allclose(
-                    actual[:, rank + 1], expected, rtol=1e-9, atol=1e-10, equal_nan=True
-                )
-            self.assertTrue(np.all(np.isnan(actual[120:130, 2:])))
-            self.assertTrue(np.all(np.isnan(actual[140:144, 2:])))
-            command[1] = "score"
-            subprocess.run(command, check=True, capture_output=True)
-            baseline = np.fromfile(root / "scores.bin", dtype="<f8").reshape(-1, 2)
-            np.testing.assert_array_equal(actual[:, :2], baseline)

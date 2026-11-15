@@ -12,10 +12,10 @@
 | The method is novel relative to adaptive sampling/triggered recorders | Not established | Expanded prior-art review required |
 | Native synchronized source replay is implemented | Implemented/measured | Hash-bound native source cache; 3,248,700 validation observations; decoded packet streams |
 | Asynchronous channels and intermittent downlink are modeled | Planned | Additional source semantics and contact/queue model required |
-| Recorder fits an embedded CPU/RAM allocation | Not established | C++ integration and hardware/resource measurements required |
+| Recorder fits an embedded CPU/RAM allocation | Not established | Deployment implementation and hardware/resource measurements required |
 | Existing detector results validate this recorder | Unsupported | Detector results and retention results answer different questions |
 | Seeded comparisons reduce concern about the original uniform sampling phase | Measured on the same validation events | `docs/results/randomized-retention.json`; 80 arms, all seeds reported; not independent new faults |
 | Seed ranges are generalization confidence intervals | Unsupported | Sampling variation is conditional on the same 11 events |
-| The retention study requires C++ | False | Capture, decoding, frozen receivers, and study orchestration are Python; C++ tools are optional |
+| The retention study requires C++ | False | Capture, decoding, frozen receivers, and study orchestration are Python; the former native runtime has been retired |
 | Pre-trigger buffering preserves pre-event context in the pilot | Measured component ablation | `docs/results/ablation-retention.json`; 64.3% to 1.8% at 1,024 bytes; same validation events |
 | Cross-mission generalization is measured | Not established | Hash-locked runner tested with synthetic bundles only; independent mission data still needed |

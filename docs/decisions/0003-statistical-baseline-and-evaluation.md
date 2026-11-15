@@ -1,5 +1,11 @@
 # ADR 0003: Statistical baseline and event evaluation
 
+> **Implementation update:** The original C++ runtime/build/test stack has been
+> retired. This ADR records the historical design; the binary schema, Python
+> conversion, and applicable data policies remain in use. See
+> [development](../development.md) for the current Python workflow.
+
+
 - **Status:** Accepted for M2
 - **Scope:** Causal C++ baseline, validation selection, reproducible event reports
 - **Related:** [Data policy](0001-data-split-and-preprocessing.md), [wire format](0002-binary-telemetry-format.md)

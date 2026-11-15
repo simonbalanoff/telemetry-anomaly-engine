@@ -1,5 +1,11 @@
 # ADR 0004: PCA, preserved raw evidence, and workload-constrained comparison
 
+> **Implementation update:** The original C++ runtime/build/test stack has been
+> retired. This ADR records the historical design; the binary schema, Python
+> conversion, and applicable data policies remain in use. See
+> [development](../development.md) for the current Python workflow.
+
+
 - **Status:** Accepted for the next research baseline
 - **Scope:** Fixed six-channel C++ numerical kernels, optional feature bundle, validation-only comparison
 - **Related:** [M2 policy](0003-statistical-baseline-and-evaluation.md)

@@ -1,5 +1,11 @@
 # Compare relationships and preserved raw evidence
 
+> **Historical workflow.** The C++ runtime and its scoring commands have been retired.
+> These instructions describe the [pre-removal revision](https://github.com/simonbalanoff/telemetry-anomaly-engine/tree/2eda2af0a9ec9b67a0bb1aa03d1119081181461d).
+> To reproduce them, use that revision in a separate checkout. Current research
+> runs entirely in Python; see [development](development.md).
+
+
 This experiment compares the existing statistical detectors with C++ PCA and
 three simple scores derived from retained values and within-cell extremes. It
 uses the same observed-cell exposure and a fixed validation false-alarm budget.

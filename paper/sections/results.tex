@@ -1,9 +1,9 @@
 \section{Implemented Checks and Preliminary Artifacts}
-The existing repository provides a C++ validating telemetry reader, statistical
-and PCA scorers, and a verified Mission1 export. These are supporting components;
-their detector metrics do not demonstrate recorder effectiveness. The new recorder
-is a Python research prototype. Its C++ streaming integration and embedded resource
-measurements remain future work.
+The repository provides a verified Mission1 export and a Python research recorder,
+packet codec, and receiver evaluation pipeline. Independent vectorized source
+verification compares all exported frame values and quality fields. The earlier
+native detector runtime has been retired; its historical detector metrics do not
+demonstrate recorder effectiveness. Embedded resource measurements remain future work.
 
 The reproducible smoke scenario has 360 six-channel observations at five-second
 intervals over three ten-minute epochs. Seed 2026 fixes Gaussian background noise.

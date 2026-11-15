@@ -1,9 +1,6 @@
 import csv
 import json
-import os
 from pathlib import Path
-import struct
-import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -239,83 +236,3 @@ class EvaluationTests(unittest.TestCase):
         crossing = dict(self.events[0], start_us=3 * PERIOD_US, end_us=6 * PERIOD_US)
         clipped = partition_events([crossing], self.header, 4, 8)
         self.assertEqual(clipped[0]["start_us"], 4 * PERIOD_US)
-
-
-class CppScoringParityTests(unittest.TestCase):
-    def test_full_command_matches_independent_numpy_reference_and_rejects_leakage(self):
-        executable = Path(
-            os.environ.get("TAE_EXECUTABLE", "build/debug/apps/cli/tae")
-        ).resolve()
-        if not executable.exists():
-            self.skipTest("Build tae or set TAE_EXECUTABLE for CLI parity test")
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            header = Header(0, 90, 30 * PERIOD_US, 60 * PERIOD_US)
-            values = np.array(
-                [[np.sin(i * 0.3 + c) for c in range(6)] for i in range(90)],
-                dtype=np.float32,
-            )
-            frames = [Frame(tuple(row), 63, 63, 0) for row in values]
-            # Six-cell gap, including five exact fills and one unavailable frame.
-            for i in range(40, 45):
-                frames[i] = Frame(frames[39].values, 0, 63, i - 39)
-            frames[45] = Frame((0.0,) * 6, 0, 0, 6)
-            write_binary(root / "telemetry.bin", header, frames)
-            mask = np.zeros(90, dtype=np.uint8)
-            mask[:25] = 1
-            mask.tofile(root / "mask.bin")
-            command = [
-                str(executable),
-                "score",
-                str(root / "telemetry.bin"),
-                str(root / "mask.bin"),
-                str(root / "scores.bin"),
-                str(root / "runtime.json"),
-                "4",
-                ".2",
-                "--synthetic-fixture",
-            ]
-            subprocess.run(command, check=True, capture_output=True)
-            actual = np.fromfile(root / "scores.bin", dtype="<f8").reshape(-1, 2)
-            train = values[:25].astype(float)
-            mean, std = train.mean(axis=0), train.std(axis=0, ddof=1)
-            history, ewma = [], None
-            expected = []
-            for i, frame in enumerate(frames):
-                if i in [30, 60] or not frame.usable_mask:
-                    history, ewma = [], None
-                if not frame.usable_mask:
-                    expected.append([np.nan, np.nan])
-                    continue
-                x = (np.array(frame.values) - mean) / std
-                next_ewma = x if ewma is None else 0.2 * x + 0.8 * ewma
-                if len(history) == 4:
-                    window = np.array(history)
-                    z = np.max(
-                        np.abs(x - window.mean(axis=0))
-                        / np.maximum(0.05, window.std(axis=0, ddof=1))
-                    )
-                    e = np.max(np.abs(next_ewma) / np.sqrt(0.2 / 1.8))
-                    expected.append([z, e])
-                else:
-                    expected.append([np.nan, np.nan])
-                history = (history + [x])[-4:]
-                ewma = next_ewma
-            np.testing.assert_allclose(
-                actual, expected, rtol=1e-10, atol=1e-10, equal_nan=True
-            )
-            metadata = json.loads((root / "runtime.json").read_text())
-            self.assertEqual(metadata["training_observations"], 25)
-            np.testing.assert_allclose(
-                [entry["mean"] for entry in metadata["normalization"]], mean, atol=1e-15
-            )
-            aliased = command.copy()
-            aliased[4] = str(root / "telemetry.bin")
-            rejected = subprocess.run(aliased, capture_output=True, text=True)
-            self.assertNotEqual(rejected.returncode, 0)
-            self.assertIn("distinct", rejected.stderr)
-            mask[30] = 1
-            mask.tofile(root / "mask.bin")
-            failed = subprocess.run(command, capture_output=True, text=True)
-            self.assertNotEqual(failed.returncode, 0)
-            self.assertIn("leaks", failed.stderr)

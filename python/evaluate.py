@@ -1,16 +1,8 @@
-"""Verified dataset -> C++ statistical scores -> validation-selected event metrics.
-
-Test metrics require --test. See docs/statistical-baseline.md for frozen policies.
-"""
-
-import argparse
-import json
-from pathlib import Path
-import subprocess
+"""Pure Python event matching, alarm metrics, and validation-only selection."""
 
 import numpy as np
 
-from dataset import atomic_text, cell_interval, sha256, verify_dataset
+from dataset import cell_interval
 from write_binary import PERIOD_US
 
 
@@ -226,36 +218,6 @@ def report_partition(scores, masks, events, header, first, stop, thresholds):
     return report
 
 
-def prepare_training_mask(masks, header, validation_start, path):
-    """Only unlabelled training cells may contribute to normalization."""
-    train = np.zeros(header.frame_count, dtype=np.uint8)
-    labelled = masks["Anomaly"] | masks["Rare Event"] | masks["Communication Gap"]
-    train[:validation_start] = labelled[:validation_start] == 0
-    train.tofile(path)
-
-
-def generate_scores(executable, dataset, output, header, window, alpha):
-    """The C++ command validates frames on both fitting and scoring passes."""
-    subprocess.run(
-        [
-            str(executable.resolve()),
-            "score",
-            str(dataset / "telemetry.bin"),
-            str(output / "train_mask.bin"),
-            str(output / "scores.bin"),
-            str(output / "runtime.json"),
-            str(window),
-            str(alpha),
-        ],
-        check=True,
-    )
-    if (output / "scores.bin").stat().st_size != header.frame_count * 16:
-        raise ValueError("Score file size mismatch")
-    return np.memmap(
-        output / "scores.bin", mode="r", dtype="<f8", shape=(header.frame_count, 2)
-    )
-
-
 def select_thresholds(scores, masks, events, header, validation_start, test_start):
     """Choose thresholds using validation alone; tie-break toward fewer alarms."""
     thresholds, trials = {}, {}
@@ -297,118 +259,3 @@ def select_thresholds(scores, masks, events, header, validation_start, test_star
         )
         thresholds[name] = best["threshold"]
     return thresholds, trials
-
-
-def record_run(output, report):
-    """Preserve an audit trail so repeated held-out evaluations remain visible."""
-    from datetime import datetime, timezone
-
-    filename = (
-        "test_report.json"
-        if report["partition"] == "test"
-        else "validation_report.json"
-    )
-    atomic_text(output / filename, json.dumps(report, indent=2, allow_nan=False) + "\n")
-    with open(output / "runs.jsonl", "a", encoding="utf-8") as audit:
-        audit.write(
-            json.dumps(
-                dict(
-                    time=datetime.now(timezone.utc).isoformat(),
-                    partition=report["partition"],
-                    provenance=report["provenance"],
-                )
-            )
-            + "\n"
-        )
-
-
-def parse_arguments():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("dataset", type=Path)
-    parser.add_argument("--tae", type=Path, default=Path("build/release/apps/cli/tae"))
-    parser.add_argument("--output", type=Path, default=Path("data/results/statistical"))
-    parser.add_argument("--window", type=int, default=120)
-    parser.add_argument("--alpha", type=float, default=0.05)
-    parser.add_argument(
-        "--test",
-        action="store_true",
-        help="Explicitly evaluate the held-out test partition",
-    )
-    args = parser.parse_args()
-    if not 2 <= args.window <= 1_000_000 or not 0 < args.alpha <= 1:
-        parser.error("Require window in [2, 1000000] and alpha in (0, 1]")
-    if args.output.resolve() == args.dataset.resolve():
-        parser.error("Results need a separate directory from the dataset")
-    return args
-
-
-def main():
-    args = parse_arguments()
-    header, events = verify_dataset(args.dataset)
-    args.output.mkdir(parents=True, exist_ok=True)
-    verification = json.loads(
-        subprocess.check_output(
-            [str(args.tae.resolve()), "verify", str(args.dataset / "telemetry.bin")],
-            text=True,
-        )
-    )
-    masks = label_masks(events, header)
-    validation_start = (header.validation_start_us - header.start_us) // PERIOD_US
-    test_start = (header.test_start_us - header.start_us) // PERIOD_US
-    prepare_training_mask(
-        masks, header, validation_start, args.output / "train_mask.bin"
-    )
-    provenance = dict(
-        manifest_sha256=sha256(args.dataset / "manifest.json"),
-        engine_sha256=sha256(args.tae),
-        evaluation_sha256=sha256(Path(__file__)),
-        window=args.window,
-        alpha=args.alpha,
-        policy="statistical-v1",
-        train_mask_sha256=sha256(args.output / "train_mask.bin"),
-    )
-    selection_path = args.output / "selection.json"
-    selection = (
-        json.loads(selection_path.read_text()) if selection_path.exists() else None
-    )
-    if selection and selection["provenance"] != provenance:
-        raise ValueError(
-            "Frozen selection differs from this run; use a new output directory"
-        )
-    if args.test and selection is None:
-        raise ValueError("Run validation to freeze selection before --test")
-
-    scores = generate_scores(
-        args.tae, args.dataset, args.output, header, args.window, args.alpha
-    )
-    if selection is None:
-        thresholds, trials = select_thresholds(
-            scores, masks, events, header, validation_start, test_start
-        )
-        selection = dict(
-            provenance=provenance, thresholds=thresholds, validation_trials=trials
-        )
-        atomic_text(
-            selection_path, json.dumps(selection, indent=2, allow_nan=False) + "\n"
-        )
-
-    first, stop = (
-        (test_start, header.frame_count)
-        if args.test
-        else (validation_start, test_start)
-    )
-    report = dict(
-        provenance=provenance,
-        partition="test" if args.test else "validation",
-        verification=verification,
-        runtime=json.loads((args.output / "runtime.json").read_text()),
-        metrics=report_partition(
-            scores, masks, events, header, first, stop, selection["thresholds"]
-        ),
-    )
-    record_run(args.output, report)
-    print(json.dumps(report, indent=2))
-
-
-if __name__ == "__main__":
-    main()

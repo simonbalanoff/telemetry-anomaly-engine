@@ -1,4 +1,14 @@
-# Local M1/M2 results
+# Historical detector results and current retention studies
+
+The current Python research results are the [native pilot](native-retention.md),
+[seeded sampling comparison](randomized-retention.md), and
+[component ablations](ablation-retention.md). The [Python-only source check](m1-source-validation.json)
+verifies the full export without a native runtime.
+
+The M1/M2 and detector-comparison artifacts below are historical. Their C++ runtime
+and commands are available in the [pre-removal revision](https://github.com/simonbalanoff/telemetry-anomaly-engine/tree/2eda2af0a9ec9b67a0bb1aa03d1119081181461d); use that revision
+in a separate checkout to reproduce them. They are not current pipeline dependencies.
+
 
 These small artifacts document a complete local run on ESA-ADB Mission1 channels
 41–46. Raw data, binary frames, masks, and score arrays remain gitignored.
@@ -58,7 +68,9 @@ Artifacts:
 - [m2-validation.json](m2-validation.json): full validation report.
 - [m2-test.json](m2-test.json): full held-out report.
 
-## Reproduce
+## Reproduce the historical detector runs
+
+Use the pre-removal revision linked above for these commands.
 
 ```bash
 cmake --preset release

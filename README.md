@@ -1,6 +1,6 @@
 # Preserving Fault Evidence under Telemetry Budgets
 
-**Simon Balanoff · Research draft · Python-first experiments**
+**Simon Balanoff · Research draft · Python research pipeline**
 
 [Read the paper](paper/draft.pdf) · [LaTeX source](paper/main.tex) ·
 [Results and limitations](docs/results/native-retention.md) · [Reproduce](#reproduce-the-study)
@@ -92,10 +92,9 @@ make -C paper preview
 
 ## Implementation and next experiments
 
-The recorder is a Python research prototype. Supporting C++ components include
-validated binary I/O, statistical/PCA detectors, numerical parity checks, a frame
-pool, and a bounded queue. They are optional supporting tools; new recorder research
-remains Python-first. A native implementation would need a profiling or embedded-resource
+The recorder, packet codec, receivers, and experiment runners are implemented in
+Python. The research workflow requires NumPy and pandas; it needs no native build.
+A compiled implementation would need a measured performance or deployment
 justification. Flight deployment is not claimed.
 
 Sixteen [component ablations](docs/results/ablation-retention.md) separate event evidence

@@ -3,6 +3,7 @@
 import numpy as np
 
 from dataset import cell_interval
+from export_features import CHUNK_CELLS
 from evaluate import alarm_intervals, average_precision, event_metrics, partition_events
 from write_binary import PERIOD_US
 
@@ -263,3 +264,29 @@ def channel_evidence(name, frame, feature, runtime):
             for channel in order
         ],
     )
+
+
+def score_raw_evidence(path, features, frames, runtime):
+    """Matched extrema/keep-last controls share the same frozen normalizer."""
+    mean = np.array([entry["mean"] for entry in runtime["normalization"]])
+    sigma = np.maximum(
+        1e-12, np.sqrt([entry["variance"] for entry in runtime["normalization"]])
+    )
+    output = np.lib.format.open_memmap(
+        path, mode="w+", dtype="<f8", shape=(len(frames), 3)
+    )
+    for first in range(0, len(frames), CHUNK_CELLS):
+        stop = min(first + CHUNK_CELLS, len(frames))
+        block = features[first:stop]
+        observed = block["sample_count"] > 0
+        retained = (frames["values"][first:stop].astype(float) - mean) / sigma
+        minimum = (block["minimum"].astype(float) - mean) / sigma
+        maximum = (block["maximum"].astype(float) - mean) / sigma
+        output[first:stop, 0] = np.max(np.abs(retained), axis=1)
+        output[first:stop, 1] = np.max(
+            np.maximum(np.abs(minimum), np.abs(maximum)), axis=1
+        )
+        output[first:stop, 2] = np.max(maximum - minimum, axis=1)
+        output[first:stop][~observed] = np.nan
+    output.flush()
+    return output

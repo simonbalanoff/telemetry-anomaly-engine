@@ -43,7 +43,7 @@ The converter:
 7. Checks the final byte length against the count computed from the grid.
 8. Exports source event-channel annotations, validates their schema, and writes a manifest last with SHA-256 hashes of both content files.
 
-The full local export has been independently verified against all original source values and scanned by the C++ reader; see [verification results](results/m1-validation.json). It currently loads a six-column NumPy measurement matrix in memory, while the subsequent frame iterator writes incrementally.
+The full local export is independently verified against all original source values by the Python verifier; see [current source verification](results/m1-source-validation.json). The [older report](results/m1-validation.json) also preserves a historical native reader scan. It currently loads a six-column NumPy measurement matrix in memory, while the subsequent frame iterator writes incrementally.
 
 ## Frame quality states
 
@@ -114,15 +114,15 @@ Keep original event IDs, channels, categories, and precise UTC boundaries. For p
 
 ```bash
 python python/dataset.py data/processed
-./build/release/apps/cli/tae verify data/processed/telemetry.bin
-python python/verify_export.py data/ESA-Mission1 data/processed --report docs/results/m1-validation.json
+python python/verify_export.py data/ESA-Mission1 data/processed --report data/results/source-verification.json
 ```
 
 The first command verifies manifest policy, both complete-file hashes, header,
-CSV schema, and event intervals. The second scans **every frame** in C++, including
-fill identities and staleness transitions. The third independently reconstructs
-expected frames with vectorized source indexing and compares all binary32 value
-bits and quality fields, then checks C++ state counts.
+CSV schema, and event intervals. The second independently reconstructs every
+expected frame with vectorized source indexing and compares all binary32 value
+bits, observed/usable masks, and staleness fields, including fill identities and
+unavailable cells. It reports observed, filled, and unavailable frame counts.
+No compiled runtime is required.
 
 For an existing binary, metadata can be exported separately:
 

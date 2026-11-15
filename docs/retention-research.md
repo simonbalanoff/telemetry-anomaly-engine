@@ -128,9 +128,9 @@ python python/run_retention_randomized.py --baseline data/results/retention-nati
 
 See [seeded results](results/randomized-retention.md). These comparisons address
 alignment sensitivity; adaptive-component interactions and an independent mission
-study remain outstanding. All retention experiments run in Python. Existing C++
-analysis tools remain optional; native recorder integration is conditional on a
-measured performance need or a deployment claim, rather than a research prerequisite.
+study remain outstanding. All retention experiments run in Python. The unused native detector runtime has
+been retired. A compiled recorder would require a measured performance need or
+a deployment claim.
 
 The [paired ablation study](results/ablation-retention.md) reports all 16 arms.
 The [cross-mission interface](cross-mission-evaluation.md) supports hash-locked

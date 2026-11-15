@@ -1,13 +1,12 @@
 """Independently compare every exported frame with the original six channels.
 
-Uses vectorized indexing rather than the converter's frame iterator. C++ still
-performs the independent wire-format/state-machine scan via `tae verify`.
+Uses vectorized indexing rather than the converter's frame iterator, checking
+every value bit, quality mask, and staleness field without a compiled runtime.
 """
 
 import argparse
 import json
 from pathlib import Path
-import subprocess
 
 import numpy as np
 
@@ -33,7 +32,7 @@ REFERENCE = dict(
 )
 
 
-def verify_export(source, dataset, executable):
+def verify_export(source, dataset):
     header, events = verify_dataset(dataset)
     timestamps, values = load_aligned_channels(source)
     stats = grid_statistics(timestamps)
@@ -68,21 +67,12 @@ def verify_export(source, dataset, executable):
         counts["observed"] += int(observed.sum())
         counts["filled"] += int((usable & ~observed).sum())
         counts["unavailable"] += int((~usable).sum())
-    cpp = json.loads(
-        subprocess.check_output(
-            [str(executable.resolve()), "verify", str(dataset / "telemetry.bin")],
-            text=True,
-        )
-    )
-    if cpp != dict(frames=header.frame_count, **counts):
-        raise ValueError("C++ scan differs from Python reference")
     return dict(
         dataset="ESA-ADB/Mission1",
         channels=list(range(41, 47)),
         reference_statistics=stats,
         binary_bytes=(dataset / "telemetry.bin").stat().st_size,
         frame_states=counts,
-        cpp_scan=cpp,
         event_channel_intervals=len(events),
         distinct_events=len({e["event_id"] for e in events}),
         telemetry_sha256=sha256(dataset / "telemetry.bin"),
@@ -95,10 +85,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("source", type=Path)
     parser.add_argument("dataset", type=Path)
-    parser.add_argument("--tae", type=Path, default=Path("build/release/apps/cli/tae"))
     parser.add_argument("--report", type=Path)
     args = parser.parse_args()
-    result = verify_export(args.source, args.dataset, args.tae)
+    result = verify_export(args.source, args.dataset)
     text = json.dumps(result, indent=2) + "\n"
     if args.report:
         atomic_text(args.report, text)

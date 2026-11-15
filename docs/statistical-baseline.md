@@ -1,5 +1,11 @@
 # Statistical baseline: run and inspect
 
+> **Historical workflow.** The C++ runtime and its scoring commands have been retired.
+> These instructions describe the [pre-removal revision](https://github.com/simonbalanoff/telemetry-anomaly-engine/tree/2eda2af0a9ec9b67a0bb1aa03d1119081181461d).
+> To reproduce them, use that revision in a separate checkout. Current research
+> runs entirely in Python; see [development](development.md).
+
+
 The supported benchmark entry point verifies the dataset bundle before fitting
 or scoring. C++ computes the detector scores; Python performs eligibility masking,
 validation-only threshold selection, and event-level reporting.

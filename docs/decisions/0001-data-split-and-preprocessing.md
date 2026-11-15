@@ -1,5 +1,11 @@
 # ADR 0001: Data split and telemetry preprocessing
 
+> **Implementation update:** The original C++ runtime/build/test stack has been
+> retired. This ADR records the historical design; the binary schema, Python
+> conversion, and applicable data policies remain in use. See
+> [development](../development.md) for the current Python workflow.
+
+
 - **Status:** Accepted for the initial baseline; evaluation parameters noted below remain open
 - **Date:** 2026-11-04
 - **Scope:** ESA-ADB Mission1 channels 41–46, Python conversion and C++20 replay/evaluation

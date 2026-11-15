@@ -1,5 +1,11 @@
 # ADR 0002: Binary telemetry interchange format
 
+> **Implementation update:** The original C++ runtime/build/test stack has been
+> retired. This ADR records the historical design; the binary schema, Python
+> conversion, and applicable data policies remain in use. See
+> [development](../development.md) for the current Python workflow.
+
+
 - **Status:** Accepted; M1 implementation and full-source verification complete
 - **Date:** 2026-11-04
 - **Related:** [ADR 0001](0001-data-split-and-preprocessing.md)
