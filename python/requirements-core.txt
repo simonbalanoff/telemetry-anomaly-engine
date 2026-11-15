@@ -1,0 +1,4 @@
+# Conversion, integrity verification, and the statistical evaluation harness.
+# Tested with Python 3.12, NumPy 2.5.4, and pandas 2.2.3.
+numpy>=1.26,<3
+pandas>=2.2,<3

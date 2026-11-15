@@ -39,6 +39,7 @@ endif()
 
 # Core library. Add .cpp files to this list as you create them.
 add_library(tae
+  src/detectors/statistical.cpp
   src/version.cpp
   src/io/telemetry_header.cpp
   src/io/telemetry_frame.cpp
@@ -47,7 +48,8 @@ add_library(tae
 
 target_include_directories(tae PUBLIC include)
 target_compile_features(tae PUBLIC cxx_std_20)
-target_link_libraries(tae PRIVATE tae_options)
+find_package(Threads REQUIRED)
+target_link_libraries(tae PRIVATE tae_options PUBLIC Threads::Threads)
 
 add_subdirectory(apps/cli)
 

@@ -1,0 +1,283 @@
+{
+  "provenance": {
+    "manifest_sha256": "34e61dde7bed764e22ee558ce8461f093bbf16744975c8a46305b33d5e4edcbc",
+    "engine_sha256": "0ed8b3bdb97f432d7fbed37680091b38c142d5c26fd32f21725c5578ab08c253",
+    "evaluation_sha256": "b272f5d4c3d32debe9d3e7b5c62cb5844b436a1bb98db56540463435a440336d",
+    "window": 120,
+    "alpha": 0.05,
+    "policy": "statistical-v1",
+    "train_mask_sha256": "0aed49932971cb8607db07f5ceb1ae227f5f943e25fd92b927ac5c5cb834e4ef"
+  },
+  "partition": "validation",
+  "verification": {
+    "frames": 14728320,
+    "observed": 14642408,
+    "filled": 83800,
+    "unavailable": 2112
+  },
+  "runtime": {
+    "training_observations": 8296650,
+    "frames": 14728320,
+    "scored": 14720704,
+    "window": 120,
+    "alpha": 0.05,
+    "sigma_floor": 0.05,
+    "latency_samples": 14384,
+    "latency_ns": {
+      "p50": 42,
+      "p95": 83,
+      "p99": 84
+    },
+    "normalization": [
+      {
+        "mean": 0.8110644945203643,
+        "variance": 2.457994568490589e-05
+      },
+      {
+        "mean": 0.784785862763173,
+        "variance": 4.7912913835681895e-05
+      },
+      {
+        "mean": 0.7721345903465718,
+        "variance": 2.4720202675589677e-05
+      },
+      {
+        "mean": 0.7971420360687321,
+        "variance": 3.503025417047897e-05
+      },
+      {
+        "mean": 0.8133237409819283,
+        "variance": 3.113814006894925e-05
+      },
+      {
+        "mean": 0.7685367675543757,
+        "variance": 4.7466221847939944e-05
+      }
+    ]
+  },
+  "metrics": {
+    "cells": 3156480,
+    "excluded_label_cells": 2301,
+    "detectors": {
+      "zscore": {
+        "event_precision": 0.5,
+        "event_recall": 0.9090909090909091,
+        "event_f1": 0.6451612903225806,
+        "detected_events": 10,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 20,
+        "alarm_cells": 36,
+        "longest_alarm_seconds": 90,
+        "total_alarm_seconds": 1080,
+        "false_alarms": 10,
+        "false_alarms_per_eligible_day": 0.009278514922139406,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.6226415635484043,
+          0.9837678271141151
+        ],
+        "detection_delay_seconds": {
+          "50": 8.9895,
+          "95": 1016.4541499999981,
+          "99": 1629.3228300000003
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ],
+        "threshold": 6.785716018277171,
+        "scored_cells": 3151475,
+        "excluded_or_warmup_fraction": 0.0015856270275750317,
+        "cell_average_precision": 0.015831936572217754,
+        "tolerance_sensitivity": {
+          "30": {
+            "event_precision": 0.5,
+            "event_recall": 0.9090909090909091,
+            "event_f1": 0.6451612903225806,
+            "detected_events": 10,
+            "eligible_events": 11,
+            "unscorable_events": 0,
+            "alarm_episodes": 20,
+            "alarm_cells": 36,
+            "longest_alarm_seconds": 90,
+            "total_alarm_seconds": 1080,
+            "false_alarms": 10,
+            "false_alarms_per_eligible_day": 0.009278514922139406,
+            "eligible_normal_days": 1077.7586805555557,
+            "recall_wilson_95": [
+              0.6226415635484043,
+              0.9837678271141151
+            ],
+            "detection_delay_seconds": {
+              "50": 8.9895,
+              "95": 1016.4541499999981,
+              "99": 1629.3228300000003
+            },
+            "matched_event_ids": [
+              "id_129",
+              "id_130",
+              "id_132",
+              "id_134",
+              "id_140",
+              "id_142",
+              "id_145",
+              "id_149",
+              "id_150",
+              "id_18"
+            ]
+          },
+          "60": {
+            "event_precision": 0.5,
+            "event_recall": 0.9090909090909091,
+            "event_f1": 0.6451612903225806,
+            "detected_events": 10,
+            "eligible_events": 11,
+            "unscorable_events": 0,
+            "alarm_episodes": 20,
+            "alarm_cells": 36,
+            "longest_alarm_seconds": 90,
+            "total_alarm_seconds": 1080,
+            "false_alarms": 10,
+            "false_alarms_per_eligible_day": 0.009278514922139406,
+            "eligible_normal_days": 1077.7586805555557,
+            "recall_wilson_95": [
+              0.6226415635484043,
+              0.9837678271141151
+            ],
+            "detection_delay_seconds": {
+              "50": 8.9895,
+              "95": 1016.4541499999981,
+              "99": 1629.3228300000003
+            },
+            "matched_event_ids": [
+              "id_129",
+              "id_130",
+              "id_132",
+              "id_134",
+              "id_140",
+              "id_142",
+              "id_145",
+              "id_149",
+              "id_150",
+              "id_18"
+            ]
+          }
+        }
+      },
+      "ewma": {
+        "event_precision": 0.16279069767441862,
+        "event_recall": 0.6363636363636364,
+        "event_f1": 0.2592592592592593,
+        "detected_events": 7,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 43,
+        "alarm_cells": 75830,
+        "longest_alarm_seconds": 745170,
+        "total_alarm_seconds": 2274900,
+        "false_alarms": 36,
+        "false_alarms_per_eligible_day": 0.03340265371970186,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.35380117450784887,
+          0.8483352890463243
+        ],
+        "detection_delay_seconds": {
+          "50": 20.145,
+          "95": 1952.8160999999986,
+          "99": 2440.595219999999
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_134",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_18"
+        ],
+        "threshold": 46.3914698626604,
+        "scored_cells": 3151475,
+        "excluded_or_warmup_fraction": 0.0015856270275750317,
+        "cell_average_precision": 0.9239337726037681,
+        "tolerance_sensitivity": {
+          "30": {
+            "event_precision": 0.16279069767441862,
+            "event_recall": 0.6363636363636364,
+            "event_f1": 0.2592592592592593,
+            "detected_events": 7,
+            "eligible_events": 11,
+            "unscorable_events": 0,
+            "alarm_episodes": 43,
+            "alarm_cells": 75830,
+            "longest_alarm_seconds": 745170,
+            "total_alarm_seconds": 2274900,
+            "false_alarms": 36,
+            "false_alarms_per_eligible_day": 0.03340265371970186,
+            "eligible_normal_days": 1077.7586805555557,
+            "recall_wilson_95": [
+              0.35380117450784887,
+              0.8483352890463243
+            ],
+            "detection_delay_seconds": {
+              "50": 20.145,
+              "95": 1952.8160999999986,
+              "99": 2440.595219999999
+            },
+            "matched_event_ids": [
+              "id_129",
+              "id_134",
+              "id_140",
+              "id_142",
+              "id_145",
+              "id_149",
+              "id_18"
+            ]
+          },
+          "60": {
+            "event_precision": 0.16279069767441862,
+            "event_recall": 0.6363636363636364,
+            "event_f1": 0.2592592592592593,
+            "detected_events": 7,
+            "eligible_events": 11,
+            "unscorable_events": 0,
+            "alarm_episodes": 43,
+            "alarm_cells": 75830,
+            "longest_alarm_seconds": 745170,
+            "total_alarm_seconds": 2274900,
+            "false_alarms": 36,
+            "false_alarms_per_eligible_day": 0.03340265371970186,
+            "eligible_normal_days": 1077.7586805555557,
+            "recall_wilson_95": [
+              0.35380117450784887,
+              0.8483352890463243
+            ],
+            "detection_delay_seconds": {
+              "50": 20.145,
+              "95": 1952.8160999999986,
+              "99": 2440.595219999999
+            },
+            "matched_event_ids": [
+              "id_129",
+              "id_134",
+              "id_140",
+              "id_142",
+              "id_145",
+              "id_149",
+              "id_18"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

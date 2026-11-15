@@ -10,9 +10,13 @@
 
 namespace tae::io {
 
+// Synthetic timestamps require an explicit opt-in, never used for production data.
+enum class HeaderPolicy { Production, SyntheticFixture };
+
 class TelemetryReader {
 public:
-    explicit TelemetryReader(const std::filesystem::path& path);
+    explicit TelemetryReader(const std::filesystem::path& path,
+                             HeaderPolicy policy = HeaderPolicy::Production);
 
     TelemetryReader(const TelemetryReader&) = delete;
     TelemetryReader& operator=(const TelemetryReader&) = delete;

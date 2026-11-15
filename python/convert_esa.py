@@ -5,9 +5,9 @@ import numpy as np
 import pandas as pd
 
 from exploration.esa import FOCUS, load_channel
+from dataset import export_metadata
 from preprocess import iter_grid_frames
 from write_binary import FRAME_SIZE, HEADER_SIZE, PERIOD_US, Header, write_binary
-
 
 VALIDATION_START_US = 1_199_145_600_000_000
 TEST_START_US = 1_293_840_000_000_000
@@ -70,9 +70,7 @@ def grid_statistics(timestamps_us: np.ndarray):
     last_cell = int(cells[-1])
 
     boundaries = np.flatnonzero(np.diff(cells) != 0) + 1
-    group_sizes = np.diff(
-        np.concatenate(([0], boundaries, [len(cells)]))
-    )
+    group_sizes = np.diff(np.concatenate(([0], boundaries, [len(cells)])))
 
     occupied = len(group_sizes)
     frame_count = last_cell - first_cell + 1
@@ -88,6 +86,8 @@ def grid_statistics(timestamps_us: np.ndarray):
 
 
 def convert(root: Path, output: Path):
+    if output.name != "telemetry.bin":
+        raise ValueError("Dataset output must be named telemetry.bin")
     timestamps_us, values = load_aligned_channels(root)
     stats = grid_statistics(timestamps_us)
 
@@ -121,6 +121,7 @@ def convert(root: Path, output: Path):
     if actual_size != expected_size:
         raise RuntimeError("Written file size does not match expectation")
 
+    export_metadata(root, output.parent)
     print(f"Created: {output}")
     print(f"Verified size: {actual_size:,} bytes")
 

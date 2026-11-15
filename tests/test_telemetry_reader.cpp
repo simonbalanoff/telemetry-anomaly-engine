@@ -141,7 +141,7 @@ private:
 
 TEST(TelemetryReader, ReadsValidFile) {
     TemporaryBinaryFile file(make_valid_file());
-    TelemetryReader reader(file.path());
+    TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     EXPECT_EQ(reader.header().frame_count, 4U);
     EXPECT_EQ(reader.frames_read(), 0U);
@@ -158,7 +158,7 @@ TEST(TelemetryReader, ReadsValidFile) {
 
 TEST(TelemetryReader, ReturnsCleanEndOfStream) {
     TemporaryBinaryFile file(make_valid_file());
-    TelemetryReader reader(file.path());
+    TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     for (int i = 0; i < 4; ++i) {
         ASSERT_TRUE(reader.next().has_value());
@@ -171,7 +171,7 @@ TEST(TelemetryReader, ReturnsCleanEndOfStream) {
 
 TEST(TelemetryReader, PreservesFrameValues) {
     TemporaryBinaryFile file(make_valid_file());
-    TelemetryReader reader(file.path());
+    TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     auto first = reader.next();
     ASSERT_TRUE(first.has_value());
@@ -191,7 +191,7 @@ TEST(TelemetryReader, RejectsTruncatedHeader) {
     TemporaryBinaryFile file(Bytes(32));
 
     EXPECT_THROW(
-        TelemetryReader reader(file.path()),
+        TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture),
         TelemetryFormatError
     );
 }
@@ -203,7 +203,7 @@ TEST(TelemetryReader, RejectsTruncatedPayload) {
     TemporaryBinaryFile file(bytes);
 
     EXPECT_THROW(
-        TelemetryReader reader(file.path()),
+        TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture),
         TelemetryFormatError
     );
 }
@@ -215,7 +215,7 @@ TEST(TelemetryReader, RejectsTrailingPayload) {
     TemporaryBinaryFile file(bytes);
 
     EXPECT_THROW(
-        TelemetryReader reader(file.path()),
+        TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture),
         TelemetryFormatError
     );
 }
@@ -227,7 +227,7 @@ TEST(TelemetryReader, RejectsInvalidHeader) {
     TemporaryBinaryFile file(bytes);
 
     EXPECT_THROW(
-        TelemetryReader reader(file.path()),
+        TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture),
         TelemetryFormatError
     );
 }
@@ -237,7 +237,7 @@ TEST(TelemetryReader, RejectsCorruptFrame) {
     bytes[64 + 24] = std::byte{0x01};
 
     TemporaryBinaryFile file(bytes);
-    TelemetryReader reader(file.path());
+    TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     EXPECT_THROW(reader.next(), TelemetryFormatError);
     EXPECT_EQ(reader.frames_read(), 0U);
@@ -248,7 +248,7 @@ TEST(TelemetryReader, RejectsInvalidTransition) {
     bytes[64 + 28 + 26] = std::byte{0x03};
 
     TemporaryBinaryFile file(bytes);
-    TelemetryReader reader(file.path());
+    TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     ASSERT_TRUE(reader.next().has_value());
 
@@ -261,7 +261,7 @@ TEST(TelemetryReader, CannotContinueAfterFailure) {
     bytes[64 + 28 + 26] = std::byte{0x03};
 
     TemporaryBinaryFile file(bytes);
-    TelemetryReader reader(file.path());
+    TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     ASSERT_TRUE(reader.next().has_value());
     EXPECT_THROW(reader.next(), TelemetryFormatError);
@@ -280,4 +280,9 @@ TEST(TelemetryReader, RejectsMissingFile) {
         TelemetryReader reader(path),
         std::runtime_error
     );
+}
+TEST(TelemetryReader, ProductionRejectsSyntheticSplitBoundaries) {
+    // Fixture writer deliberately uses a short timeline.
+    // The default production policy must not silently accept it.
+    EXPECT_THROW(TelemetryReader reader(TAE_FIXTURE_PATH), tae::io::TelemetryFormatError);
 }

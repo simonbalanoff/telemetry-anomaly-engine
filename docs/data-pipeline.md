@@ -1,6 +1,6 @@
 # Data pipeline: ESA-ADB Mission1
 
-This guide documents the implemented converter, its data contract, and what remains before a complete benchmark dataset is available. [ADR 0001](decisions/0001-data-split-and-preprocessing.md) defines the preprocessing and evaluation rules; [ADR 0002](decisions/0002-binary-telemetry-format.md) specifies the binary and metadata formats.
+This guide documents the implemented converter, its data contract, and the checks used to validate a complete benchmark dataset. [ADR 0001](decisions/0001-data-split-and-preprocessing.md) defines the preprocessing and evaluation rules; [ADR 0002](decisions/0002-binary-telemetry-format.md) specifies the binary and metadata formats.
 
 ## Source layout
 
@@ -19,7 +19,7 @@ data/ESA-Mission1/
   anomaly_types.csv
 ```
 
-The current binary converter needs the six channel archives. The label/type CSVs will be needed for the planned `events.csv` export. Source archives are local and gitignored.
+The current binary converter needs the six channel archives. The label/type CSVs are required for the channel-preserving `events.csv` export. Source archives are local and gitignored.
 
 The loader in `python/exploration/esa.py` reads each official ZIP entry as a pickled pandas Series. **Unpickling executes code; use only trusted official archives.**
 
@@ -41,8 +41,9 @@ The converter:
 5. Emits a six-value frame for every grid cell, filling up to five consecutive missing cells and marking later missing cells unavailable.
 6. Writes `telemetry.bin` through the validated Python writer, using a same-directory temporary file and atomic replacement on successful completion.
 7. Checks the final byte length against the count computed from the grid.
+8. Exports source event-channel annotations, validates their schema, and writes a manifest last with SHA-256 hashes of both content files.
 
-The converter is implemented; a successful full-dataset run has **not** yet been independently confirmed. It currently loads a six-column NumPy measurement matrix in memory, while the subsequent frame iterator writes incrementally.
+The full local export has been independently verified against all original source values and scanned by the C++ reader; see [verification results](results/m1-validation.json). It currently loads a six-column NumPy measurement matrix in memory, while the subsequent frame iterator writes incrementally.
 
 ## Frame quality states
 
@@ -86,7 +87,7 @@ Investigate any discrepancies before relying on the binary artifact. Note that â
 
 Avoid feature-history leakage across boundaries. This is a downstream modeling requirement; the conversion step itself does not train a detector.
 
-## Planned complete dataset bundle
+## Complete dataset bundle
 
 The agreed v1 output is:
 
@@ -97,7 +98,7 @@ data/processed/
   manifest.json
 ```
 
-**Only `telemetry.bin` is implemented by the current conversion command.** The other two files have specification but not working exporters.
+The conversion command writes and validates all three files. The manifest is replaced last, so a failed or interrupted conversion cannot silently pass an old manifest check. Bundle replacement is not a directory-level transaction; consumers should wait for conversion to finish.
 
 `events.csv` must contain one record per original event-channel interval:
 
@@ -107,14 +108,27 @@ event_id,channel,category,start_utc,end_utc
 
 Keep original event IDs, channels, categories, and precise UTC boundaries. For positive-duration events use half-open intervals; zero-duration events label their containing grid cell. Rare events and communication gaps must not become ordinary negative labels merely because measurements are present.
 
-`manifest.json` will declare format `TAE-DATASET` version 1, dataset and channel configuration, aggregation/fill parameters, and SHA-256 of the complete `telemetry.bin` and `events.csv`. Hash verification belongs to dataset opening and must occur outside measured inference timing. Hashes protect against accidental mismatch/corruption but do not authenticate a manifest that an attacker can rewrite.
+`manifest.json` declares format `TAE-DATASET` version 1, dataset and channel configuration, aggregation/fill parameters, and SHA-256 of the complete `telemetry.bin` and `events.csv`. Hash verification belongs to dataset opening and must occur outside measured inference timing. Hashes protect against accidental mismatch/corruption but do not authenticate a manifest that an attacker can rewrite.
 
-## Verification still required
+## Verification commands
 
-- Run the real conversion and compare all six reference statistics.
-- Feed the complete binary to C++ `TelemetryReader` and scan **all** frames, not just the header.
-- Preserve source event-channel labels and verify point events and boundary intersections.
-- Validate the manifest schema and both hashes before the evaluation harness opens the dataset.
-- Add explicit end-to-end tests for grid-boundary timestamp decisions, long outages, and consistency of the actual converted output.
+```bash
+python python/dataset.py data/processed
+./build/release/apps/cli/tae verify data/processed/telemetry.bin
+python python/verify_export.py data/ESA-Mission1 data/processed --report docs/results/m1-validation.json
+```
 
-The 12-frame Python-to-C++ fixture is a valuable interoperability test but does **not** substitute for a complete data-integrity check.
+The first command verifies manifest policy, both complete-file hashes, header,
+CSV schema, and event intervals. The second scans **every frame** in C++, including
+fill identities and staleness transitions. The third independently reconstructs
+expected frames with vectorized source indexing and compares all binary32 value
+bits and quality fields, then checks C++ state counts.
+
+For an existing binary, metadata can be exported separately:
+
+```bash
+python python/dataset.py data/processed --source data/ESA-Mission1
+```
+
+This verifies header/size and metadata integrity, but does not substitute for the
+full source-parity command. Small synthetic fixture tests remain part of CI.

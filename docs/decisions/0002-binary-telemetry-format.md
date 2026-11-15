@@ -1,6 +1,6 @@
 # ADR 0002: Binary telemetry interchange format
 
-- **Status:** Accepted for v1 design; implementation and test verification pending
+- **Status:** Accepted; M1 implementation and full-source verification complete
 - **Date:** 2026-11-04
 - **Related:** [ADR 0001](0001-data-split-and-preprocessing.md)
 - **Scope:** Six synchronized ESA-ADB Mission1 telemetry channels (41–46), Python converter, C++20 reader, and evaluation metadata
@@ -138,34 +138,34 @@ This is a **conditional expectation** to verify against the actual converter's f
 
 ### Header and file size
 
-- [ ] Accept independently constructed valid v1 header and exact-size payload.
-- [ ] Reject wrong magic, version, header length, frame size, sample period, and channel count.
-- [ ] Reject nonzero reserved fields, misaligned start, invalid split ordering or boundary alignment.
-- [ ] Reject truncated header, truncated payload, and trailing bytes.
-- [ ] Reject multiplication/addition overflow when calculating expected size or final timestamp; do not allocate from unchecked counts.
+- [x] Accept independently constructed valid v1 header and exact-size payload.
+- [x] Reject wrong magic, version, header length, frame size, sample period, and channel count.
+- [x] Reject nonzero reserved fields, misaligned start, invalid split ordering or boundary alignment.
+- [x] Reject truncated header, truncated payload, and trailing bytes.
+- [x] Reject multiplication/addition overflow when calculating expected size or final timestamp; do not allocate from unchecked counts.
 
 ### Frame state machine
 
-- [ ] Accept observed values (including legitimate zero) and exact 5-cell fill sequences.
-- [ ] Reject invalid mask bits, mixed masks unsupported in v1, nonfinite usable values, and invalid observed staleness.
-- [ ] Reject fill beyond cell 5, wrong fill values, staleness jumps, and nonzero/unusual bit patterns in unavailable frames.
-- [ ] Accept the missing-staleness saturation rule at 65535.
-- [ ] Require first frame to be observed and check state reset after an extended gap.
+- [x] Accept observed values (including legitimate zero) and exact 5-cell fill sequences.
+- [x] Reject invalid mask bits, mixed masks unsupported in v1, nonfinite usable values, and invalid observed staleness.
+- [x] Reject fill beyond cell 5, wrong fill values, staleness jumps, and nonzero/unusual bit patterns in unavailable frames.
+- [x] Accept the missing-staleness saturation rule at 65535.
+- [x] Require first frame to be observed and check state reset after an extended gap.
 
 ### Labels and manifest
 
-- [ ] Retain separate event/channel intervals, including point events, channel-specific spans, and UTC fractions.
-- [ ] Verify correct labels at exact cell boundaries (point and positive-duration cases).
-- [ ] Reject invalid categories/channels, backward/out-of-range intervals, duplicate records, malformed CSV, or inconsistent event metadata.
-- [ ] Reject missing files, incorrect SHA-256 digests, manifest/header conflicts, and unsafe or unexpected file paths.
-- [ ] Ensure label parsing never affects inference outputs or measured inference latency.
+- [x] Retain separate event/channel intervals, including point events, channel-specific spans, and UTC fractions.
+- [x] Verify correct labels at exact cell boundaries (point and positive-duration cases).
+- [x] Reject invalid categories/channels, backward/out-of-range intervals, duplicate records, malformed CSV, or inconsistent event metadata.
+- [x] Reject missing files, incorrect SHA-256 digests, manifest/header conflicts, and unsafe or unexpected file paths.
+- [x] Ensure label parsing never affects inference outputs or measured inference latency.
 
 ### Cross-language round-trip
 
-- [ ] Python creates a known little-endian byte fixture; independently written C++ parser recovers exact field values.
-- [ ] C++ parses independently authored golden bytes; do not use only Python-written data as the oracle.
-- [ ] Test exact binary32 bit patterns for serialization; use numerical tolerances later for ML math, not file-format bytes.
-- [ ] Mutate one byte of a valid header/frame/payload and verify deterministic rejection when the byte breaks a specified invariant or the manifest hash.
+- [x] Python creates a known little-endian byte fixture; independently written C++ parser recovers exact field values.
+- [x] C++ parses independently authored golden bytes; do not use only Python-written data as the oracle.
+- [x] Test exact binary32 bit patterns for serialization; use numerical tolerances later for ML math, not file-format bytes.
+- [x] Mutate one byte of a valid header/frame/payload and verify deterministic rejection when the byte breaks a specified invariant or the manifest hash.
 
 ## Synthetic fixture definition
 
@@ -191,4 +191,4 @@ Include independent tests for a 30-second cell with three raw observations and a
 - Parser design must clearly distinguish malformed input from EOF and avoid unbounded allocation.
 - A later ADR can change the format; old files remain versioned rather than silently reinterpreted.
 
-**Next milestone:** Implement the Python v1 writer and the C++20 validating reader against the fixtures, then test round-trip compatibility. Review their API designs before coding.
+**Implementation:** The writer, default-production C++ reader, metadata exporter, manifest checks, and full-source verification are implemented. See [M1 results](../results/m1-validation.json) and [M2 policy](0003-statistical-baseline-and-evaluation.md).

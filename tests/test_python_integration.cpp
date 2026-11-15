@@ -116,7 +116,7 @@ private:
 }
 
 TEST(PythonIntegration, HeaderMatchesExpectedValues) {
-    tae::io::TelemetryReader reader(fixture_path());
+    tae::io::TelemetryReader reader(fixture_path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     EXPECT_EQ(reader.header().start_us, 0);
     EXPECT_EQ(reader.header().frame_count, 12U);
@@ -129,7 +129,7 @@ TEST(PythonIntegration, HeaderMatchesExpectedValues) {
 }
 
 TEST(PythonIntegration, AllFramesMatchExactly) {
-    tae::io::TelemetryReader reader(fixture_path());
+    tae::io::TelemetryReader reader(fixture_path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     for (std::size_t i = 0; i < EXPECTED.size(); ++i) {
         SCOPED_TRACE(i);
@@ -159,7 +159,7 @@ TEST(PythonIntegration, AllFramesMatchExactly) {
 }
 
 TEST(PythonIntegration, ReconstructedTimestampsAreCorrect) {
-    tae::io::TelemetryReader reader(fixture_path());
+    tae::io::TelemetryReader reader(fixture_path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     constexpr std::int64_t PERIOD_US = 30'000'000;
 
@@ -185,7 +185,7 @@ TEST(PythonIntegration, RejectsCorruptHeader) {
     );
 
     EXPECT_THROW(
-        tae::io::TelemetryReader reader(file.path()),
+        tae::io::TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture),
         tae::io::TelemetryFormatError
     );
 }
@@ -199,7 +199,7 @@ TEST(PythonIntegration, RejectsCorruptFrame) {
         64 + 24
     );
 
-    tae::io::TelemetryReader reader(file.path());
+    tae::io::TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     EXPECT_THROW(
         reader.next(),
@@ -216,7 +216,7 @@ TEST(PythonIntegration, RejectsCorruptStaleness) {
         64 + 2 * 28 + 26
     );
 
-    tae::io::TelemetryReader reader(file.path());
+    tae::io::TelemetryReader reader(file.path(), tae::io::HeaderPolicy::SyntheticFixture);
 
     ASSERT_TRUE(reader.next().has_value());
     ASSERT_TRUE(reader.next().has_value());

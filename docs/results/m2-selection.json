@@ -1,0 +1,552 @@
+{
+  "provenance": {
+    "manifest_sha256": "34e61dde7bed764e22ee558ce8461f093bbf16744975c8a46305b33d5e4edcbc",
+    "engine_sha256": "0ed8b3bdb97f432d7fbed37680091b38c142d5c26fd32f21725c5578ab08c253",
+    "evaluation_sha256": "b272f5d4c3d32debe9d3e7b5c62cb5844b436a1bb98db56540463435a440336d",
+    "window": 120,
+    "alpha": 0.05,
+    "policy": "statistical-v1",
+    "train_mask_sha256": "0aed49932971cb8607db07f5ceb1ae227f5f943e25fd92b927ac5c5cb834e4ef"
+  },
+  "thresholds": {
+    "zscore": 6.785716018277171,
+    "ewma": 46.3914698626604
+  },
+  "validation_trials": {
+    "zscore": [
+      {
+        "threshold": 1.9827462411303491,
+        "event_precision": 8.873186038445096e-05,
+        "event_recall": 1.0,
+        "event_f1": 0.00017744797547991615,
+        "detected_events": 11,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 123969,
+        "alarm_cells": 158575,
+        "longest_alarm_seconds": 1500,
+        "total_alarm_seconds": 4757250,
+        "false_alarms": 123958,
+        "false_alarms_per_eligible_day": 115.01461527185565,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.7411670330319684,
+          1.0
+        ],
+        "detection_delay_seconds": {
+          "50": 11.943,
+          "95": 946.3185,
+          "99": 1615.2957000000006
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_138",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 2.4471362541398958,
+        "event_precision": 0.00042341891527772433,
+        "event_recall": 1.0,
+        "event_f1": 0.0008464794151596768,
+        "detected_events": 11,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 25979,
+        "alarm_cells": 32306,
+        "longest_alarm_seconds": 840,
+        "total_alarm_seconds": 969180,
+        "false_alarms": 25968,
+        "false_alarms_per_eligible_day": 24.09444754981161,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.7411670330319684,
+          1.0
+        ],
+        "detection_delay_seconds": {
+          "50": 11.943,
+          "95": 961.3185,
+          "99": 1618.2957000000006
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_138",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 2.6602815470358876,
+        "event_precision": 0.0008278145695364238,
+        "event_recall": 1.0,
+        "event_f1": 0.0016542597187758478,
+        "detected_events": 11,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 13288,
+        "alarm_cells": 16368,
+        "longest_alarm_seconds": 780,
+        "total_alarm_seconds": 491040,
+        "false_alarms": 13277,
+        "false_alarms_per_eligible_day": 12.31908426212449,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.7411670330319684,
+          1.0
+        ],
+        "detection_delay_seconds": {
+          "50": 11.943,
+          "95": 14131.318500000001,
+          "99": 24010.34130000001
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_138",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 3.2015791380270304,
+        "event_precision": 0.003782668500687758,
+        "event_recall": 1.0,
+        "event_f1": 0.0075368276807125725,
+        "detected_events": 11,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 2908,
+        "alarm_cells": 3479,
+        "longest_alarm_seconds": 480,
+        "total_alarm_seconds": 104370,
+        "false_alarms": 2897,
+        "false_alarms_per_eligible_day": 2.6879857729437857,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.7411670330319684,
+          1.0
+        ],
+        "detection_delay_seconds": {
+          "50": 11.943,
+          "95": 17281.3185,
+          "99": 29680.34130000001
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_138",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 3.4520123044540245,
+        "event_precision": 0.006600660066006601,
+        "event_recall": 0.9090909090909091,
+        "event_f1": 0.01310615989515072,
+        "detected_events": 10,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 1515,
+        "alarm_cells": 1840,
+        "longest_alarm_seconds": 480,
+        "total_alarm_seconds": 55200,
+        "false_alarms": 1505,
+        "false_alarms_per_eligible_day": 1.3964164957819805,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.6226415635484043,
+          0.9837678271141151
+        ],
+        "detection_delay_seconds": {
+          "50": 8.9895,
+          "95": 1002.9541499999981,
+          "99": 1626.6228300000002
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 4.065004647717379,
+        "event_precision": 0.029154518950437316,
+        "event_recall": 0.9090909090909091,
+        "event_f1": 0.05649717514124293,
+        "detected_events": 10,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 343,
+        "alarm_cells": 463,
+        "longest_alarm_seconds": 360,
+        "total_alarm_seconds": 13890,
+        "false_alarms": 333,
+        "false_alarms_per_eligible_day": 0.3089745469072422,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.6226415635484043,
+          0.9837678271141151
+        ],
+        "detection_delay_seconds": {
+          "50": 8.9895,
+          "95": 1002.9541499999981,
+          "99": 1626.6228300000002
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 6.785716018277171,
+        "event_precision": 0.5,
+        "event_recall": 0.9090909090909091,
+        "event_f1": 0.6451612903225806,
+        "detected_events": 10,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 20,
+        "alarm_cells": 36,
+        "longest_alarm_seconds": 90,
+        "total_alarm_seconds": 1080,
+        "false_alarms": 10,
+        "false_alarms_per_eligible_day": 0.009278514922139406,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.6226415635484043,
+          0.9837678271141151
+        ],
+        "detection_delay_seconds": {
+          "50": 8.9895,
+          "95": 1016.4541499999981,
+          "99": 1629.3228300000003
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 855.9445588454578,
+        "event_precision": 0.0,
+        "event_recall": 0.0,
+        "event_f1": 0.0,
+        "detected_events": 0,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 0,
+        "alarm_cells": 0,
+        "longest_alarm_seconds": 0,
+        "total_alarm_seconds": 0,
+        "false_alarms": 0,
+        "false_alarms_per_eligible_day": 0.0,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.0,
+          0.2588329669680317
+        ],
+        "detection_delay_seconds": {},
+        "matched_event_ids": []
+      }
+    ],
+    "ewma": [
+      {
+        "threshold": 12.903461413855597,
+        "event_precision": 0.0013622291021671827,
+        "event_recall": 1.0,
+        "event_f1": 0.0027207519168933963,
+        "detected_events": 11,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 8075,
+        "alarm_cells": 202432,
+        "longest_alarm_seconds": 745290,
+        "total_alarm_seconds": 6072960,
+        "false_alarms": 8064,
+        "false_alarms_per_eligible_day": 7.482194433213217,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.7411670330319684,
+          1.0
+        ],
+        "detection_delay_seconds": {
+          "50": 11.943,
+          "95": 1216.3184999999999,
+          "99": 1717.2957000000004
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_130",
+          "id_132",
+          "id_134",
+          "id_138",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_150",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 46.3914698626604,
+        "event_precision": 0.16279069767441862,
+        "event_recall": 0.6363636363636364,
+        "event_f1": 0.2592592592592593,
+        "detected_events": 7,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 43,
+        "alarm_cells": 75830,
+        "longest_alarm_seconds": 745170,
+        "total_alarm_seconds": 2274900,
+        "false_alarms": 36,
+        "false_alarms_per_eligible_day": 0.03340265371970186,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.35380117450784887,
+          0.8483352890463243
+        ],
+        "detection_delay_seconds": {
+          "50": 20.145,
+          "95": 1952.8160999999986,
+          "99": 2440.595219999999
+        },
+        "matched_event_ids": [
+          "id_129",
+          "id_134",
+          "id_140",
+          "id_142",
+          "id_145",
+          "id_149",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 75.27126472330967,
+        "event_precision": 0.005763688760806916,
+        "event_recall": 0.36363636363636365,
+        "event_f1": 0.011347517730496453,
+        "detected_events": 4,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 694,
+        "alarm_cells": 55280,
+        "longest_alarm_seconds": 275640,
+        "total_alarm_seconds": 1658400,
+        "false_alarms": 690,
+        "false_alarms_per_eligible_day": 0.640217529627619,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.15166471095367573,
+          0.6461988254921511
+        ],
+        "detection_delay_seconds": {
+          "50": 866.1015,
+          "95": 6793.678049999998,
+          "99": 7512.767609999998
+        },
+        "matched_event_ids": [
+          "id_134",
+          "id_140",
+          "id_145",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 79.06883082055005,
+        "event_precision": 0.012903225806451613,
+        "event_recall": 0.36363636363636365,
+        "event_f1": 0.024922118380062305,
+        "detected_events": 4,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 310,
+        "alarm_cells": 40603,
+        "longest_alarm_seconds": 275610,
+        "total_alarm_seconds": 1218090,
+        "false_alarms": 306,
+        "false_alarms_per_eligible_day": 0.2839225566174658,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.15166471095367573,
+          0.6461988254921511
+        ],
+        "detection_delay_seconds": {
+          "50": 3877.308,
+          "95": 15072.988949999997,
+          "99": 16110.699389999998
+        },
+        "matched_event_ids": [
+          "id_134",
+          "id_140",
+          "id_145",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 79.82069284355127,
+        "event_precision": 0.02072538860103627,
+        "event_recall": 0.36363636363636365,
+        "event_f1": 0.0392156862745098,
+        "detected_events": 4,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 193,
+        "alarm_cells": 38834,
+        "longest_alarm_seconds": 275610,
+        "total_alarm_seconds": 1165020,
+        "false_alarms": 189,
+        "false_alarms_per_eligible_day": 0.17536393202843475,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.15166471095367573,
+          0.6461988254921511
+        ],
+        "detection_delay_seconds": {
+          "50": 3877.308,
+          "95": 20045.488949999995,
+          "99": 21785.199389999998
+        },
+        "matched_event_ids": [
+          "id_134",
+          "id_140",
+          "id_145",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 80.85913287178168,
+        "event_precision": 0.045454545454545456,
+        "event_recall": 0.2727272727272727,
+        "event_f1": 0.07792207792207792,
+        "detected_events": 3,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 66,
+        "alarm_cells": 37489,
+        "longest_alarm_seconds": 275580,
+        "total_alarm_seconds": 1124670,
+        "false_alarms": 63,
+        "false_alarms_per_eligible_day": 0.05845464400947826,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.09746059290024889,
+          0.5656453011761291
+        ],
+        "detection_delay_seconds": {
+          "50": 32.076,
+          "95": 6953.4936,
+          "99": 7568.73072
+        },
+        "matched_event_ids": [
+          "id_134",
+          "id_140",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 83.39298356093894,
+        "event_precision": 0.18181818181818182,
+        "event_recall": 0.18181818181818182,
+        "event_f1": 0.18181818181818182,
+        "detected_events": 2,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 11,
+        "alarm_cells": 37171,
+        "longest_alarm_seconds": 275580,
+        "total_alarm_seconds": 1115130,
+        "false_alarms": 9,
+        "false_alarms_per_eligible_day": 0.008350663429925465,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.05136768974608513,
+          0.4769805619608442
+        ],
+        "detection_delay_seconds": {
+          "50": 3892.308,
+          "95": 7366.516799999999,
+          "99": 7675.33536
+        },
+        "matched_event_ids": [
+          "id_134",
+          "id_18"
+        ]
+      },
+      {
+        "threshold": 1021.6384606763204,
+        "event_precision": 0.0,
+        "event_recall": 0.0,
+        "event_f1": 0.0,
+        "detected_events": 0,
+        "eligible_events": 11,
+        "unscorable_events": 0,
+        "alarm_episodes": 0,
+        "alarm_cells": 0,
+        "longest_alarm_seconds": 0,
+        "total_alarm_seconds": 0,
+        "false_alarms": 0,
+        "false_alarms_per_eligible_day": 0.0,
+        "eligible_normal_days": 1077.7586805555557,
+        "recall_wilson_95": [
+          0.0,
+          0.2588329669680317
+        ],
+        "detection_delay_seconds": {},
+        "matched_event_ids": []
+      }
+    ]
+  }
+}

@@ -31,7 +31,7 @@ void read_exact(
 }
 
 TelemetryReader::TelemetryReader(
-    const std::filesystem::path& path
+    const std::filesystem::path& path, HeaderPolicy policy
 ) {
     std::error_code ec;
     const auto physical_size = std::filesystem::file_size(path, ec);
@@ -56,6 +56,11 @@ TelemetryReader::TelemetryReader(
     read_exact(stream_, header_bytes);
 
     header_ = decode_header(header_bytes);
+    if (policy == HeaderPolicy::Production &&
+        (header_.validation_start_us != 1'199'145'600'000'000 ||
+         header_.test_start_us != 1'293'840'000'000'000)) {
+        throw TelemetryFormatError("Unexpected production split boundaries");
+    }
 
     const std::uint64_t expected_size =
         static_cast<std::uint64_t>(HEADER_SIZE) +

@@ -103,4 +103,4 @@ The `check_split.py` output reported **zero** labelled events whose start and en
 - Split tests asserting no model window spans a boundary and that fit/threshold sources are restricted to train/validation respectively.
 - A documented binary-format agreement and round-trip test plan before creating the converter/loader.
 
-**Decision outcome:** The initial dataset representation and leakage policies are sufficiently specified for the next design step. The binary layout and the explicitly open evaluation parameters are not yet finalized.
+**Decision outcome:** The initial dataset representation and leakage policies define the baseline. The binary layout is finalized in [ADR 0002](0002-binary-telemetry-format.md); statistical warm-up, normalization, event matching, and threshold selection are finalized for M2 in [ADR 0003](0003-statistical-baseline-and-evaluation.md). Further model families may require additional policies.

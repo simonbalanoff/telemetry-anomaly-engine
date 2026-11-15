@@ -1,0 +1,36 @@
+{
+  "dataset": "ESA-ADB/Mission1",
+  "channels": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "reference_statistics": {
+    "raw_samples": 15381169,
+    "frame_count": 14728320,
+    "occupied": 14642408,
+    "empty": 85912,
+    "collisions": 733166,
+    "start_us": 946684800000000
+  },
+  "binary_bytes": 412393024,
+  "frame_states": {
+    "observed": 14642408,
+    "filled": 83800,
+    "unavailable": 2112
+  },
+  "cpp_scan": {
+    "frames": 14728320,
+    "observed": 14642408,
+    "filled": 83800,
+    "unavailable": 2112
+  },
+  "event_channel_intervals": 1255,
+  "distinct_events": 118,
+  "telemetry_sha256": "18e15becf1647a5e4ee82938f25d993dc0c45b6fe979a4b3aa36e7fecf644c35",
+  "events_sha256": "c18d5e4bcfb3df90d9a3c72468935ded36ebe0dd0c6fddea8126e8e4564549b6",
+  "full_source_parity": true
+}

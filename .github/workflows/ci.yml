@@ -1,0 +1,32 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        preset: [debug, release, asan]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: python/requirements-core.txt
+      - name: Install data and evaluation dependencies
+        run: python -m pip install -r python/requirements-core.txt
+      - name: Configure
+        run: cmake --preset ${{ matrix.preset }}
+      - name: Build
+        run: cmake --build --preset ${{ matrix.preset }} --parallel 2
+      - name: C++ tests
+        run: ctest --preset ${{ matrix.preset }} --output-on-failure
+      - name: Python tests and C++ numerical parity
+        env:
+          PYTHONPATH: python
+          TAE_EXECUTABLE: build/${{ matrix.preset }}/apps/cli/tae
+        run: python -m unittest discover -s python/tests -v

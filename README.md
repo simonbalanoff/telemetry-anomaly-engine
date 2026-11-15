@@ -1,138 +1,172 @@
 # Telemetry Anomaly Engine
 
-A C++20 project for replaying spacecraft telemetry and evaluating anomaly detectors. The emphasis is on building the numerical and systems components directly, validating them against reference implementations, and measuring correctness and performance.
+A C++20 engine for validating spacecraft telemetry and evaluating causal anomaly
+detectors. Python prepares the ESA dataset and runs reproducible experiments;
+C++ implements binary decoding, statistical kernels, and bounded runtime storage.
 
-**Status:** M0 design and exploration complete. **M1 data pipeline in progress:** the binary decoder, streaming reader, Python writer, preprocessing logic, real-data conversion command, and Python-to-C++ fixture tests are implemented. The full ESA-ADB export has **not been verified in this repository**; event/manifest export, dataset-level hash verification, frame pools, queues, and anomaly detectors remain to be implemented.
+**M1 and M2 are implemented and locally validated.** The complete Mission1 export
+has been checked against the original six channels, frame by frame. Rolling
+z-score and EWMA baselines run end to end with training-only normalization,
+validation-selected thresholds, and explicit held-out evaluation.
 
-This is an engineering and benchmarking project, not flight-qualified software. “Real-time” refers to planned accelerated replay and measured pipeline throughput, not the original approximately 30-second telemetry cadence.
+This is an engineering and benchmarking project, not flight-qualified software.
+The current scorer is single-threaded. Threaded replay, PCA, and autoencoder
+inference remain future milestones.
 
-## Project goals
+## What works
 
-- **Deterministic replay:** Convert ESA-ADB Mission1 channels 41–46 into fixed-rate six-channel telemetry frames and replay them at accelerated speeds.
-- **Three anomaly detectors:** Rolling statistics (Welford, z-score, EWMA), PCA reconstruction error (custom covariance and symmetric eigensolver), and a dense autoencoder trained in PyTorch with handwritten C++ inference kernels.
-- **Systems engineering:** Preallocated frame storage, bounded queues, `std::jthread` pipeline stages, deterministic shutdown, and mutex-queue versus SPSC ring-buffer benchmarks.
-- **Verification:** Independent Python/C++ binary-format tests, sanitizers, numerical parity checks, and eventually event-level accuracy and latency distributions.
-
-The detectors, threaded pipeline, evaluation harness, and performance benchmarks are future work.
-
-## Current implementation
-
-| Area | Implemented | Next |
-| --- | --- | --- |
-| Dataset exploration and format decisions | Mission1 exploration; [ADR 0001](docs/decisions/0001-data-split-and-preprocessing.md) and [ADR 0002](docs/decisions/0002-binary-telemetry-format.md) | Validate results on the complete converted artifact |
-| C++ binary I/O | Explicit little-endian header/frame decoding, frame-sequence validation, streaming `TelemetryReader`, malformed-input tests | Dataset manifest verification |
-| Python binary I/O | Binary writer, sequence validation, temporary-file write and atomic replacement | Complete dataset metadata export |
-| Cross-language checks | Python-generated 12-frame fixture read by C++, exact binary32/mask/staleness checks and targeted corruption tests | Full-file parity against real Mission1 |
-| ESA conversion | Channel loading, timestamp-alignment validation, 30-second grid, keep-last collision policy, five-cell forward-fill, binary export command | Run and verify real export; add events.csv and manifest.json |
-| Runtime and ML | CMake library and version-only CLI | Frame pool, bounded queue, statistical detector, PCA, autoencoder |
-
-The most recently reported local result was **60/60 C++ tests passing**, before the additional Python converter tests. The repository contains test source files, but no claim is made here that the current commit has been tested on CI or that full-data conversion has completed.
+- **Verified data bundles:** `telemetry.bin`, channel-preserving `events.csv`, and
+  a versioned `manifest.json` with SHA-256 integrity checks.
+- **Strict C++ I/O:** explicit little-endian decoding, checked sizes/timestamps,
+  finite measurements, and validation of every missing-data state transition.
+- **Bounded runtime storage:** a preallocated frame pool with movable leases and
+  a fixed-capacity blocking queue with explicit close-and-drain shutdown.
+- **Causal statistical detection:** Welford moments, rolling z-scores, and EWMA;
+  history resets at partition boundaries and after unavailable data.
+- **Reproducible evaluation:** event precision/recall/F1, false alarms per eligible
+  day, detection delay, alarm duration, coverage, cell average precision, and
+  uncertainty/sensitivity reports. Thresholds and provenance are frozen before test.
+- **Verification:** Python/C++ numerical parity, malformed-input tests, concurrent
+  queue/pool tests, sanitizer presets, and a GitHub Actions test matrix.
 
 ## Quick start
 
-### C++ requirements
-
-CMake 3.24+, a C++20 compiler, and network access on the first configuration so CMake can download GoogleTest.
+Requires CMake 3.24+, a C++20 compiler, and Python 3.12 or compatible. The initial
+CMake configuration downloads GoogleTest; unit tests do not need the ESA dataset.
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r python/requirements-core.txt
+
 cmake --preset debug
-cmake --build --preset debug
+cmake --build --preset debug --parallel
 ctest --preset debug --output-on-failure
-./build/debug/apps/cli/tae
+PYTHONPATH=python python -m unittest discover -s python/tests -v
 ```
 
-Other available configure/build/test presets are `release`, `asan` (address and undefined-behavior sanitizers), and `tsan` (thread sanitizer). Sanitizer availability is platform dependent. The CLI currently prints the project version; it does **not** yet run replay or anomaly detection.
+The Python integration suite uses `build/debug/apps/cli/tae` by default. Set
+`TAE_EXECUTABLE` to test another build. `release`, `asan` (address + undefined
+behaviour), and `tsan` presets are also available. See the
+[development guide](docs/development.md).
 
-### Python requirements and tests
+## Convert and verify real telemetry
 
-Use a Python environment with dependencies from `python/requirements.txt`. From the repository root:
-
-```bash
-python -m pip install -r python/requirements.txt
-PYTHONPATH=python python -m unittest discover -s python/tests -p "test_*.py" -v
-```
-
-The `PYTHONPATH=python` setting is intentional: test modules under `python/tests/` import `write_binary`, `preprocess`, and `convert_esa` as top-level modules. The C++ CMake test target generates the Python-written fixture automatically via `python/generate_fixture.py`.
-
-Detailed commands, testing notes, and troubleshooting: [Development guide](docs/development.md).
-
-## ESA-ADB data conversion
-
-The project uses the [ESA Anomaly Detection Benchmark (ESA-ADB)](https://doi.org/10.5281/zenodo.12528696), Mission1 channels **41–46**. The raw dataset is **not** committed to Git. Place the trusted official Mission1 files under `data/ESA-Mission1/` with `channels/channel_41.zip` through `channel_46.zip`.
-
-From the repository root, using the Python environment:
+Place the trusted official [ESA-ADB Mission1 data](https://doi.org/10.5281/zenodo.12528696)
+under `data/ESA-Mission1/`, including channel archives 41–46, `labels.csv`, and
+`anomaly_types.csv`. Raw data and large generated artifacts stay out of Git.
 
 ```bash
+cmake --preset release
+cmake --build --preset release --parallel
+
 python python/convert_esa.py data/ESA-Mission1 --output data/processed/telemetry.bin
+python python/dataset.py data/processed
+./build/release/apps/cli/tae verify data/processed/telemetry.bin
+
+# Independent vectorized comparison of every exported frame with source data.
+python python/verify_export.py data/ESA-Mission1 data/processed
 ```
 
-The converter verifies that the six input channels have exactly matching timestamps and that values can be encoded as finite binary32 measurements. It retains the **last** observation in each UTC 30-second cell, fills at most five consecutive missing cells, then emits unavailable frames until a real observation arrives.
+The converter uses UTC 30-second cells, retains the last observation in each cell,
+and forward-fills at most five empty cells. Longer gaps remain unavailable. Frames
+become available at the **end** of their cell. Labels preserve original timestamps
+and channel-specific intervals. The source loader uses pickle: only load trusted
+official archives. See the [data pipeline guide](docs/data-pipeline.md).
 
-The converter currently writes **only `telemetry.bin`**. The planned `events.csv`, `manifest.json`, their schema checks, and SHA-256 verification remain outstanding. Do not treat a lone `telemetry.bin` as a complete, verified v1 dataset bundle.
+The checked local export contains **14,728,320 frames**, **1,255 event-channel
+intervals**, and **118 distinct events**. All reference statistics and all binary32
+measurement bits match the independent source comparison. The binary is
+412,393,024 bytes. [Verification artifact](docs/results/m1-validation.json).
 
-See the [Data pipeline guide](docs/data-pipeline.md) for source layout, format details, reference statistics, and verification steps.
+## Run the statistical baseline
+
+```bash
+# Fit normalization on eligible training observations; select validation thresholds.
+python python/evaluate.py data/processed
+
+# After freezing configuration, explicitly evaluate the held-out partition.
+python python/evaluate.py data/processed --test
+```
+
+Training covers 2000–2007, validation 2008–2010, and test 2011–2013. Normalization
+excludes labelled anomalies, rare events, communication gaps, and imputed values.
+Rolling history never crosses partition boundaries. Labels are evaluation metadata,
+not detector inputs.
+
+Results are written under `data/results/statistical/`. `selection.json` freezes
+validation thresholds with dataset, executable, and evaluation-script hashes.
+Changing the configuration requires a new `--output` directory. Repeated test use
+is recorded in `runs.jsonl` and must be described as exploratory.
+
+See the [baseline guide](docs/statistical-baseline.md) and
+[evaluation policy](docs/decisions/0003-statistical-baseline-and-evaluation.md).
+These custom event metrics are not the official ESA hierarchical benchmark score.
+
+On the frozen local test run, rolling z-score detected **10 of 13 events**
+(F1 0.8696), and EWMA detected **6 of 13** (F1 0.6316), each with zero unmatched
+alarm episodes. About 1.90% of test cells were excluded or unscorable. The small
+event count and alarm durations limit interpretation; see the complete
+[results and caveats](docs/results/README.md).
 
 ## Architecture
 
 ```text
-Official ESA-ADB Mission1 channels
+ESA Mission1 channels + annotations
                 |
-        Python channel loader
+      Python conversion + manifest
                 |
-    Timestamp alignment and grid
+     Verified dataset bundle
                 |
-      Python binary frame writer
+      C++ validating reader
                 |
-         telemetry.bin
-                |
-     C++ validating TelemetryReader
-                |
-        Future replay pipeline
-                |
-       Future anomaly detectors
-                |
-         Future evaluation
+  Train-only normalization -> causal statistical scores
+                                      |
+                         Python event evaluation
+                                      |
+                   Frozen selection + auditable reports
 ```
 
-## Repository layout
+`FramePool` and `BoundedQueue` are independently tested building blocks for the
+later threaded replay pipeline; they are not required by the single-threaded scorer.
 
-| Path | Purpose |
+## Repository map
+
+| Path | Responsibility |
 | --- | --- |
-| `include/tae/io/`, `src/io/` | C++ binary-format decoders, validator, and reader |
-| `apps/cli/` | Current version-only CLI; replay CLI planned |
-| `tests/` | GoogleTest unit and Python-to-C++ integration tests |
-| `python/convert_esa.py` | Real ESA-ADB channel loading and binary export |
-| `python/preprocess.py`, `python/write_binary.py` | Gridding/quality-state logic and binary serialization |
-| `python/tests/` | Python `unittest` test suite |
-| `python/exploration/` | Dataset investigation scripts; trusted-source pickle loader |
-| `docs/development.md` | Build and testing workflow |
-| `docs/data-pipeline.md` | Conversion, format, and integrity checklist |
-| `docs/decisions/` | Design decisions and data/evaluation constraints |
-| `data/`, `models/` | Local, gitignored datasets and model artifacts |
+| `include/tae/io/`, `src/io/` | Binary format, state validation, streaming reader |
+| `include/tae/runtime/` | Frame pool and bounded queue |
+| `include/tae/detectors/`, `src/detectors/` | Welford moments, normalization, statistical scores |
+| `apps/cli/` | Version, full-file validation, scoring commands |
+| `python/convert_esa.py`, `python/dataset.py` | Conversion, annotations, schema and integrity checks |
+| `python/evaluate.py` | Eligibility, threshold selection, event reports |
+| `python/verify_export.py` | Independent full-source parity check |
+| `tests/`, `python/tests/` | C++ and Python correctness/integration tests |
+| `docs/decisions/`, `docs/results/` | Design contracts and small reproducible result artifacts |
 
 ## Roadmap
 
 | Milestone | Focus | Status |
 | --- | --- | --- |
-| M0 | Dataset exploration, split/preprocessing policy, binary-format specification | Complete |
-| M1 | Binary I/O, real-data export and verification, frame pool, fixed-capacity queue | In progress |
-| M2 | Statistical anomaly detector and evaluation harness | Planned |
-| M3–M4 | Numerical kernels and PCA detector | Planned |
-| M5 | PyTorch-trained autoencoder and C++ inference parity | Planned |
+| M0 | Exploration and data/format decisions | Complete |
+| M1 | Verified real-data export, binary I/O, frame pool, bounded queue | Complete |
+| M2 | Statistical detectors and reproducible evaluation harness | Complete |
+| M3–M4 | Numerical kernels and PCA | Planned |
+| M5 | PyTorch autoencoder and C++ inference parity | Planned |
 | M6–M7 | Threaded replay and SPSC queue comparison | Planned |
-| M8–M9 | Profiling, optimization, benchmarks, held-out evaluation | Planned |
-| M10–M11 | Optional dashboard and presentation polish | Optional |
+| M8–M9 | Profiling, optimization, broader benchmarks and evaluation | Planned |
+| M10–M11 | Optional dashboard and presentation | Optional |
 
-**Immediate next work:** Run and validate the real `telemetry.bin` export; preserve the original channel-specific annotations in `events.csv`; generate a checked `manifest.json`; then build the frame pool and bounded queue.
+## Limits and research questions
 
-## Evaluation principles
+Keep-last aggregation can erase short anomalies. Forward-fill can make telemetry
+look artificially stable. A rolling model can absorb sustained faults, while a
+fixed reference can mistake operating-mode changes for faults. Six synchronized
+channels and 13 test anomaly events provide limited evidence for generalization.
+Latency samples measure detector updates on one local machine, not end-to-end
+flight-system guarantees.
 
-Chronological partitions are train **2000–2007**, validation **2008–2010**, and test **2011–2013**. Model fitting uses eligible training data only; threshold tuning uses validation only. Rare-event and communication-gap labels remain separate from measurement availability and are excluded from primary false-alarm counts. Feature windows must not cross partition boundaries.
-
-Planned reports include event-wise precision/recall/F1, false alarms per eligible day, detection delay, and p50/p95/p99 latency. With only 13 test anomaly events in the chosen subset, uncertainty and limitations will matter. These evaluation results have **not** been produced yet.
-
-## Limitations
-
-The synchronized six-channel format is specific to this Mission1 subset, not an arbitrary telemetry schema. Keep-last aggregation can discard a short anomaly if an ordinary observation arrives later in the same cell. Five-cell forward-fill is a documented baseline, not an optimized policy. The Python source loader uses pickle and should only open trusted official dataset archives.
-
-For the complete wire format and data-design rationale, see [ADR 0002](docs/decisions/0002-binary-telemetry-format.md) and [ADR 0001](docs/decisions/0001-data-split-and-preprocessing.md).
+The next research experiments are outlined in
+[research directions](docs/research-directions.md): preserve within-cell variation,
+compare frozen and adaptive references, separate data quality from fault evidence,
+and evaluate operator workload alongside detection accuracy.

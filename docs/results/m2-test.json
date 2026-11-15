@@ -1,0 +1,280 @@
+{
+  "provenance": {
+    "manifest_sha256": "34e61dde7bed764e22ee558ce8461f093bbf16744975c8a46305b33d5e4edcbc",
+    "engine_sha256": "0ed8b3bdb97f432d7fbed37680091b38c142d5c26fd32f21725c5578ab08c253",
+    "evaluation_sha256": "b272f5d4c3d32debe9d3e7b5c62cb5844b436a1bb98db56540463435a440336d",
+    "window": 120,
+    "alpha": 0.05,
+    "policy": "statistical-v1",
+    "train_mask_sha256": "0aed49932971cb8607db07f5ceb1ae227f5f943e25fd92b927ac5c5cb834e4ef"
+  },
+  "partition": "test",
+  "verification": {
+    "frames": 14728320,
+    "observed": 14642408,
+    "filled": 83800,
+    "unavailable": 2112
+  },
+  "runtime": {
+    "training_observations": 8296650,
+    "frames": 14728320,
+    "scored": 14720704,
+    "window": 120,
+    "alpha": 0.05,
+    "sigma_floor": 0.05,
+    "latency_samples": 14384,
+    "latency_ns": {
+      "p50": 42,
+      "p95": 83,
+      "p99": 84
+    },
+    "normalization": [
+      {
+        "mean": 0.8110644945203643,
+        "variance": 2.457994568490589e-05
+      },
+      {
+        "mean": 0.784785862763173,
+        "variance": 4.7912913835681895e-05
+      },
+      {
+        "mean": 0.7721345903465718,
+        "variance": 2.4720202675589677e-05
+      },
+      {
+        "mean": 0.7971420360687321,
+        "variance": 3.503025417047897e-05
+      },
+      {
+        "mean": 0.8133237409819283,
+        "variance": 3.113814006894925e-05
+      },
+      {
+        "mean": 0.7685367675543757,
+        "variance": 4.7466221847939944e-05
+      }
+    ]
+  },
+  "metrics": {
+    "cells": 3156480,
+    "excluded_label_cells": 59986,
+    "detectors": {
+      "zscore": {
+        "event_precision": 1.0,
+        "event_recall": 0.7692307692307693,
+        "event_f1": 0.8695652173913044,
+        "detected_events": 10,
+        "eligible_events": 13,
+        "unscorable_events": 0,
+        "alarm_episodes": 10,
+        "alarm_cells": 11,
+        "longest_alarm_seconds": 60,
+        "total_alarm_seconds": 330,
+        "false_alarms": 0,
+        "false_alarms_per_eligible_day": 0.0,
+        "eligible_normal_days": 1075.1034722222223,
+        "recall_wilson_95": [
+          0.49743624053272495,
+          0.9182047128150143
+        ],
+        "detection_delay_seconds": {
+          "50": 10.624500000000001,
+          "95": 24.058649999999993,
+          "99": 26.50053
+        },
+        "matched_event_ids": [
+          "id_160",
+          "id_165",
+          "id_166",
+          "id_172",
+          "id_176",
+          "id_177",
+          "id_183",
+          "id_184",
+          "id_186",
+          "id_187"
+        ],
+        "threshold": 6.785716018277171,
+        "scored_cells": 3096374,
+        "excluded_or_warmup_fraction": 0.019042097526358437,
+        "cell_average_precision": 0.14479794170763097,
+        "tolerance_sensitivity": {
+          "30": {
+            "event_precision": 1.0,
+            "event_recall": 0.7692307692307693,
+            "event_f1": 0.8695652173913044,
+            "detected_events": 10,
+            "eligible_events": 13,
+            "unscorable_events": 0,
+            "alarm_episodes": 10,
+            "alarm_cells": 11,
+            "longest_alarm_seconds": 60,
+            "total_alarm_seconds": 330,
+            "false_alarms": 0,
+            "false_alarms_per_eligible_day": 0.0,
+            "eligible_normal_days": 1075.1034722222223,
+            "recall_wilson_95": [
+              0.49743624053272495,
+              0.9182047128150143
+            ],
+            "detection_delay_seconds": {
+              "50": 10.624500000000001,
+              "95": 24.058649999999993,
+              "99": 26.50053
+            },
+            "matched_event_ids": [
+              "id_160",
+              "id_165",
+              "id_166",
+              "id_172",
+              "id_176",
+              "id_177",
+              "id_183",
+              "id_184",
+              "id_186",
+              "id_187"
+            ]
+          },
+          "60": {
+            "event_precision": 1.0,
+            "event_recall": 0.7692307692307693,
+            "event_f1": 0.8695652173913044,
+            "detected_events": 10,
+            "eligible_events": 13,
+            "unscorable_events": 0,
+            "alarm_episodes": 10,
+            "alarm_cells": 11,
+            "longest_alarm_seconds": 60,
+            "total_alarm_seconds": 330,
+            "false_alarms": 0,
+            "false_alarms_per_eligible_day": 0.0,
+            "eligible_normal_days": 1075.1034722222223,
+            "recall_wilson_95": [
+              0.49743624053272495,
+              0.9182047128150143
+            ],
+            "detection_delay_seconds": {
+              "50": 10.624500000000001,
+              "95": 24.058649999999993,
+              "99": 26.50053
+            },
+            "matched_event_ids": [
+              "id_160",
+              "id_165",
+              "id_166",
+              "id_172",
+              "id_176",
+              "id_177",
+              "id_183",
+              "id_184",
+              "id_186",
+              "id_187"
+            ]
+          }
+        }
+      },
+      "ewma": {
+        "event_precision": 1.0,
+        "event_recall": 0.46153846153846156,
+        "event_f1": 0.631578947368421,
+        "detected_events": 6,
+        "eligible_events": 13,
+        "unscorable_events": 0,
+        "alarm_episodes": 6,
+        "alarm_cells": 32,
+        "longest_alarm_seconds": 630,
+        "total_alarm_seconds": 960,
+        "false_alarms": 0,
+        "false_alarms_per_eligible_day": 0.0,
+        "eligible_normal_days": 1075.1034722222223,
+        "recall_wilson_95": [
+          0.23206067809538303,
+          0.7085620428549398
+        ],
+        "detection_delay_seconds": {
+          "50": 13.2285,
+          "95": 25.41525,
+          "99": 26.77185
+        },
+        "matched_event_ids": [
+          "id_160",
+          "id_165",
+          "id_166",
+          "id_176",
+          "id_183",
+          "id_184"
+        ],
+        "threshold": 46.3914698626604,
+        "scored_cells": 3096374,
+        "excluded_or_warmup_fraction": 0.019042097526358437,
+        "cell_average_precision": 0.04083731181933066,
+        "tolerance_sensitivity": {
+          "30": {
+            "event_precision": 1.0,
+            "event_recall": 0.46153846153846156,
+            "event_f1": 0.631578947368421,
+            "detected_events": 6,
+            "eligible_events": 13,
+            "unscorable_events": 0,
+            "alarm_episodes": 6,
+            "alarm_cells": 32,
+            "longest_alarm_seconds": 630,
+            "total_alarm_seconds": 960,
+            "false_alarms": 0,
+            "false_alarms_per_eligible_day": 0.0,
+            "eligible_normal_days": 1075.1034722222223,
+            "recall_wilson_95": [
+              0.23206067809538303,
+              0.7085620428549398
+            ],
+            "detection_delay_seconds": {
+              "50": 13.2285,
+              "95": 25.41525,
+              "99": 26.77185
+            },
+            "matched_event_ids": [
+              "id_160",
+              "id_165",
+              "id_166",
+              "id_176",
+              "id_183",
+              "id_184"
+            ]
+          },
+          "60": {
+            "event_precision": 1.0,
+            "event_recall": 0.46153846153846156,
+            "event_f1": 0.631578947368421,
+            "detected_events": 6,
+            "eligible_events": 13,
+            "unscorable_events": 0,
+            "alarm_episodes": 6,
+            "alarm_cells": 32,
+            "longest_alarm_seconds": 630,
+            "total_alarm_seconds": 960,
+            "false_alarms": 0,
+            "false_alarms_per_eligible_day": 0.0,
+            "eligible_normal_days": 1075.1034722222223,
+            "recall_wilson_95": [
+              0.23206067809538303,
+              0.7085620428549398
+            ],
+            "detection_delay_seconds": {
+              "50": 13.2285,
+              "95": 25.41525,
+              "99": 26.77185
+            },
+            "matched_event_ids": [
+              "id_160",
+              "id_165",
+              "id_166",
+              "id_176",
+              "id_183",
+              "id_184"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

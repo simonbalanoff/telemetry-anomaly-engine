@@ -5,7 +5,7 @@ This guide describes the commands supported by the current repository. Work from
 ## Toolchain
 
 - CMake 3.24+ and a C++20 compiler.
-- Python with the dependencies in `python/requirements.txt`.
+- Python with the dependencies in `python/requirements-core.txt`.
 - Network access for CMake's initial GoogleTest download.
 - The sanitizer presets depend on compiler/platform support; development so far has been on macOS.
 
@@ -25,20 +25,21 @@ ctest --preset asan --output-on-failure
 
 The presets `release` and `tsan` are defined in `CMakePresets.json` as well. ThreadSanitizer availability and compatibility are compiler/platform dependent.
 
-The CLI currently prints a version string:
+The CLI supports version reporting and a complete binary scan:
 
 ```bash
 ./build/debug/apps/cli/tae
+./build/debug/apps/cli/tae verify data/processed/telemetry.bin
 ```
 
-It does not yet accept a dataset path or execute anomaly detection.
+For fitting, scoring, and event evaluation, use the [baseline workflow](statistical-baseline.md).
 
 ## Python tests
 
 Python test files live in **`python/tests/`** and use the standard-library `unittest` runner. They import modules from the parent `python/` directory, so set `PYTHONPATH` explicitly when running from the repository root:
 
 ```bash
-python -m pip install -r python/requirements.txt
+python -m pip install -r python/requirements-core.txt
 PYTHONPATH=python python -m unittest discover -s python/tests -p "test_*.py" -v
 ```
 
@@ -63,7 +64,7 @@ ctest --preset debug -R PythonIntegration --output-on-failure
 
 CMake finds a Python interpreter at configuration time. The fixture is regenerated when `python/generate_fixture.py` or `python/write_binary.py` changes. The suite checks exact decoded values, masks, staleness, timestamps, and selected malformed-input cases.
 
-The 12-frame fixture uses **synthetic split timestamps** to make a short complete binary file testable by the current reader. It is not a real Mission1 production export; see the production-boundary requirement in [ADR 0002](decisions/0002-binary-telemetry-format.md). Resolving the intended distinction between test-only and production header validation remains a contract-hardening task.
+The 12-frame fixture uses **synthetic split timestamps** to make a short complete binary file testable by the current reader. It is not a real Mission1 production export; see the production-boundary requirement in [ADR 0002](decisions/0002-binary-telemetry-format.md). Tests explicitly select `HeaderPolicy::SyntheticFixture`; default production readers require the real split boundaries.
 
 ## Test layout
 
@@ -73,12 +74,14 @@ The 12-frame fixture uses **synthetic split timestamps** to make a short complet
 | `tests/test_telemetry_frame.cpp` | Decode and validate six-channel 28-byte frames |
 | `tests/test_telemetry_reader.cpp` | Stream real test files; file-size and sequence corruption |
 | `tests/test_python_integration.cpp` | Read and compare the Python-generated golden fixture |
+| `tests/test_runtime_statistical.cpp` | Rolling moment parity, resets, concurrent queue/pool behaviour |
+| `python/tests/test_dataset_evaluation.py` | Metadata, event matching, threshold isolation, end-to-end C++ numerical parity |
 | `tests/test_smoke.cpp` | Basic library/CLI build sanity |
 | `python/tests/test_write_binary.py` | Serializer validation and atomic-write failure handling |
 | `python/tests/test_preprocess.py` | Keep-last gridding and five-cell filling |
 | `python/tests/test_convert_esa.py` | Six-channel loading, synchronization, grid statistics |
 
-User-reported local results included 60/60 C++ tests and 26 Python serializer tests at earlier stages. Those results are not a current CI guarantee; rerun the suites after changes.
+Current local verification: 71 C++ tests pass in debug, release, ASan/UBSan, and TSan builds; 54 Python tests pass, including CLI parity against debug and ASan builds. The GitHub Actions workflow is configured but has not been run remotely in this session.
 
 ## Working with actual ESA-ADB data
 
@@ -107,4 +110,26 @@ Refer to [Data pipeline](data-pipeline.md) for the exact expected input layout a
 5. Source event-channel annotations are exported without flattening into global labels.
 6. The manifest records the expected schema and SHA-256 hashes; opening code verifies them before benchmark timing.
 
-Steps 4–6 have not yet been demonstrated on a fully converted dataset.
+All six checks pass on the complete local export. The source-parity and C++ scan results are preserved in [M1 verification](results/m1-validation.json).
+
+## M1/M2 verification and formatting
+
+The Python suite includes label boundaries, metadata corruption, event matching,
+NumPy/C++ score parity, train-only normalization, split resets, and outage recovery.
+The C++ suite includes concurrent queue/pool transfer and MPMC queue tests.
+
+```bash
+TAE_EXECUTABLE=build/release/apps/cli/tae PYTHONPATH=python python -m unittest discover -s python/tests -v
+cmake --preset tsan
+cmake --build --preset tsan --parallel
+ctest --preset tsan --output-on-failure
+```
+
+CI configures debug, release, and ASan/UBSan on Ubuntu. Local checks also cover
+ThreadSanitizer when supported. Dataset conversion and held-out evaluation require
+local official data and are intentionally separate from CI.
+
+New C++ components follow `.clang-format`. Python additions use Black; optional
+development tools are listed in `python/requirements-dev.txt`. The original
+`python/requirements.txt` includes heavier exploratory and future ML dependencies;
+these are unnecessary for M1/M2.
