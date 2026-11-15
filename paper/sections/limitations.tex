@@ -11,12 +11,15 @@ background sampling mitigates this structurally but offers no guarantee of
 capturing every unfamiliar event. The current reservation is deterministic,
 context is counted in samples rather than elapsed time, and rings reset at epoch
 boundaries. Budget exhaustion is first-come rather than an optimized eviction
-policy. These choices require sensitivity analysis and stronger competitors.
+policy. The seeded controls examine alignment sensitivity, but these adaptive choices
+still require component ablations and stronger adaptive competitors.
 
 The packet format omits physical link overhead and a realistic contact schedule.
 Driver memory use is not onboard memory use, and Python execution says little
-about flight suitability. Queueing between contacts, a C++ recorder, asynchronous channels, and hardware
-measurements remain future work.
+about flight suitability. Queueing between contacts, asynchronous channels, and resource measurements remain
+future work. The retention experiments are Python-first; existing C++ analysis
+components are optional supporting tools. A native recorder is justified only if
+profiling or an embedded deployment claim requires it.
 
 A publishable revision requires an expanded prior-art review, an independent
 mission evaluation with frozen decisions, official ESA scoring where applicable,
