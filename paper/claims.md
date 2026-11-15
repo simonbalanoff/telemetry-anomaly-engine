@@ -11,7 +11,8 @@
 | Adaptive capture improves independent mission performance or physical diagnosis | Not established | Untouched mission and operator evaluation required |
 | The method is novel relative to adaptive sampling/triggered recorders | Not established | Expanded prior-art review required |
 | Native synchronized source replay is implemented | Implemented/measured | Hash-bound native source cache; 3,248,700 validation observations; decoded packet streams |
-| Asynchronous channels and intermittent downlink are modeled | Planned | Additional source semantics and contact/queue model required |
+| Finite-buffer contact/loss delivery is modeled | Implemented/measured illustrative scenarios | `docs/results/receiver-mismatch.json`; schedules are not validated mission requirements |
+| Asynchronous channels are supported | Not established | Six synchronized native channels remain required |
 | Recorder fits an embedded CPU/RAM allocation | Not established | Deployment implementation and hardware/resource measurements required |
 | Existing detector results validate this recorder | Unsupported | Detector results and retention results answer different questions |
 | Seeded comparisons reduce concern about the original uniform sampling phase | Measured on the same validation events | `docs/results/randomized-retention.json`; 80 arms, all seeds reported; not independent new faults |
@@ -19,3 +20,7 @@
 | The retention study requires C++ | False | Capture, decoding, frozen receivers, and study orchestration are Python; the former native runtime has been retired |
 | Pre-trigger buffering preserves pre-event context in the pilot | Measured component ablation | `docs/results/ablation-retention.json`; 64.3% to 1.8% at 1,024 bytes; same validation events |
 | Cross-mission generalization is measured | Not established | Hash-locked runner tested with synthetic bundles only; independent mission data still needed |
+| Receiver mismatch is evaluated | Measured on validation only | `docs/results/receiver-mismatch.json`; six correlated pointwise receivers, four capture conditions, 132 arms |
+| Singleton background evidence supports arbitrary future temporal models | Unsupported | `docs/results/temporal-retention.json`; disabled-trigger adaptive retains 0/11 AR(1) events despite 4/11 PCA events |
+| Adjacent-pair background can preserve some temporal evidence under a disabled trigger | Exploratory validation result | `docs/results/burst-retention.json`; 2/11 AR(1) events at 1,024 bytes; policy developed after inspecting validation |
+| Host resource measurements demonstrate onboard capacity | Unsupported | `docs/results/retention-resource-profile.json`; synthetic host timing/traced allocations only |

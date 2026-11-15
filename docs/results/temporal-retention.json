@@ -1,0 +1,2229 @@
+{
+  "model": {
+    "mean": [
+      0.8110645630151182,
+      0.7847859681945877,
+      0.7721345587645431,
+      0.7971420410312106,
+      0.813323906984343,
+      0.7685369273632552
+    ],
+    "sigma": [
+      0.004983471137130029,
+      0.006929851164822496,
+      0.004982631157481858,
+      0.005933883222734671,
+      0.005590773570714707,
+      0.006897593221386538
+    ],
+    "coefficients": [
+      [
+        0.6194695878613957,
+        -0.14257219270303675,
+        0.11441254369609613,
+        0.5609353497641144,
+        -0.026942639575651475,
+        0.12095492015116317
+      ],
+      [
+        0.022123520619887305,
+        0.120208728368832,
+        -0.04149056034359088,
+        0.04297362652801397,
+        0.14810976511697366,
+        -0.05751288907103781
+      ],
+      [
+        -0.006497850150285594,
+        0.11378422202385972,
+        0.7126511234155766,
+        -0.08437445989231941,
+        0.10872359792480096,
+        0.568884693429915
+      ],
+      [
+        0.1948723311265951,
+        0.012566522203706089,
+        -0.04585667599050135,
+        0.18168045624000712,
+        0.05771792569371276,
+        -0.0338052247288393
+      ],
+      [
+        0.029530680698309057,
+        0.5627505839945144,
+        0.08782414331071627,
+        0.05207233253077119,
+        0.656064600464569,
+        -0.06932385948708435
+      ],
+      [
+        0.039784400892448925,
+        -0.037693043444080504,
+        0.1252792476593041,
+        0.01616415979650382,
+        -0.053219179816494454,
+        0.135302899267611
+      ],
+      [
+        1.1556260924703514e-05,
+        -1.9070323644088958e-05,
+        -3.783187654621136e-05,
+        -8.002493609523705e-06,
+        -3.0349185359773287e-05,
+        -2.7059775797288216e-05
+      ]
+    ],
+    "residual_sigma": [
+      0.6278588516290149,
+      0.680995662609765,
+      0.6182205206089756,
+      0.6782826964332165,
+      0.6247731130376453,
+      0.6849617840050468
+    ],
+    "threshold": 5.047875498704129,
+    "training_pairs": 8712785,
+    "training_end_us": 1199145600000000,
+    "reset_gap_us": 150000000,
+    "ridge": 0.001,
+    "quantile": 0.999
+  },
+  "benchmark_sha256": "47f6b17b8fa74e7a06fc9d71432504353ff9a726ab95a6ced243dadd07d4e7f9",
+  "scripts": {
+    "run_retention_sequence.py": "29c0ae91ded3a08007078251b4d1f058a2e3ac30834a1c8f2f9cd0062ee5e1fe",
+    "forecast.py": "cea39da26b98ea022b6422602468370c8a9ec2f119244827186dbdf3ff5ab78a"
+  },
+  "arms": {
+    "256-uniform": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "09108caa1c9309ab7ddbd26f628bf4e657c575eb4c789cf164e7ed10602cc969"
+    },
+    "256-difference-threshold": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 1,
+      "positive_normal_observations": 1,
+      "scorable_retained_pairs": 11,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "be05e56905978837352d13cebb9866734ca719d1088ec02f31bb3263eedf8618"
+    },
+    "256-difference-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 1,
+      "scorable_retained_pairs": 342,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "bca09bb7c360daa5b350ab564122a27caecf593ce544eadfe1312b0b83603b17"
+    },
+    "256-difference-coverage": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 1,
+      "scorable_retained_pairs": 428,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "cf66890fdd6b49aa99e49963bc653d9896b77232f17ee61b3c00746b574946b1"
+    },
+    "256-level-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 420,
+      "scorable_retained_pairs": 1435,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "3be42c3a86738bea75fa790961a8ee97cce5ad4f9c930591a0881c82f405cd33"
+    },
+    "256-pca_3-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 9,
+      "positive_normal_observations": 497,
+      "scorable_retained_pairs": 16248,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "47453229d21a34f1c33be710a0a355942ed7c417a04db29172902e500b82e557"
+    },
+    "256-disabled-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "4bd3b92bd67c4da37031d6867544be9f31f6121e265666057f3b4b5c34cd392a"
+    },
+    "512-uniform": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 1,
+      "positive_normal_observations": 218,
+      "scorable_retained_pairs": 539,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "77456e9d53b462f05c76406719566abcec186f01fee451e0c9badd382cdec844"
+    },
+    "512-difference-threshold": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 1,
+      "positive_normal_observations": 1,
+      "scorable_retained_pairs": 11,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "baf5a5f255200db15dab9e104520d8f31c8a09e395be636767571b330790a5f9"
+    },
+    "512-difference-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 11,
+      "scorable_retained_pairs": 685,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "aa7fb178b297d0792a42b468810463f63b047e53176af7fa1680142537f287ca"
+    },
+    "512-difference-coverage": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 13,
+      "scorable_retained_pairs": 4970,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "5ae7e833f48877fa09045b30c1c9c5079a14dc185f18d489f10b05573b65bd73"
+    },
+    "512-level-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 853,
+      "scorable_retained_pairs": 3141,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "07961bc3b76ef848e3c32a8febaf76f3422e84673babeb0bdfdfb06555721f50"
+    },
+    "512-pca_3-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 9,
+      "positive_normal_observations": 982,
+      "scorable_retained_pairs": 46834,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "6bf0809f2777df02d7c866e3d0404c99ff0e7501ddc59e4269774b3a2813e7b1"
+    },
+    "512-disabled-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "2dd7d09ad150c17a412210b407cef5c59b0f296618a8c9fc276bf477a9056416"
+    },
+    "1024-uniform": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 2,
+      "positive_normal_observations": 892,
+      "scorable_retained_pairs": 2957,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "aaf9d4b5e78614508437a2a81ae31ec8b47ba2c0bb69eeab858946f75cbdc03d"
+    },
+    "1024-difference-threshold": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 1,
+      "positive_normal_observations": 1,
+      "scorable_retained_pairs": 11,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "2886a4bab8f7a0bd1348d93f254724ced895b6342e5df97fb59c4ca61f19be63"
+    },
+    "1024-difference-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 16,
+      "scorable_retained_pairs": 1057,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "5284b5497936185a434e9088e51a74a3f08e66bcf975ad8daf368c60d34c1707"
+    },
+    "1024-difference-coverage": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 16,
+      "scorable_retained_pairs": 4886,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "1c8dd5c5dadfa99a44c36bab7f3d86eff2ffc5764be8f834c5540e35092ef1bb"
+    },
+    "1024-level-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 2106,
+      "scorable_retained_pairs": 7281,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "bea3235923e034fd3bd3ad51d556d860403c7975747c62594ffe5aa35f782b9a"
+    },
+    "1024-pca_3-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 2280,
+      "scorable_retained_pairs": 69167,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "e6d0cd8e2e601e9194042dbacb6e6a4421ff699f18a24462e8f6c4815dd33972"
+    },
+    "1024-disabled-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "ade406587cf0c867f5da9598b637f8308facf951e6afe7808abe367a710a1219"
+    },
+    "2048-uniform": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 2,
+      "positive_normal_observations": 1788,
+      "scorable_retained_pairs": 5448,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "8368efd6fbcb5898b4a550dc31b19417e54e668e896de069bc9a489a1f7847a4"
+    },
+    "2048-difference-threshold": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 1,
+      "positive_normal_observations": 1,
+      "scorable_retained_pairs": 11,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "8b497e936e44228fb47dc0b8db557571a01b6cfc7f32d3b622399b81b624c6d2"
+    },
+    "2048-difference-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 17,
+      "scorable_retained_pairs": 1110,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "ed456cc08cfe5c959d22033c7d374cee69e7ff6ba7db90a3f08489acf3f0aaba"
+    },
+    "2048-difference-coverage": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 63,
+      "scorable_retained_pairs": 6637,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "58a36b204ef313d3aca4a0d7645333175ac8fff20161ad063ef9f4bf7ad41e54"
+    },
+    "2048-level-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 2106,
+      "scorable_retained_pairs": 8800,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "fec521349ead4309da1ef4a3b18e02bfe37279fce947f01d2311694f296dc67b"
+    },
+    "2048-pca_3-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 10,
+      "positive_normal_observations": 2286,
+      "scorable_retained_pairs": 74161,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": true
+        }
+      ],
+      "packet_stream_sha256": "6738ebbac09e5e9980eb84f07ac6094818fa9278ff804988b1641ef83bd54743"
+    },
+    "2048-disabled-adaptive": {
+      "source_eligible_events": 11,
+      "full_archive_events": 11,
+      "retained_events": 0,
+      "positive_normal_observations": 1,
+      "scorable_retained_pairs": 1,
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "full_archive_evidence": true,
+          "retained_evidence": false
+        }
+      ],
+      "packet_stream_sha256": "9880988ca34c05e540277b14296f5bfbd3c464cc8f82af57ac88268d01b91169"
+    }
+  },
+  "source_observations": 3248700,
+  "interpretation": "AR(1) uses consecutive original observations with gap reset; both endpoints must be retained. This is a distinct linear temporal baseline, not physical diagnosis or a learned future fault model."
+}

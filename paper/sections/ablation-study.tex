@@ -43,8 +43,9 @@ new mission's receiver normalization, PCA basis, and score thresholds are calibr
 only on its designated training observations. This evaluates transfer of retention
 settings with training-calibrated receivers, not zero-shot receiver transfer.
 Training and evaluation annotations are stored separately; evaluation annotations
-are parsed only after all packet streams have been captured. All 108 policy,
-ablation, and seed arms are reported, together with a full-archive reference.
+are parsed only after all packet streams have been captured. The original retention-only interface reports 108 policy,
+ablation, and seed arms, together with a full-archive reference. The extended
+receiver-mismatch interface is described in Section~\ref{sec:mismatch}.
 Descriptive event strata are fixed at durations of at most 60 seconds, over 60
 through 600 seconds, and over 600 seconds, and adjacent eligible-observation gaps at a 150-second
 boundary (annotation exclusions can contribute to these gaps). Small strata are not independent estimates of generalization uncertainty.

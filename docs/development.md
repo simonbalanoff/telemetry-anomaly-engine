@@ -35,7 +35,7 @@ uses optional Matplotlib from `python/requirements.txt`. Formatting uses Black f
 
 The suite runs without real datasets or a native binary. CI runs Python tests and
 separately rebuilds the manuscript. Actual mission replays require trusted local
-archives and are separate from CI. Local verification currently passes 89 tests;
+archives and are separate from CI. Local verification currently passes 101 tests;
 remote CI status must be checked after pushing.
 
 ## Trusted Mission1 data
@@ -90,3 +90,13 @@ tracked PDF and README thumbnail to manuscript sources and generated figures.
 Generated tables should be rebuilt from completed reports, never edited by hand.
 Use Black for changed Python files; scientific plots use Matplotlib. The
 [claim ledger](../paper/claims.md) separates measurements from untested benefits.
+
+## Receiver mismatch, temporal evidence, and delivery
+
+The [benchmark guide](benchmark.md) documents native and independent-mission
+commands, coverage/adjacent-pair controls, temporal receiver input requirements,
+finite-buffer transport accounting, and resource-measurement scope. Tests in
+`test_retention_benchmark.py` cover complete native and external small-data runs,
+training isolation, pair availability, loss/eviction/partial transmission, byte
+conservation, and canonical settings tampering. The [roadmap](roadmap.md) separates
+implemented software from external scientific evidence still needed.

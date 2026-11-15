@@ -1,6 +1,7 @@
 # Historical detector results and current retention studies
 
-The current Python research results are the [native pilot](native-retention.md),
+The [receiver-mismatch benchmark](receiver-mismatch.md) and
+[temporal/pair-control study](temporal-retention.md) extend the current Python research results: the [native pilot](native-retention.md),
 [seeded sampling comparison](randomized-retention.md), and
 [component ablations](ablation-retention.md). The [Python-only source check](m1-source-validation.json)
 verifies the full export without a native runtime.

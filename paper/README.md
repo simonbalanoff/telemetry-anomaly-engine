@@ -77,3 +77,10 @@ See `docs/retention-research.md` for the implementation/protocol map and
 Component ablations are now measured in [16 paired development arms](../docs/results/ablation-retention.md).
 The [cross-mission runner and protocol](../docs/cross-mission-evaluation.md) are implemented
 and tested on synthetic bundles; a real independent mission evaluation is still pending.
+
+The draft also reports the [receiver-mismatch/delivery study](../docs/results/receiver-mismatch.md)
+and [temporal evidence experiments](../docs/results/temporal-retention.md). Generated
+mismatch, delivery, and temporal tables come from the completed reports using
+`python/summarize_retention_benchmark.py` and `python/summarize_retention_sequence.py`.
+The [implementation roadmap](../docs/roadmap.md) tracks completed software and the
+independent-mission/operator evidence still needed.

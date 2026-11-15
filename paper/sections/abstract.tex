@@ -21,6 +21,9 @@ evidence counts are 5.1 and 5.4 events, respectively; seed ranges describe sampl
 variation on the same archive, not generalization confidence. Sixteen paired
 component-ablation arms show that removing pre-trigger capture preserves event
 evidence at the 1,024-byte cap but reduces pre-event context from 64.3\% to
-1.8\%; removing background sampling loses one event. Whether these retention gains translate into useful fault diagnosis on other
-missions remains an open empirical question.
+1.8\%; removing background sampling loses one event. A 132-arm capture/receiver comparison and a separate temporal receiver expose a
+limitation: disabling the trigger leaves singleton background capture with 4/11
+PCA events but 0/11 temporal events. An exploratory adjacent-pair control recovers
+2/11 temporal events. These findings motivate receiver-aware evaluation; independent
+mission generalization and useful fault diagnosis remain open empirical questions.
 \end{abstract}

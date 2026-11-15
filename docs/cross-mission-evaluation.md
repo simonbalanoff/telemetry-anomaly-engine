@@ -12,7 +12,7 @@ one-hour epochs, trigger threshold, context lengths, background fraction, receiv
 quantile/PCA dimension, and all ten random seeds. These settings retain the current
 Mission1 defaults; the ablation results have not been used to retune them.
 
-The runner reports every arm: four original policies, three adaptive component
+The original retention-only runner reports every arm: four original policies, three adaptive component
 removals, and twenty seeded sampling controls at each cap (108 arms in total).
 A calculated full-archive reference shows what evidence the frozen receivers can
 recover before retention. Compare actual bytes as well as caps. Primary outcome:
@@ -107,3 +107,12 @@ seen labels, authenticate a mission identity, or prevent deliberate lock editing
 Record prior exposure and publish all attempts. If settings change after evaluation,
 treat the result as development and use another untouched evaluation for confirmation.
 A successful run on synthetic fixtures checks software, not cross-mission performance.
+
+## Extended receiver-mismatch benchmark
+
+For the current research experiment, prefer the [extended benchmark workflow](benchmark.md).
+It adds the frozen receiver bank, coverage and adjacent-pair controls, finite-buffer
+delivery, a canonical settings digest and environment/code checks, and a separate
+AR(1) evaluation requiring retained native pairs. Its default independent study has
+148 capture arms and 36 selected temporal evaluations. The original runner above
+remains available for reproducing its narrower protocol.

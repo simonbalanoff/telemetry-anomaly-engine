@@ -1,0 +1,5033 @@
+{
+  "provenance": {
+    "protocol": "adjacent-pair-background-v1",
+    "phase": "exploratory Mission1 validation; motivated by observed temporal receiver failure",
+    "benchmark_sha256": "47f6b17b8fa74e7a06fc9d71432504353ff9a726ab95a6ced243dadd07d4e7f9",
+    "sequence_sha256": "1e4b697e6bd7879d7d87da7504ecd21c58308a34078faecfc31c5cf801b071ab",
+    "scripts": {
+      "run_retention_bursts.py": "da2126c445b55ff9cc8c264dbc10a544967c30ca11bb875718e5d53c2e4c0427",
+      "burst.py": "d466406fa88d1b679fe9ae361e230a8deb99aeb6c9fc04f812122161f67cbee5"
+    },
+    "configs": {
+      "256-difference-burst": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 256,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "256-disabled-burst": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 256,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "512-difference-burst": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 512,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "512-disabled-burst": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 512,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "1024-difference-burst": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 1024,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "1024-disabled-burst": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 1024,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "2048-difference-burst": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 2048,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "2048-disabled-burst": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 2048,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      }
+    }
+  },
+  "arms": {
+    "256-difference-burst": {
+      "serialized_bytes": 2760456,
+      "packets": 26304,
+      "maximum_packet_bytes": 248,
+      "source_eligible_events": 11,
+      "raw_events": 11,
+      "pre_context_coverage": 0.25123966942148757,
+      "post_context_coverage": 0.012987012987012986,
+      "receivers": {
+        "level": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 1666,
+          "scored_normal_observations": 51787
+        },
+        "pca_1": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 1845,
+          "scored_normal_observations": 51787
+        },
+        "pca_2": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 5109,
+          "scored_normal_observations": 51787
+        },
+        "pca_3": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 622,
+          "scored_normal_observations": 51787
+        },
+        "pca_4": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 550,
+          "scored_normal_observations": 51787
+        },
+        "pca_5": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 62,
+          "scored_normal_observations": 51787
+        }
+      },
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.3,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            }
+          }
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.4,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            }
+          }
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.3,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            }
+          }
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "source_samples": 8863,
+          "retained_samples": 1325,
+          "pre_context_coverage": 0.5,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            }
+          }
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "source_samples": 1875,
+          "retained_samples": 30,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "source_samples": 2,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.3,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            }
+          }
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.2727272727272727,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            }
+          }
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "source_samples": 9233,
+          "retained_samples": 109,
+          "pre_context_coverage": 0.09090909090909091,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 43970.127
+            }
+          }
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.3,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            }
+          }
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.3,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            }
+          }
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "source_samples": 63,
+          "retained_samples": 13,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.14285714285714285,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            }
+          }
+        }
+      ],
+      "forecast": {
+        "source_eligible_events": 11,
+        "full_archive_events": 11,
+        "retained_events": 10,
+        "positive_normal_observations": 225,
+        "scorable_retained_pairs": 26527,
+        "events": [
+          {
+            "event_id": "id_129",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_130",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_132",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_134",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_138",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_140",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_142",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_145",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_149",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_150",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_18",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          }
+        ]
+      },
+      "config": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 256,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "packet_stream_sha256": "acc8ef4d1ab5dd7aeae2ba1ad979d9a7a392468e46f6d68e8f061d20d7933bea"
+    },
+    "256-disabled-burst": {
+      "serialized_bytes": 2734968,
+      "packets": 26304,
+      "maximum_packet_bytes": 104,
+      "source_eligible_events": 11,
+      "raw_events": 4,
+      "pre_context_coverage": 0.009090909090909092,
+      "post_context_coverage": 0.0,
+      "receivers": {
+        "level": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 1661,
+          "scored_normal_observations": 51754
+        },
+        "pca_1": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 1840,
+          "scored_normal_observations": 51754
+        },
+        "pca_2": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 5103,
+          "scored_normal_observations": 51754
+        },
+        "pca_3": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 3,
+          "retention_misses": 8,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 3,
+          "positive_normal_observations": 619,
+          "scored_normal_observations": 51754
+        },
+        "pca_4": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 3,
+          "retention_misses": 8,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 3,
+          "positive_normal_observations": 548,
+          "scored_normal_observations": 51754
+        },
+        "pca_5": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 2,
+          "retention_misses": 9,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 2,
+          "positive_normal_observations": 62,
+          "scored_normal_observations": 51754
+        }
+      },
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.1,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "source_samples": 8863,
+          "retained_samples": 668,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            }
+          }
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "source_samples": 1875,
+          "retained_samples": 30,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "source_samples": 2,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "source_samples": 9233,
+          "retained_samples": 106,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 43970.127
+            }
+          }
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "source_samples": 63,
+          "retained_samples": 6,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        }
+      ],
+      "forecast": {
+        "source_eligible_events": 11,
+        "full_archive_events": 11,
+        "retained_events": 2,
+        "positive_normal_observations": 224,
+        "scorable_retained_pairs": 26295,
+        "events": [
+          {
+            "event_id": "id_129",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_130",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_132",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_134",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_138",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_140",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_142",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_145",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_149",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_150",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_18",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          }
+        ]
+      },
+      "config": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 256,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "packet_stream_sha256": "80d1aec41e2800eaa1793c655dc5e49ba40a080f9fd9b90c96538181a4a38e12"
+    },
+    "512-difference-burst": {
+      "serialized_bytes": 2796132,
+      "packets": 26304,
+      "maximum_packet_bytes": 464,
+      "source_eligible_events": 11,
+      "raw_events": 11,
+      "pre_context_coverage": 0.6520661157024793,
+      "post_context_coverage": 0.0743211334120425,
+      "receivers": {
+        "level": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 1679,
+          "scored_normal_observations": 51846
+        },
+        "pca_1": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 1859,
+          "scored_normal_observations": 51846
+        },
+        "pca_2": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 5121,
+          "scored_normal_observations": 51846
+        },
+        "pca_3": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 632,
+          "scored_normal_observations": 51846
+        },
+        "pca_4": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 558,
+          "scored_normal_observations": 51846
+        },
+        "pca_5": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 67,
+          "scored_normal_observations": 51846
+        }
+      },
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.09090909090909091,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            }
+          }
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.9,
+          "post_context_coverage": 0.09090909090909091,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            }
+          }
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.08333333333333333,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            }
+          }
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "source_samples": 8863,
+          "retained_samples": 2245,
+          "pre_context_coverage": 1.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            }
+          }
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "source_samples": 1875,
+          "retained_samples": 30,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "source_samples": 2,
+          "retained_samples": 2,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            }
+          }
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.7272727272727273,
+          "post_context_coverage": 0.1,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            }
+          }
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "source_samples": 9233,
+          "retained_samples": 110,
+          "pre_context_coverage": 0.5454545454545454,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 43970.127
+            }
+          }
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.08333333333333333,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            }
+          }
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.08333333333333333,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            }
+          }
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "source_samples": 63,
+          "retained_samples": 19,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.2857142857142857,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            }
+          }
+        }
+      ],
+      "forecast": {
+        "source_eligible_events": 11,
+        "full_archive_events": 11,
+        "retained_events": 10,
+        "positive_normal_observations": 233,
+        "scorable_retained_pairs": 26918,
+        "events": [
+          {
+            "event_id": "id_129",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_130",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_132",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_134",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_138",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_140",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_142",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_145",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_149",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_150",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_18",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          }
+        ]
+      },
+      "config": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 512,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "packet_stream_sha256": "82eee5810d79fae09858d3eca9e495208137c0c6e5ce0fcff4367a43eb358825"
+    },
+    "512-disabled-burst": {
+      "serialized_bytes": 2734968,
+      "packets": 26304,
+      "maximum_packet_bytes": 104,
+      "source_eligible_events": 11,
+      "raw_events": 4,
+      "pre_context_coverage": 0.009090909090909092,
+      "post_context_coverage": 0.0,
+      "receivers": {
+        "level": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 1661,
+          "scored_normal_observations": 51754
+        },
+        "pca_1": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 1840,
+          "scored_normal_observations": 51754
+        },
+        "pca_2": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 5103,
+          "scored_normal_observations": 51754
+        },
+        "pca_3": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 3,
+          "retention_misses": 8,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 3,
+          "positive_normal_observations": 619,
+          "scored_normal_observations": 51754
+        },
+        "pca_4": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 3,
+          "retention_misses": 8,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 3,
+          "positive_normal_observations": 548,
+          "scored_normal_observations": 51754
+        },
+        "pca_5": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 2,
+          "retention_misses": 9,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 2,
+          "positive_normal_observations": 62,
+          "scored_normal_observations": 51754
+        }
+      },
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.1,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "source_samples": 8863,
+          "retained_samples": 668,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 6242.076
+            }
+          }
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "source_samples": 1875,
+          "retained_samples": 30,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "source_samples": 2,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "source_samples": 9233,
+          "retained_samples": 106,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 43970.127
+            }
+          }
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "source_samples": 63,
+          "retained_samples": 6,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        }
+      ],
+      "forecast": {
+        "source_eligible_events": 11,
+        "full_archive_events": 11,
+        "retained_events": 2,
+        "positive_normal_observations": 224,
+        "scorable_retained_pairs": 26295,
+        "events": [
+          {
+            "event_id": "id_129",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_130",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_132",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_134",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_138",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_140",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_142",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_145",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_149",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_150",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_18",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          }
+        ]
+      },
+      "config": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 512,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "packet_stream_sha256": "679c40b642408fdddb6eb4c65ca7cd6ef5001f7fa7323a922203b3fc6d512870"
+    },
+    "1024-difference-burst": {
+      "serialized_bytes": 6601116,
+      "packets": 26304,
+      "maximum_packet_bytes": 968,
+      "source_eligible_events": 11,
+      "raw_events": 11,
+      "pre_context_coverage": 0.6611570247933884,
+      "post_context_coverage": 0.37804014167650535,
+      "receivers": {
+        "level": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 4926,
+          "scored_normal_observations": 155381
+        },
+        "pca_1": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 5507,
+          "scored_normal_observations": 155381
+        },
+        "pca_2": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 15534,
+          "scored_normal_observations": 155381
+        },
+        "pca_3": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 1868,
+          "scored_normal_observations": 155381
+        },
+        "pca_4": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 1638,
+          "scored_normal_observations": 155381
+        },
+        "pca_5": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 203,
+          "scored_normal_observations": 155381
+        }
+      },
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.5454545454545454,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            }
+          }
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.9,
+          "post_context_coverage": 0.5454545454545454,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            }
+          }
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.5,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            }
+          }
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "source_samples": 8863,
+          "retained_samples": 4065,
+          "pre_context_coverage": 1.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            }
+          }
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "source_samples": 1875,
+          "retained_samples": 90,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 22790.097
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "source_samples": 2,
+          "retained_samples": 2,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.6,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            }
+          }
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.7272727272727273,
+          "post_context_coverage": 0.5,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            }
+          }
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "source_samples": 9233,
+          "retained_samples": 321,
+          "pre_context_coverage": 0.5454545454545454,
+          "post_context_coverage": 0.18181818181818182,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 43970.127
+            }
+          }
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.5,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            }
+          }
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.9,
+          "post_context_coverage": 0.5,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            }
+          }
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "source_samples": 63,
+          "retained_samples": 28,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.2857142857142857,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            }
+          }
+        }
+      ],
+      "forecast": {
+        "source_eligible_events": 11,
+        "full_archive_events": 11,
+        "retained_events": 10,
+        "positive_normal_observations": 691,
+        "scorable_retained_pairs": 79668,
+        "events": [
+          {
+            "event_id": "id_129",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_130",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_132",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_134",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_138",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_140",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_142",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_145",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_149",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_150",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_18",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          }
+        ]
+      },
+      "config": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 1024,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "packet_stream_sha256": "25249d14ce1f6556b03ee0077c5672c9568649f7b699d4131a5b81f873e85a4f"
+    },
+    "1024-disabled-burst": {
+      "serialized_bytes": 6520872,
+      "packets": 26304,
+      "maximum_packet_bytes": 248,
+      "source_eligible_events": 11,
+      "raw_events": 4,
+      "pre_context_coverage": 0.05454545454545454,
+      "post_context_coverage": 0.03471074380165289,
+      "receivers": {
+        "level": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 4906,
+          "scored_normal_observations": 155259
+        },
+        "pca_1": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 5485,
+          "scored_normal_observations": 155259
+        },
+        "pca_2": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 15511,
+          "scored_normal_observations": 155259
+        },
+        "pca_3": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 1855,
+          "scored_normal_observations": 155259
+        },
+        "pca_4": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 3,
+          "retention_misses": 8,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 3,
+          "positive_normal_observations": 1628,
+          "scored_normal_observations": 155259
+        },
+        "pca_5": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 3,
+          "retention_misses": 8,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 3,
+          "positive_normal_observations": 197,
+          "scored_normal_observations": 155259
+        }
+      },
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.2,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.1,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "source_samples": 8863,
+          "retained_samples": 1992,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            }
+          }
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "source_samples": 1875,
+          "retained_samples": 90,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4790.097
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 22790.097
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "source_samples": 2,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.2,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "source_samples": 9233,
+          "retained_samples": 314,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.18181818181818182,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4370.127
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 43970.127
+            }
+          }
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.2,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.1,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "source_samples": 63,
+          "retained_samples": 14,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            }
+          }
+        }
+      ],
+      "forecast": {
+        "source_eligible_events": 11,
+        "full_archive_events": 11,
+        "retained_events": 2,
+        "positive_normal_observations": 675,
+        "scorable_retained_pairs": 78877,
+        "events": [
+          {
+            "event_id": "id_129",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_130",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_132",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_134",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_138",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_140",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_142",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_145",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_149",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_150",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_18",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          }
+        ]
+      },
+      "config": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 1024,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "packet_stream_sha256": "0947c67de23ae463cb37e4bae8868fff6cc16cdcabfd9b82692c59a30e4ca4dd"
+    },
+    "2048-difference-burst": {
+      "serialized_bytes": 12256860,
+      "packets": 26304,
+      "maximum_packet_bytes": 1040,
+      "source_eligible_events": 11,
+      "raw_events": 11,
+      "pre_context_coverage": 0.6611570247933884,
+      "post_context_coverage": 0.43478945297127114,
+      "receivers": {
+        "level": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 9721,
+          "scored_normal_observations": 310617
+        },
+        "pca_1": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 10960,
+          "scored_normal_observations": 310617
+        },
+        "pca_2": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 30957,
+          "scored_normal_observations": 310617
+        },
+        "pca_3": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 3680,
+          "scored_normal_observations": 310617
+        },
+        "pca_4": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 11,
+          "retention_misses": 0,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 1,
+          "positive_normal_observations": 3283,
+          "scored_normal_observations": 310617
+        },
+        "pca_5": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 10,
+          "retention_misses": 1,
+          "trigger_blind_recoverable_events": 1,
+          "trigger_blind_retained_events": 0,
+          "positive_normal_observations": 436,
+          "scored_normal_observations": 310617
+        }
+      },
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.5454545454545454,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1001.943
+            }
+          }
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.9,
+          "post_context_coverage": 0.6363636363636364,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3245.949
+            }
+          }
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.6666666666666666,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2015.058
+            }
+          }
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "source_samples": 8863,
+          "retained_samples": 5424,
+          "pre_context_coverage": 1.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            }
+          }
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "source_samples": 1875,
+          "retained_samples": 180,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 15590.097
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 51590.097
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "source_samples": 2,
+          "retained_samples": 2,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.8,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 3180.033
+            }
+          }
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.7272727272727273,
+          "post_context_coverage": 0.5,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2466.036
+            }
+          }
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "source_samples": 9233,
+          "retained_samples": 636,
+          "pre_context_coverage": 0.5454545454545454,
+          "post_context_coverage": 0.18181818181818182,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 43970.127
+            }
+          }
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.8,
+          "post_context_coverage": 0.5,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2210.145
+            }
+          }
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 1,
+          "pre_context_coverage": 0.9,
+          "post_context_coverage": 0.6666666666666666,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2060.154
+            }
+          }
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "source_samples": 63,
+          "retained_samples": 38,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.2857142857142857,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": false,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            }
+          }
+        }
+      ],
+      "forecast": {
+        "source_eligible_events": 11,
+        "full_archive_events": 11,
+        "retained_events": 10,
+        "positive_normal_observations": 1367,
+        "scorable_retained_pairs": 158262,
+        "events": [
+          {
+            "event_id": "id_129",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_130",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_132",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_134",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_138",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_140",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_142",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_145",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_149",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_150",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_18",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          }
+        ]
+      },
+      "config": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 2048,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "packet_stream_sha256": "1d441ac68083048c07a150d1a1676017c83525c3c3120dd4a11edbf11a68c315"
+    },
+    "2048-disabled-burst": {
+      "serialized_bytes": 12199656,
+      "packets": 26304,
+      "maximum_packet_bytes": 464,
+      "source_eligible_events": 11,
+      "raw_events": 4,
+      "pre_context_coverage": 0.05454545454545454,
+      "post_context_coverage": 0.11743408107044472,
+      "receivers": {
+        "level": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 9705,
+          "scored_normal_observations": 310503
+        },
+        "pca_1": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 10942,
+          "scored_normal_observations": 310503
+        },
+        "pca_2": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 30938,
+          "scored_normal_observations": 310503
+        },
+        "pca_3": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 3669,
+          "scored_normal_observations": 310503
+        },
+        "pca_4": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 4,
+          "retention_misses": 7,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 4,
+          "positive_normal_observations": 3274,
+          "scored_normal_observations": 310503
+        },
+        "pca_5": {
+          "source_eligible_events": 11,
+          "full_archive_events": 11,
+          "retained_events": 3,
+          "retention_misses": 8,
+          "trigger_blind_recoverable_events": 11,
+          "trigger_blind_retained_events": 3,
+          "positive_normal_observations": 430,
+          "scored_normal_observations": 310503
+        }
+      },
+      "events": [
+        {
+          "event_id": "id_129",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.2,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_130",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.1,
+          "post_context_coverage": 0.09090909090909091,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_132",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.16666666666666666,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_134",
+          "source_eligible": true,
+          "source_samples": 8863,
+          "retained_samples": 3978,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 2642.076
+            }
+          }
+        },
+        {
+          "event_id": "id_138",
+          "source_eligible": true,
+          "source_samples": 1875,
+          "retained_samples": 180,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 1190.097
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 15590.097
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 51590.097
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_140",
+          "source_eligible": true,
+          "source_samples": 2,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.2,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_142",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.2,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_145",
+          "source_eligible": true,
+          "source_samples": 9233,
+          "retained_samples": 630,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.18181818181818182,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 770.127
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 43970.127
+            }
+          }
+        },
+        {
+          "event_id": "id_149",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.2,
+          "post_context_coverage": 0.0,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_150",
+          "source_eligible": true,
+          "source_samples": 1,
+          "retained_samples": 0,
+          "pre_context_coverage": 0.1,
+          "post_context_coverage": 0.16666666666666666,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": false,
+              "delivery_delay_seconds": null
+            }
+          }
+        },
+        {
+          "event_id": "id_18",
+          "source_eligible": true,
+          "source_samples": 63,
+          "retained_samples": 28,
+          "pre_context_coverage": 0.0,
+          "post_context_coverage": 0.2857142857142857,
+          "post_context_boundary_censored": false,
+          "within_event_trigger_blind": true,
+          "receivers": {
+            "level": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_1": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_2": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_3": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_4": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 4392.54
+            },
+            "pca_5": {
+              "full_archive_evidence": true,
+              "retained_evidence": true,
+              "delivery_delay_seconds": 7992.54
+            }
+          }
+        }
+      ],
+      "forecast": {
+        "source_eligible_events": 11,
+        "full_archive_events": 11,
+        "retained_events": 3,
+        "positive_normal_observations": 1352,
+        "scorable_retained_pairs": 157749,
+        "events": [
+          {
+            "event_id": "id_129",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_130",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_132",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_134",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_138",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_140",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_142",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_145",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          },
+          {
+            "event_id": "id_149",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_150",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": false
+          },
+          {
+            "event_id": "id_18",
+            "source_eligible": true,
+            "full_archive_evidence": true,
+            "retained_evidence": true
+          }
+        ]
+      },
+      "config": {
+        "epoch_us": 3600000000,
+        "budget_bytes": 2048,
+        "threshold": 6.0,
+        "pre_trigger_samples": 8,
+        "post_trigger_samples": 4,
+        "background_fraction": 0.2
+      },
+      "packet_stream_sha256": "f77a778109dd3dc3dde581da95fff96843da8a0aca88a513ea8b88e4ca384ae7"
+    }
+  },
+  "interpretation": "Paired background trades spread for transitions. Same cap, not necessarily equal expenditure. Developed after inspecting validation; independent confirmation required."
+}

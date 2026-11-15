@@ -57,7 +57,7 @@ assessed separately because bucket extrema are not raw observations suitable for
 the same PCA receiver. Seed ranges describe sampling variation on the same events,
 not confidence intervals for performance on new faults.
 
-![Fault evidence and pre-event context versus actual encoded bytes across recording budgets](docs/results/randomized-retention.svg)
+![Capture-model mismatch and delivered evidence under illustrative link constraints](docs/results/receiver-mismatch.svg)
 
 **Event counts miss context loss.** At the same 1,024-byte cap, removing pre-trigger
 capture preserves 11/11 PCA evidence but reduces pre-event context coverage from
@@ -72,7 +72,15 @@ normal observations, configurations, and artifact hashes:
 
 [Native study](docs/results/native-retention.md) ·
 [Seeded comparisons](docs/results/randomized-retention.md) ·
-[Component ablations](docs/results/ablation-retention.md)
+[Component ablations](docs/results/ablation-retention.md) ·
+[Detector mismatch and delivery](docs/results/receiver-mismatch.md) ·
+[Temporal evidence](docs/results/temporal-retention.md)
+
+**A different detector can need different evidence.** A 132-arm mismatch study and
+separate forecasting receiver show that trigger-disabled background capture retains
+4/11 PCA events but 0/11 forecasting events. An exploratory adjacent-pair control
+retains 2/11 forecasting events. This exposes a failure mode; it does not establish
+generalization or a novel optimal recorder.
 
 ## Reproduce
 
@@ -122,14 +130,15 @@ See the [paper guide](paper/README.md) for manuscript details.
 ## Next research question
 
 Do the same retention settings preserve useful evidence on an independent mission?
-The [cross-mission protocol](docs/cross-mission-evaluation.md) locks settings, code,
+The [benchmark workflow](docs/benchmark.md) locks settings, code,
 and input hashes before evaluation, with receiver calibration restricted to the
 new mission's training data. The runner is tested; independent-mission results
 are pending. The current input requires six synchronized native channels.
 
-Stronger adaptive competitors, realistic contact/loss modeling, and engineering
-assessment of diagnostic usefulness remain open research work.
+Finite-buffer contact/loss simulation and host profiling are implemented. Stronger
+established competitors, validated link requirements, independent-mission results,
+and engineering assessment of diagnostic usefulness remain open research work.
 
 [Method and byte contract](docs/retention-research.md) ·
-[Research plan](paper/research-plan.md) · [Development](docs/development.md) ·
+[Implementation roadmap](docs/roadmap.md) · [Research plan](paper/research-plan.md) · [Development](docs/development.md) ·
 [Claim/evidence ledger](paper/claims.md)

@@ -89,3 +89,13 @@ are implemented. Supply a documented independent-mission bundle, freeze its lock
 evaluation, and run all declared arms. A stronger adaptive-acquisition competitor and
 component interactions remain coding tasks; the seeded sampling controls are complete. The native pilot is validation development evidence; the synthetic
 table remains a software check. Neither replaces a frozen independent evaluation.
+
+## Completed implementation and next evidence
+
+The [implementation roadmap](../docs/roadmap.md) now has an executable
+[benchmark](../docs/benchmark.md): 132 native mismatch arms, 28 temporal assessments,
+eight exploratory adjacent-pair arms, finite-buffer delivery, and a scoped host
+profile. The independent benchmark freezes 148 capture arms and 36 temporal
+assessments. Software/integration checks do not complete the independent-mission
+or operator-validation research milestones. The paired-background policy was
+motivated by the observed validation failure and must be frozen before confirmation.

@@ -1,0 +1,115 @@
+{
+  "python": "3.12.2",
+  "numpy": "2.5.4",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "observations": 20000,
+  "budget_bytes": 1024,
+  "results": {
+    "uniform": {
+      "seconds": 0.04797312500886619,
+      "samples_per_second": 416900.08721140603,
+      "block_mean_microseconds_per_observation": {
+        "50": 2.3783744545653462,
+        "95": 2.527901658322662,
+        "99": 2.5517474371008575
+      },
+      "serialized_bytes": 5592,
+      "maximum_packet_bytes": 1004,
+      "packets": 6,
+      "packet_stream_sha256": "201edd8ea225b8bca47223b5dc5cb2b9ad4e320558148b83b49128d3feeda0e4",
+      "python_traced_peak_bytes": 21289,
+      "python_traced_final_bytes": 3021
+    },
+    "threshold": {
+      "seconds": 0.04369420907460153,
+      "samples_per_second": 457726.55973364564,
+      "block_mean_microseconds_per_observation": {
+        "50": 2.1916250698268414,
+        "95": 2.22521050600335,
+        "99": 2.2322083986364305
+      },
+      "serialized_bytes": 912,
+      "maximum_packet_bytes": 176,
+      "packets": 6,
+      "packet_stream_sha256": "2f5cfad1c9ae7977fae85811136ca39ed37c4fd730ef3f0599f051d1cd37d8e0",
+      "python_traced_peak_bytes": 4054,
+      "python_traced_final_bytes": 809
+    },
+    "adaptive": {
+      "seconds": 0.050552790984511375,
+      "samples_per_second": 395626.02994813287,
+      "block_mean_microseconds_per_observation": {
+        "50": 2.533229417167604,
+        "95": 2.5845625321380794,
+        "99": 2.657712602522224
+      },
+      "serialized_bytes": 5808,
+      "maximum_packet_bytes": 1004,
+      "packets": 6,
+      "packet_stream_sha256": "8e4ae7ec3f4c3174d62a2d6ec4e274569ce8ed01e3213cc0b90991b537c30373",
+      "python_traced_peak_bytes": 23561,
+      "python_traced_final_bytes": 2861
+    },
+    "reservoir": {
+      "seconds": 0.05186133296228945,
+      "samples_per_second": 385643.7707558122,
+      "block_mean_microseconds_per_observation": {
+        "50": 2.575625549070537,
+        "95": 2.690410381183028,
+        "99": 2.7004491817206144
+      },
+      "serialized_bytes": 6024,
+      "maximum_packet_bytes": 1004,
+      "packets": 6,
+      "packet_stream_sha256": "6b983cb94f3c2d2dbeff4269e42b408530e4bf36c6d72f938673ffcd80fb56cc",
+      "python_traced_peak_bytes": 25005,
+      "python_traced_final_bytes": 2693
+    },
+    "randomized_uniform": {
+      "seconds": 0.04706220794469118,
+      "samples_per_second": 424969.4366975846,
+      "block_mean_microseconds_per_observation": {
+        "50": 2.353354007937014,
+        "95": 2.414517314173281,
+        "99": 2.423003544099629
+      },
+      "serialized_bytes": 5592,
+      "maximum_packet_bytes": 1004,
+      "packets": 6,
+      "packet_stream_sha256": "562bfb66b53de8ea4f67144783d2f5d66520ed0f133609370ce0326108e54a1b",
+      "python_traced_peak_bytes": 23985,
+      "python_traced_final_bytes": 3021
+    },
+    "coverage": {
+      "seconds": 0.19275195780210197,
+      "samples_per_second": 103760.29498249745,
+      "block_mean_microseconds_per_observation": {
+        "50": 9.394125081598759,
+        "95": 13.950745912734419,
+        "99": 14.182482913602144
+      },
+      "serialized_bytes": 5808,
+      "maximum_packet_bytes": 1004,
+      "packets": 6,
+      "packet_stream_sha256": "d6511e5645d22e25ee1bd70d31f62d58e8caed54859eb996e19ff57437475339",
+      "python_traced_peak_bytes": 26289,
+      "python_traced_final_bytes": 2957
+    },
+    "burst": {
+      "seconds": 0.06386883417144418,
+      "samples_per_second": 313141.77344013617,
+      "block_mean_microseconds_per_observation": {
+        "50": 3.1926665687933564,
+        "95": 3.2879815553314984,
+        "99": 3.347862756345421
+      },
+      "serialized_bytes": 5700,
+      "maximum_packet_bytes": 1004,
+      "packets": 6,
+      "packet_stream_sha256": "1f60f2c262fbc8510459bb49a4f860a4dce9cf75b12b24d9457f1a5f392b3d86",
+      "python_traced_peak_bytes": 23593,
+      "python_traced_final_bytes": 3061
+    }
+  },
+  "scope": "Separate uninstrumented timing and tracemalloc passes; includes synthetic sample creation, encoding and hashing; excludes disk I/O and model training. Latency percentiles are 1,000-observation block means, not per-observation tail latency. Traced allocations are not process RSS or total NumPy/embedded RAM."
+}
