@@ -14,3 +14,7 @@
 | Asynchronous channels and intermittent downlink are modeled | Planned | Additional source semantics and contact/queue model required |
 | Recorder fits an embedded CPU/RAM allocation | Not established | C++ integration and hardware/resource measurements required |
 | Existing detector results validate this recorder | Unsupported | Detector results and retention results answer different questions |
+
+| Seeded comparisons reduce concern about the original uniform sampling phase | Measured on the same validation events | `docs/results/randomized-retention.json`; 80 arms, all seeds reported; not independent new faults |
+| Seed ranges are generalization confidence intervals | Unsupported | Sampling variation is conditional on the same 11 events |
+| The retention study requires C++ | False | Capture, decoding, frozen receivers, and study orchestration are Python; C++ tools are optional |

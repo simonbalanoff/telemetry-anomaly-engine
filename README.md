@@ -1,6 +1,6 @@
 # Preserving Fault Evidence under Telemetry Budgets
 
-**Simon Balanoff · Research draft · C++20 and Python**
+**Simon Balanoff · Research draft · Python-first experiments**
 
 [Read the paper](paper/draft.pdf) · [LaTeX source](paper/main.tex) ·
 [Results and limitations](docs/results/native-retention.md) · [Reproduce](#reproduce-the-study)
@@ -16,13 +16,14 @@ to retain under a fixed byte budget**, before the nature of a fault is known.
 The recorder combines a bounded pre-trigger buffer, post-trigger capture, and
 capacity reserved for background observations selected independently of anomaly
 scores. Every packet charges its headers, timestamps, record tags, and values.
-Uniform sampling, fixed summaries, and threshold-only capture provide comparisons.
+Uniform sampling, fixed summaries, threshold-only capture, seeded reservoir
+sampling, and randomized-phase sampling provide comparisons.
 
 ```mermaid
 flowchart LR
     A[Native observations] --> B[Causal capture policy]
     B --> C[Byte-capped packets]
-    C --> D[Independent receiver]
+    C --> D[Frozen receiver]
     D --> E[Evidence and cost]
 ```
 
@@ -34,14 +35,18 @@ values as raw evidence.
 ## Initial native-data results
 
 The development study replays **3,248,700 Mission1 observations from 2008–2010**
-across four recording policies and four hourly byte caps. Receiver calibration
-uses **8,713,221 eligible native training observations** from before 2008.
+across four recording policies and four hourly byte caps. A follow-up adds **80
+randomized arms**: reservoir and randomized-phase sampling with ten seeds per cap.
+All arms use the same frozen receivers, calibrated on **8,713,221 eligible native
+training observations** from before 2008.
 
 At a **1,024-byte cap per active hour**:
 
 | Capture policy | Actual packet bytes | Events with frozen PCA evidence |
 | --- | ---: | ---: |
-| Uniform sampling | 25.04 MiB | 5 / 11 |
+| Original uniform sampling | 25.04 MiB | 5 / 11 |
+| Reservoir, ten seeds | 25.15 MiB mean | 5.1 / 11 mean; range 4–7 |
+| Randomized phase, ten seeds | 24.96 MiB mean | 5.4 / 11 mean; range 4–8 |
 | Threshold-only | 0.81 MiB | 10 / 11 |
 | Adaptive recorder | 6.30 MiB | 11 / 11 |
 
@@ -50,7 +55,11 @@ not raw samples suitable for the same PCA receiver. All policies share a budget
 **cap**, not equal actual expenditure. The unconstrained full-archive format cost
 is calculated as 112.34 MiB.
 
-![Native validation evidence and cost tradeoffs](docs/results/native-retention.svg)
+![Seeded sampling evidence and cost tradeoffs](docs/results/randomized-retention.svg)
+
+Seed means and ranges describe sampling variation on the same events, not
+confidence intervals for performance on new faults. See the
+[seeded comparison](docs/results/randomized-retention.md) for per-event outcomes.
 
 These are preliminary results on **11 validation events**. They do not establish
 novelty, improved physical diagnosis, or generalization to another mission. Positive
@@ -65,7 +74,8 @@ archives. See the [data guide](docs/data-pipeline.md) for preparation.
 
 ```bash
 python -m pip install -r python/requirements-core.txt
-python python/run_retention_pilot.py --output data/results/retention-native-reproduction
+python python/run_retention_pilot.py --output data/results/native-reproduction
+python python/run_retention_randomized.py --baseline data/results/native-reproduction --output data/results/randomized-reproduction
 PYTHONPATH=python python -m unittest discover -s python/tests -v
 ```
 
@@ -84,11 +94,12 @@ make -C paper preview
 
 The recorder is a Python research prototype. Supporting C++ components include
 validated binary I/O, statistical/PCA detectors, numerical parity checks, a frame
-pool, and a bounded queue. C++ recorder integration and flight deployment are not
-claimed.
+pool, and a bounded queue. They are optional supporting tools; new recorder research
+remains Python-first. A native implementation would need a profiling or embedded-resource
+justification. Flight deployment is not claimed.
 
-Next experiments are stronger adaptive/random sampling competitors, component
-ablations, contact/loss simulation, and a frozen independent-mission evaluation.
+Next experiments are component ablations, stronger adaptive-acquisition competitors,
+contact/loss simulation, and a frozen independent-mission evaluation.
 The work targets evidence preservation; engineering review is still needed to
 establish diagnostic usefulness.
 

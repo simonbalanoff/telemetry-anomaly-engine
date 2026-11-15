@@ -28,8 +28,9 @@ ablations below remain necessary.
 
 ## 2. Establish the scientific comparison
 
-Add a full-archive reference, a detector-independent random/reservoir baseline,
-and a stronger established adaptive-sampling or triggered-buffer competitor.
+The full-archive reference, ten-seed reservoir baseline, and ten-seed randomized-phase
+baseline are now implemented and measured at all four caps. Add a stronger established
+adaptive-sampling or triggered-buffer competitor next.
 A comparison against only uniform sampling would be insufficient evidence of novelty.
 
 Freeze a common receiver model and its threshold before comparing retention
@@ -63,7 +64,8 @@ avoid declaring a winner from a small numerical difference.
 Document a concrete user's memory, communication, and investigation requirements.
 Simulate contact gaps, queueing, losses, eviction, and transport overhead before
 calling the byte cap a realistic downlink budget. Measure recorder memory and CPU;
-C++ integration is necessary only for the deployment/resource claims being made.
+Keep experimentation Python-first. A native implementation is justified only by
+profiling or the deployment/resource claims being made.
 
 Freeze choices after validation, then evaluate an untouched mission or independent
 dataset. The historical Mission1 test period has already been inspected. Further
@@ -80,6 +82,6 @@ results on it are exploratory, not a fresh held-out estimate.
 - A reproducibility statement, data/license details, affiliation, venue format,
   and required AI-assistance/funding/conflict disclosures.
 
-The next coding tasks are stronger sampling baselines and the component ablations
-in items 2–3. The native pilot is validation development evidence; the synthetic
+The next coding tasks are a stronger adaptive-acquisition competitor and component
+ablations in items 2–3; the seeded sampling controls are complete. The native pilot is validation development evidence; the synthetic
 table remains a software check. Neither replaces a frozen independent evaluation.

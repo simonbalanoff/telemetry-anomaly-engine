@@ -65,9 +65,10 @@ GitHub sign-in, while the repository PDF follows the repository's visibility.
 ## Next research milestones
 
 1. **Completed initial pilot:** native Mission1 replay with four policies and four byte caps; see `docs/results/native-retention.md`.
-2. Independent receiver models and complete event/channel accounting.
+2. **Completed seeded controls:** reservoir and randomized-phase sampling, ten seeds
+   per cap, using the same frozen receivers. Receiver-model swaps remain planned.
 3. Contact scheduling, losses, storage eviction, and realistic transport overhead.
-4. C++ recorder parity and measured CPU/memory constraints.
+4. Measured CPU/memory constraints; optional native implementation if justified.
 5. Frozen independent-mission evaluation and engineering review.
 
 See `docs/retention-research.md` for the implementation/protocol map and
