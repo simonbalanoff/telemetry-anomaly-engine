@@ -14,6 +14,7 @@ from retention.native_source import open_native_source
 from retention.stream import read_packets
 from run_retention_randomized import load_frozen_model, validate_reference
 from retention.mission import open_bundle, read_events
+from retention.partitioned_events import event_reader, build_partition_cases
 
 POLICIES = (
     "uniform",
@@ -54,6 +55,7 @@ def evaluate(path, times, values, positive, cases, normal):
         dict(
             event_id=c.event_id,
             source_eligible=bool(len(c.indices)) and not c.censored,
+            boundary_censored=bool(c.censored),
             full_archive_evidence=bool(positive[c.indices].any()),
             retained_evidence=bool(evidence[c.indices].any()),
         )
@@ -135,6 +137,9 @@ def run_study(source, dataset, cache, benchmark, baseline, output):
 def run_bundle_study(bundle, benchmark, output):
     times, values, manifest = open_bundle(bundle)
     reference = json.loads((benchmark / "report.json").read_text())
+    from run_retention_bundle_benchmark import verify_completed_study
+
+    verify_completed_study(reference, manifest)
     if reference["provenance"]["bundle_manifest_sha256"] != sha256(
         bundle / "manifest.json"
     ):
@@ -145,17 +150,16 @@ def run_bundle_study(bundle, benchmark, output):
     if any(output.iterdir()):
         raise ValueError("Use an empty output directory")
     normalizer = load_frozen_model(reference["receivers"]["original"])
-    training = read_events(
-        bundle / "training_events.json", 0, manifest["training_end_us"]
-    )
+    reader = event_reader(manifest, read_events)
+    training = reader(bundle / "training_events.json", 0, manifest["training_end_us"])
     model = fit_forecast(times, values, training, normalizer, output)
     start, end = manifest["evaluation_start_us"], manifest["evaluation_end_us"]
     left, right = np.searchsorted(times, [start, end])
     times, values = times[left:right], values[left:right]
     scores = model.scores(times, values)
     positive = np.isfinite(scores) & (scores > model.threshold)
-    events = read_events(bundle / "evaluation_events.json", start, end)
-    cases, _, normal = build_event_cases(
+    events = reader(bundle / "evaluation_events.json", start, end)
+    cases, _, normal = build_partition_cases(
         times, events, start, end, reference["provenance"]["settings"]["context_us"]
     )
     arms = {}
@@ -169,6 +173,8 @@ def run_bundle_study(bundle, benchmark, output):
             arms[name]["packet_stream_sha256"] = sha256(path)
     report = dict(
         model=model.to_dict(),
+        protocol_commit=reference.get("protocol_commit"),
+        protocol_lock_sha256=reference.get("protocol_lock_sha256"),
         benchmark_sha256=sha256(benchmark / "report.json"),
         arms=arms,
         source_observations=len(times),

@@ -1,0 +1,92 @@
+{
+  "protocol": "metadata-first-native-channel-audit-v1",
+  "source": "ESA-Mission2",
+  "adapter_sha256": "f463927c4c7259c342ec80d7652d78b79358ab9ab3a6e60f96ebbb84a5f06f88",
+  "metadata_sha256": "ddd4e30be399ca28aa963b8b6d3f84c7ef10afb512e5cb4a7f11636a986cca98",
+  "selection_rule": "Lowest numbered complete metadata group with exactly six Target=YES, Categorical=NO channels",
+  "group": 13,
+  "channels": [
+    "channel_86",
+    "channel_87",
+    "channel_88",
+    "channel_89",
+    "channel_90",
+    "channel_91"
+  ],
+  "training_end_us": 1001894400000000,
+  "training_native_alignment": true,
+  "full_native_alignment": true,
+  "training_numeric_and_timestamp_quality": true,
+  "ready_for_native_adapter": true,
+  "full_numeric_validation_performed": false,
+  "channel_audit": {
+    "channel_86": {
+      "source_archive_sha256": "4e75d1d4b94fa5a9590f8a4b3cf9deba5d41d59885ff7f21923c76e0641a5b65",
+      "full_observations": 7387262,
+      "training_observations": 3711752,
+      "training_timestamps_sha256": "7aa87aae18c3dfe1003c705cdae31c527d330e18eadf97e67010bb82886b06de",
+      "training_timestamps_strictly_increasing": true,
+      "training_timestamps_nonnegative_microsecond_precision": true,
+      "training_values_finite_binary32": true,
+      "training_timestamps_equal_first_channel": true,
+      "full_timestamps_equal_first_channel": true
+    },
+    "channel_87": {
+      "source_archive_sha256": "4a7258a9a68a485ee33e2a07cab0126f0cf8c547901ff9888897b2052111ef95",
+      "full_observations": 7387262,
+      "training_observations": 3711752,
+      "training_timestamps_sha256": "7aa87aae18c3dfe1003c705cdae31c527d330e18eadf97e67010bb82886b06de",
+      "training_timestamps_strictly_increasing": true,
+      "training_timestamps_nonnegative_microsecond_precision": true,
+      "training_values_finite_binary32": true,
+      "training_timestamps_equal_first_channel": true,
+      "full_timestamps_equal_first_channel": true
+    },
+    "channel_88": {
+      "source_archive_sha256": "0501229a5846b6a6c74743abb6073ac1a123d432ce70a481610423f2a8d42d32",
+      "full_observations": 7387262,
+      "training_observations": 3711752,
+      "training_timestamps_sha256": "7aa87aae18c3dfe1003c705cdae31c527d330e18eadf97e67010bb82886b06de",
+      "training_timestamps_strictly_increasing": true,
+      "training_timestamps_nonnegative_microsecond_precision": true,
+      "training_values_finite_binary32": true,
+      "training_timestamps_equal_first_channel": true,
+      "full_timestamps_equal_first_channel": true
+    },
+    "channel_89": {
+      "source_archive_sha256": "bb17c1fa91f1b27419a79b38263b0f1687c978c0a246d6b12c0cd19bf4a427c3",
+      "full_observations": 7387262,
+      "training_observations": 3711752,
+      "training_timestamps_sha256": "7aa87aae18c3dfe1003c705cdae31c527d330e18eadf97e67010bb82886b06de",
+      "training_timestamps_strictly_increasing": true,
+      "training_timestamps_nonnegative_microsecond_precision": true,
+      "training_values_finite_binary32": true,
+      "training_timestamps_equal_first_channel": true,
+      "full_timestamps_equal_first_channel": true
+    },
+    "channel_90": {
+      "source_archive_sha256": "ecac91bc984770e6fc486062a8c9a20a78c0f4a8f7830892619444955f48fcd8",
+      "full_observations": 7387262,
+      "training_observations": 3711752,
+      "training_timestamps_sha256": "7aa87aae18c3dfe1003c705cdae31c527d330e18eadf97e67010bb82886b06de",
+      "training_timestamps_strictly_increasing": true,
+      "training_timestamps_nonnegative_microsecond_precision": true,
+      "training_values_finite_binary32": true,
+      "training_timestamps_equal_first_channel": true,
+      "full_timestamps_equal_first_channel": true
+    },
+    "channel_91": {
+      "source_archive_sha256": "cd87e06621ed9b1a691d3adc0327b33f31662f67e19815c6a8f77d437179e3d6",
+      "full_observations": 7387262,
+      "training_observations": 3711752,
+      "training_timestamps_sha256": "7aa87aae18c3dfe1003c705cdae31c527d330e18eadf97e67010bb82886b06de",
+      "training_timestamps_strictly_increasing": true,
+      "training_timestamps_nonnegative_microsecond_precision": true,
+      "training_values_finite_binary32": true,
+      "training_timestamps_equal_first_channel": true,
+      "full_timestamps_equal_first_channel": true
+    }
+  },
+  "exposure": "channels.csv, native timestamp identity across full source, training values only; no labels or evaluation-value statistics inspected",
+  "interpretation": "Compatibility audit only; full numeric validation remains required during bundle conversion. Not a frozen split or evaluation result. Do not fill, interpolate, or intersect away asynchronous observations."
+}

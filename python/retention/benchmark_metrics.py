@@ -71,6 +71,7 @@ def evaluate_bank_stream(
         row = dict(
             event_id=case.event_id,
             source_eligible=bool(len(indices)) and not case.censored,
+            boundary_censored=bool(case.censored),
             source_samples=len(indices),
             retained_samples=int(retained[indices].sum()),
             pre_context_coverage=(

@@ -74,9 +74,13 @@ channel names, not an assumption about the new mission's sensor names. Group
 multi-channel annotations under the same event ID. Intervals are half-open;
 `start_us == end_us` identifies a point event. Training intervals must lie within
 `[0, training_end_us)` and evaluation annotations within the declared evaluation
-split (non-point intervals may end at its exclusive end). This first interface
-rejects crossing annotations; choose documented boundaries outside events rather
-than clipping faults. Evaluation boundaries must align to whole reporting epochs.
+split (non-point intervals may end at its exclusive end). The original strict interface
+rejects crossing annotations. The extended Mission2 study declares
+`annotation_policy=original-intervals-event-censorship-v1`: original intersecting
+rows are retained with event-level boundary flags, and censored events remain in
+detailed output but outside source-eligible recall. Do not move split boundaries
+after looking at labels or clip faults to make them appear eligible. See the
+[fixed Mission2 protocol](../protocols/mission2-study-v1.md). Evaluation boundaries must align to whole reporting epochs.
 
 ## Freeze, then run
 

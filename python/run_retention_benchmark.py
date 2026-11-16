@@ -22,6 +22,7 @@ from retention.codec import Sample
 from retention.coverage import CoverageRecorder
 from retention.downlink import LinkConfig, simulate
 from retention.native_metrics import build_event_cases
+from retention.partitioned_events import build_partition_cases
 from retention.native_model import CHUNK, causal_capture_scores
 from retention.native_source import open_native_source
 from retention.receiver_bank import CAPTURE_MODELS, NAMES, ReceiverBank, fit_bank
@@ -80,7 +81,7 @@ def evaluate_budget(payload):
     captures = np.load(task["capture_scores"], mmap_mode="r", allow_pickle=False)
     positive = np.load(task["positive"], mmap_mode="r", allow_pickle=False)
     config = RecorderConfig(**task["config"])
-    cases, eligible, normal = build_event_cases(
+    cases, eligible, normal = build_partition_cases(
         times, annotations, task["start_us"], task["end_us"], task["context_us"]
     )
     output = Path(task["output"])

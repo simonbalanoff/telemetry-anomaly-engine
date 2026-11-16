@@ -12,6 +12,7 @@ import json
 import multiprocessing
 from pathlib import Path
 import platform
+import subprocess
 
 import numpy as np
 
@@ -20,6 +21,7 @@ from retention.codec import Sample
 from retention.burst import BurstRecorder
 from retention.coverage import CoverageRecorder
 from retention.mission import open_bundle, read_events
+from retention.partitioned_events import event_reader
 from retention.native_model import CHUNK, causal_capture_scores, fit_native_model
 from retention.randomized import RandomizedRecorder
 from retention.receiver_bank import CAPTURE_MODELS, NAMES, fit_bank
@@ -50,11 +52,97 @@ def implementation_hashes():
         root / "run_retention_pilot.py",
         root / "dataset.py",
         root / "requirements-core.txt",
+        root / "prepare_mission2_bundle.py",
+        root / "summarize_independent_retention.py",
     ]
     return {str(path.relative_to(root)): sha256(path) for path in paths}
 
 
-def freeze(bundle, settings_path, lock_path):
+def bind_study_protocol(manifest, path):
+    expected = manifest.get("study_protocol_sha256")
+    if expected is None and path is None:
+        return None
+    if path is None or sha256(path) != expected:
+        raise ValueError(
+            "Provide the study protocol matching the bundle's declared digest"
+        )
+    root = Path(__file__).resolve().parents[1]
+    relative = path.resolve().relative_to(root)
+    return dict(path=relative.as_posix(), sha256=expected)
+
+
+def verify_study_protocol(lock, manifest):
+    study = lock.get("study_protocol")
+    expected = manifest.get("study_protocol_sha256")
+    if study is None:
+        if expected is not None:
+            raise ValueError("Study protocol is missing from lock")
+        return
+    root = Path(__file__).resolve().parents[1]
+    path = (root / study["path"]).resolve()
+    if (
+        not path.is_relative_to(root)
+        or sha256(path) != study["sha256"]
+        or study["sha256"] != expected
+    ):
+        raise ValueError("Study protocol differs from the frozen record")
+
+
+def verify_committed_protocol(lock, lock_path, root=None):
+    """A study-bound lock cannot be evaluated from an uncommitted working copy."""
+    if lock.get("study_protocol") is None:
+        return None
+    root = Path(__file__).resolve().parents[1] if root is None else Path(root).resolve()
+    paths = [
+        Path(lock_path).resolve(),
+        (root / lock["study_protocol"]["path"]).resolve(),
+        *((root / "python" / name).resolve() for name in lock["scripts"]),
+    ]
+    if any(not path.is_relative_to(root) for path in paths):
+        raise ValueError("Frozen protocol paths must remain inside the repository")
+    relative = [path.relative_to(root).as_posix() for path in paths]
+    try:
+        subprocess.run(
+            ["git", "ls-files", "--error-unmatch", "--", *relative],
+            cwd=root,
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "diff", "--quiet", "HEAD", "--", *relative],
+            cwd=root,
+            check=True,
+            capture_output=True,
+        )
+        return subprocess.check_output(
+            ["git", "log", "-1", "--format=%H", "--", relative[0]], cwd=root, text=True
+        ).strip()
+    except subprocess.CalledProcessError as error:
+        raise ValueError(
+            "Commit the frozen lock, study protocol, and implementation before evaluation"
+        ) from error
+
+
+def verify_completed_study(report, manifest=None):
+    """Temporal assessment and primary analysis must use the same committed study."""
+    lock = report.get("provenance", {})
+    if lock.get("study_protocol") is None:
+        return
+    if lock["scripts"] != implementation_hashes():
+        raise ValueError("Implementation changed after the frozen benchmark")
+    if (lock["python"], lock["numpy"]) != (platform.python_version(), np.__version__):
+        raise ValueError("Numerical environment changed after the benchmark")
+    declared = manifest or {"study_protocol_sha256": lock["study_protocol"]["sha256"]}
+    verify_study_protocol(lock, declared)
+    root = Path(__file__).resolve().parents[1]
+    path = (root / report["protocol_lock_path"]).resolve()
+    if not path.is_relative_to(root) or sha256(path) != report["protocol_lock_sha256"]:
+        raise ValueError("Protocol lock changed after the benchmark")
+    if verify_committed_protocol(lock, path) != report["protocol_commit"]:
+        raise ValueError("Protocol commit changed after the benchmark")
+
+
+def freeze(bundle, settings_path, lock_path, study_protocol=None):
     if lock_path.exists():
         raise ValueError("Preserve existing locks; choose a new protocol path")
     settings = json.loads(settings_path.read_text())
@@ -64,6 +152,12 @@ def freeze(bundle, settings_path, lock_path):
     if settings["pca_components"] != 3:
         raise ValueError("Receiver-mismatch protocol requires original PCA rank 3")
     _, _, manifest = open_bundle(bundle)
+    event_reader(manifest)
+    study = bind_study_protocol(manifest, study_protocol)
+    if manifest.get(
+        "retention_settings_digest", digest_settings(settings)
+    ) != digest_settings(settings):
+        raise ValueError("Retention settings differ from the prepared study bundle")
     if (
         manifest["mission"].strip().casefold()
         == settings["development_mission"].strip().casefold()
@@ -77,6 +171,7 @@ def freeze(bundle, settings_path, lock_path):
     lock = dict(
         protocol="independent-receiver-mismatch-v1",
         settings=settings,
+        study_protocol=study,
         settings_digest=digest_settings(settings),
         target_mission=manifest["mission"],
         bundle_manifest_sha256=sha256(bundle / "manifest.json"),
@@ -155,6 +250,9 @@ def run_study(bundle, lock_path, output, workers=4):
     if lock["bundle_manifest_sha256"] != sha256(bundle / "manifest.json"):
         raise ValueError("Input manifest differs from frozen protocol")
     times, values, manifest = open_bundle(bundle)
+    reader = event_reader(manifest, read_events)
+    verify_study_protocol(lock, manifest)
+    protocol_commit = verify_committed_protocol(lock, lock_path)
     if manifest["mission"] != lock["target_mission"]:
         raise ValueError("Target mission differs from protocol")
     if output.resolve() == bundle.resolve():
@@ -163,9 +261,7 @@ def run_study(bundle, lock_path, output, workers=4):
     if any(output.iterdir()):
         raise ValueError("Use an empty benchmark output directory")
     atomic_text(output / "protocol.json", json.dumps(lock, indent=2) + "\n")
-    training = read_events(
-        bundle / "training_events.json", 0, manifest["training_end_us"]
-    )
+    training = reader(bundle / "training_events.json", 0, manifest["training_end_us"])
     original = fit_native_model(
         times,
         values,
@@ -232,7 +328,7 @@ def run_study(bundle, lock_path, output, workers=4):
         ) as pool:
             streams = list(pool.map(capture_external, tasks))
     # Only after every capture completes do evaluation annotations enter a task.
-    events = read_events(bundle / "evaluation_events.json", start, end)
+    events = reader(bundle / "evaluation_events.json", start, end)
     payloads = [(task, events, stream) for task, stream in zip(tasks, streams)]
     if workers == 1:
         evaluated = [evaluate_budget(payload) for payload in payloads]
@@ -244,6 +340,14 @@ def run_study(bundle, lock_path, output, workers=4):
             evaluated = list(pool.map(evaluate_budget, payloads))
     report = dict(
         provenance=lock,
+        protocol_commit=protocol_commit,
+        protocol_lock_path=(
+            lock_path.resolve()
+            .relative_to(Path(__file__).resolve().parents[1])
+            .as_posix()
+            if protocol_commit
+            else None
+        ),
         protocol_lock_sha256=sha256(lock_path),
         receivers=bank.to_dict(),
         source_observations=len(times),
@@ -262,6 +366,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     freezing = commands.add_parser("freeze")
+    freezing.add_argument("--study-protocol", type=Path)
     freezing.add_argument(
         "--settings", type=Path, default=Path("protocols/cross-mission-v1.json")
     )
@@ -273,7 +378,7 @@ def main():
         command.add_argument("--lock", type=Path, required=True)
     args = parser.parse_args()
     if args.command == "freeze":
-        freeze(args.bundle, args.settings, args.lock)
+        freeze(args.bundle, args.settings, args.lock, args.study_protocol)
     else:
         run_study(args.bundle, args.lock, args.output, args.workers)
 

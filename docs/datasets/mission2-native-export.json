@@ -1,0 +1,35 @@
+{
+  "format": "TAE-NATIVE-EXPORT",
+  "version": 1,
+  "mission": "ESA-Mission2",
+  "channels": [
+    "channel_86",
+    "channel_87",
+    "channel_88",
+    "channel_89",
+    "channel_90",
+    "channel_91"
+  ],
+  "observations": 7387262,
+  "audit_sha256": "69e02b699487e39b8bf19711f8a9c0b4e6fdfc98996f38e1bedcaf75a4964728",
+  "exporter_sha256": "f415d46171cd9469e0aa241d6db7e9b22ce913ca48d43c024cb156963fdc216a",
+  "source_archive_sha256": {
+    "channel_86": "4e75d1d4b94fa5a9590f8a4b3cf9deba5d41d59885ff7f21923c76e0641a5b65",
+    "channel_87": "4a7258a9a68a485ee33e2a07cab0126f0cf8c547901ff9888897b2052111ef95",
+    "channel_88": "0501229a5846b6a6c74743abb6073ac1a123d432ce70a481610423f2a8d42d32",
+    "channel_89": "bb17c1fa91f1b27419a79b38263b0f1687c978c0a246d6b12c0cd19bf4a427c3",
+    "channel_90": "ecac91bc984770e6fc486062a8c9a20a78c0f4a8f7830892619444955f48fcd8",
+    "channel_91": "cd87e06621ed9b1a691d3adc0327b33f31662f67e19815c6a8f77d437179e3d6"
+  },
+  "observation_semantics": "synchronized-native-no-fill",
+  "lossless_binary32": true,
+  "training_end_us": 1001894400000000,
+  "first_timestamp_us": 946684816284000,
+  "last_timestamp_us": 1057017592416000,
+  "files": {
+    "timestamps.npy": "292232cd413266ef188ee354d8d93f21bb8e09e861d3389f99cc723ae32f241c",
+    "values.npy": "7d16922fe9807e0eae0ffc86a24c20dc81d46e4380b380ec9914e007abfc2260"
+  },
+  "exposure": "Full native timestamp and numeric integrity validation only; no event labels or evaluation outcomes read",
+  "status": "Unlabeled native export; split/annotation protocol and complete mission bundle still required"
+}

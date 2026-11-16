@@ -35,7 +35,7 @@ uses optional Matplotlib from `python/requirements.txt`. Formatting uses Black f
 
 The suite runs without real datasets or a native binary. CI runs Python tests and
 separately rebuilds the manuscript. Actual mission replays require trusted local
-archives and are separate from CI. Local verification currently passes 101 tests;
+archives and are separate from CI. Local verification currently passes 111 tests;
 remote CI status must be checked after pushing.
 
 ## Trusted Mission1 data
@@ -100,3 +100,25 @@ finite-buffer transport accounting, and resource-measurement scope. Tests in
 training isolation, pair availability, loss/eviction/partial transmission, byte
 conservation, and canonical settings tampering. The [roadmap](roadmap.md) separates
 implemented software from external scientific evidence still needed.
+
+## Mission2 acquisition and source compatibility
+
+The [metadata-first Mission2 audit](datasets/mission2-selection.md) records the
+verified archive, fixed channel-selection rule, and lossless native export. It
+has not inspected anomaly labels or evaluation outcomes. Adapter checks live in
+`test_mission_channel_audit.py`; actual source arrays remain gitignored. A source
+export does not replace the final split, annotation handling, and protocol lock.
+
+## Mission2 split and event-boundary preparation
+
+[The declared study protocol](../protocols/mission2-study-v1.md) fixes channels,
+chronological boundaries, primary contrast, and annotation rules before conversion.
+`prepare_mission2_bundle.py` preserves original intervals and event-ID censorship;
+`test_mission2_preparation.py` covers crossing/disjoint annotations, endpoint points,
+training masks, complete converter/decoded-evaluation flow, real Git commit barriers,
+and the declared paired primary analysis. Existing strict annotation readers and
+Mission1 core evaluator semantics remain unchanged.
+
+Study-bound benchmark, temporal assessment, and primary analysis verify the locked
+code and protocol. The benchmark refuses an uncommitted lock/protocol/implementation
+and records the protocol commit. Do not rerun or replace outcomes selectively.
