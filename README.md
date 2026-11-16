@@ -1,6 +1,6 @@
 # Preserving Fault Evidence under Telemetry Budgets
 
-**Simon Balanoff · Causal telemetry retention · Technical report v1.0**
+**Simon Balanoff · Causal telemetry retention · Technical report v1.1**
 
 [Read the paper](paper/draft.pdf) · [Results](#results) ·
 [Reproduce](#reproduce) · [LaTeX source](paper/main.tex)
@@ -57,7 +57,7 @@ assessed separately because bucket extrema are not raw observations suitable for
 the same PCA receiver. Seed ranges describe sampling variation on the same events,
 not confidence intervals for performance on new faults.
 
-![Capture-model mismatch and delivered evidence under illustrative link constraints](docs/results/receiver-mismatch.svg)
+![Mission1 receiver-dependent evidence and Mission2 captured temporal input availability; Mission2 has no eligible anomaly events](docs/results/receiver-requirements.svg)
 
 **Event counts miss context loss.** At the same 1,024-byte cap, removing pre-trigger
 capture preserves 11/11 PCA evidence but reduces pre-event context coverage from
@@ -127,17 +127,27 @@ See the [paper guide](paper/README.md) for manuscript details.
 
 </details>
 
-## Next research question
+## Frozen Mission2 follow-up
 
-Do the same retention settings preserve useful evidence on an independent mission?
-The [benchmark workflow](docs/benchmark.md) locks settings, code,
-and input hashes before evaluation, with receiver calibration restricted to the
-new mission's training data. The runner is tested; independent-mission results
-are pending. The current input requires six synchronized native channels.
+A committed protocol fixed channels, splits, settings, and the primary comparison
+before evaluation. **148 capture arms and 36 temporal assessments completed**, but
+the metadata-selected channels contain only rare nominal annotations. There are
+**zero eligible anomaly events**, so fault-retention recall is unavailable—not
+zero, perfect, or evidence of generalization.
 
-Finite-buffer contact/loss simulation and host profiling are implemented. Stronger
-established competitors, validated link requirements, independent-mission results,
-and engineering assessment of diagnostic usefulness remain open research work.
+At the 1,024-byte cap, paired background retains **45,935 usable consecutive inputs**
+versus zero for singleton background, at nearly identical encoded cost. That measures
+input availability, not fault recovery. The original group and the uninformative
+primary result remain in the record.
+
+[Mission2 results and qualification](docs/results/mission2-study.md) ·
+[Committed study protocol](protocols/mission2-study-v1.md) ·
+[Reproduction workflow](docs/benchmark.md)
+
+The next evaluation needs declared anomaly-label support or a representation
+covering the complete intended target set. Stronger established comparisons,
+validated link requirements, and engineering assessment of diagnostic usefulness
+also remain open. The current codec requires six synchronized native channels.
 
 [Method and byte contract](docs/retention-research.md) ·
 [Implementation roadmap](docs/roadmap.md) · [Research plan](paper/research-plan.md) · [Development](docs/development.md) ·

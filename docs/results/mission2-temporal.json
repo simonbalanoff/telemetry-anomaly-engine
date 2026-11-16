@@ -1,0 +1,423 @@
+{
+  "model": {
+    "mean": [
+      0.7380595894519494,
+      0.7407481514447913,
+      0.7183364625928123,
+      0.746052792757103,
+      0.7253134534550046,
+      0.7387655235423983
+    ],
+    "sigma": [
+      0.06596416012303623,
+      0.06319803879053529,
+      0.06602474692463348,
+      0.06362767074682484,
+      0.06617304538155633,
+      0.06288412818024576
+    ],
+    "coefficients": [
+      [
+        0.6195905754192416,
+        0.12196275920263441,
+        0.10049643273989918,
+        -0.009118417523216878,
+        0.16018560098174733,
+        -0.019434888715870173
+      ],
+      [
+        0.12418864407346573,
+        0.6586044560662377,
+        -0.07419995150488867,
+        0.14911108922278377,
+        0.01215646870550688,
+        0.06494186537394392
+      ],
+      [
+        0.08954639636013077,
+        -0.07147806992200118,
+        0.7027933996415869,
+        0.054546581550997876,
+        0.08173502319247217,
+        0.0780360282742772
+      ],
+      [
+        0.0074230777619302335,
+        0.17667518921596725,
+        0.0767866253768891,
+        0.6524533078009908,
+        0.05332509683385081,
+        0.11381808003533884
+      ],
+      [
+        0.17902540068789408,
+        0.04620695123690755,
+        0.1094048481192432,
+        0.06383098593224226,
+        0.6910822647313288,
+        0.027193714433187716
+      ],
+      [
+        -0.019909056767309155,
+        0.06756234304402704,
+        0.08424987714756216,
+        0.08921544692235346,
+        0.0013572953217802649,
+        0.7349894746879159
+      ],
+      [
+        -2.129502528197822e-07,
+        -1.3918895703409802e-07,
+        -2.1301521591447235e-07,
+        -1.738331158544439e-07,
+        -2.919833230799255e-07,
+        -1.9403978957427122e-07
+      ]
+    ],
+    "residual_sigma": [
+      0.026326000766434335,
+      0.03205692524001265,
+      0.03188434156013643,
+      0.02159538148521974,
+      0.02039225259186811,
+      0.03388835956107631
+    ],
+    "threshold": 7.2340281022188275,
+    "training_pairs": 3698338,
+    "training_end_us": 1001894400000000,
+    "reset_gap_us": 150000000,
+    "ridge": 0.001,
+    "quantile": 0.999
+  },
+  "protocol_commit": "d5366f30b9e6e61c2374e6a94734ef05a47fab10",
+  "protocol_lock_sha256": "6b663ec536ba32483d972336bf2886adaf271cee64f84daec1e2a3f14453cdc9",
+  "benchmark_sha256": "27393338566842bdc6cf0f2e36941318626951036b6c24fcea60804b81efc84a",
+  "arms": {
+    "256-uniform": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "49f4efdfba6ddb4a0889a02d5958aed88f3106894697091c54f37a7a46c2a657"
+    },
+    "256-difference-threshold": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "7bc57d5e86ad3f734caba598eb56e2d299e018092b08d21e4bd4acd4f64f8b64"
+    },
+    "256-difference-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "a9fb8b2a3807562d60a75e78279218726f2375963695b7f47accbeadef24bbb1"
+    },
+    "256-difference-coverage": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 379,
+      "events": [],
+      "packet_stream_sha256": "b1dffd943c5b1e5273f82d6151c1cfa433176dd8e37c6953bac6859718f978e1"
+    },
+    "256-level-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 10,
+      "events": [],
+      "packet_stream_sha256": "ec934967ff64e948bc13c4d3b820f2a561ad5e9fa89642180d0921f07cbbcac2"
+    },
+    "256-pca_3-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 48,
+      "scorable_retained_pairs": 1758,
+      "events": [],
+      "packet_stream_sha256": "c9968469c4f51effd87f8479ffddb8b9225cf572cccfe8b91fcf686734889338"
+    },
+    "256-disabled-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "a9fb8b2a3807562d60a75e78279218726f2375963695b7f47accbeadef24bbb1"
+    },
+    "256-difference-burst": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 6,
+      "scorable_retained_pairs": 15312,
+      "events": [],
+      "packet_stream_sha256": "1db215db7ed24ecfcccfd8fdb0093223217d244fabdb891b22e25069b5c149c5"
+    },
+    "256-disabled-burst": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 6,
+      "scorable_retained_pairs": 15312,
+      "events": [],
+      "packet_stream_sha256": "1db215db7ed24ecfcccfd8fdb0093223217d244fabdb891b22e25069b5c149c5"
+    },
+    "512-uniform": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "9f1b478fdedc914e00c701de3b0afaf906bc55c39b46fc86a3fc11f3ac1073aa"
+    },
+    "512-difference-threshold": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "88ff7fab617efe49fe0539cbf673337c437492caf1cc52abc9bad6510f750e41"
+    },
+    "512-difference-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "292dd5bbcc8c42b5ed712ff89537b2746e1bc7592676dfa98a0dfefb7798aba8"
+    },
+    "512-difference-coverage": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 478,
+      "events": [],
+      "packet_stream_sha256": "c0e793b326fcbaef128dcec4137ab6227e870fa09a121d2e0ec28938e8411d90"
+    },
+    "512-level-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 28,
+      "events": [],
+      "packet_stream_sha256": "e71a3d3816a0325ffc5fc84bc59f7cfb9ff78c2a66614ee496d1ef306d3ceb99"
+    },
+    "512-pca_3-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 52,
+      "scorable_retained_pairs": 5191,
+      "events": [],
+      "packet_stream_sha256": "9ad512dd2585514d0ba9611471eb95f4893d25a56d55e690d5c37b07f9a5382a"
+    },
+    "512-disabled-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "292dd5bbcc8c42b5ed712ff89537b2746e1bc7592676dfa98a0dfefb7798aba8"
+    },
+    "512-difference-burst": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 6,
+      "scorable_retained_pairs": 15312,
+      "events": [],
+      "packet_stream_sha256": "4347898c6dbb4e9b8869ac70fe12bd0af22c8cf5426f7d3a588e0e4eb3c218f9"
+    },
+    "512-disabled-burst": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 6,
+      "scorable_retained_pairs": 15312,
+      "events": [],
+      "packet_stream_sha256": "4347898c6dbb4e9b8869ac70fe12bd0af22c8cf5426f7d3a588e0e4eb3c218f9"
+    },
+    "1024-uniform": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "edd01ab2d9e609c565651c2a068499845d1e9f21252937343667e2149bf30f85"
+    },
+    "1024-difference-threshold": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "c3725b895a35729edb0cafe90f039325d07573c0796e1697e61b9aeff635a15f"
+    },
+    "1024-difference-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "0365b3b054128d00cf9f5667c36540ac0d826052356ce5aa6795ddd9a50a96eb"
+    },
+    "1024-difference-coverage": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 783,
+      "events": [],
+      "packet_stream_sha256": "87891c62a41d243f5a6bf39f01dad622da3d3d0a9ded85fd3e466c1b93733800"
+    },
+    "1024-level-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 62,
+      "events": [],
+      "packet_stream_sha256": "acb3f6f78e1a99319d13058d13d4adf996698321a9228e62799abec953c32fc7"
+    },
+    "1024-pca_3-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 70,
+      "scorable_retained_pairs": 9005,
+      "events": [],
+      "packet_stream_sha256": "c8a9465bfb6e776405e4e40ed2b8769cbe42b8b14e42242a0b686bbe39ac682f"
+    },
+    "1024-disabled-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "0365b3b054128d00cf9f5667c36540ac0d826052356ce5aa6795ddd9a50a96eb"
+    },
+    "1024-difference-burst": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 12,
+      "scorable_retained_pairs": 45935,
+      "events": [],
+      "packet_stream_sha256": "aaa13eff86646d1b06c3b49051e52b64cec027be2f13b3221a8bc554f26aec77"
+    },
+    "1024-disabled-burst": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 12,
+      "scorable_retained_pairs": 45935,
+      "events": [],
+      "packet_stream_sha256": "aaa13eff86646d1b06c3b49051e52b64cec027be2f13b3221a8bc554f26aec77"
+    },
+    "2048-uniform": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "ee3101f96cd58d201055f093c7f419710acf44d969197e754c99fb37989380be"
+    },
+    "2048-difference-threshold": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "eec306835b9a7e8c3f2e274717fde9b684530b94847e76b8945b195bb4fff7c2"
+    },
+    "2048-difference-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "6f3b9983b65ce6cb1a2abcf82d666eceb68c93ad872f6347eead8b4d03c1c1a6"
+    },
+    "2048-difference-coverage": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 1,
+      "scorable_retained_pairs": 1422,
+      "events": [],
+      "packet_stream_sha256": "15d6ea0129624e63c9deb2ef2e3ac96f3d7812c371ad7b187d75ca13eb99542b"
+    },
+    "2048-level-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 137,
+      "events": [],
+      "packet_stream_sha256": "1e0864c73416aa1e1f62df9adb6784cae53b72000df58ff13556f5a4be77e2b2"
+    },
+    "2048-pca_3-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 73,
+      "scorable_retained_pairs": 9526,
+      "events": [],
+      "packet_stream_sha256": "2cc3b5b97f56171a0ed9794e128f9617e0f959a41e48a0765c4024808351753b"
+    },
+    "2048-disabled-adaptive": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 0,
+      "scorable_retained_pairs": 0,
+      "events": [],
+      "packet_stream_sha256": "6f3b9983b65ce6cb1a2abcf82d666eceb68c93ad872f6347eead8b4d03c1c1a6"
+    },
+    "2048-difference-burst": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 24,
+      "scorable_retained_pairs": 91869,
+      "events": [],
+      "packet_stream_sha256": "10ca28c5681e86ce5266a4cc51e80a46cca837ff0b0b4f90915eef370be7c569"
+    },
+    "2048-disabled-burst": {
+      "source_eligible_events": 0,
+      "full_archive_events": 0,
+      "retained_events": 0,
+      "positive_normal_observations": 24,
+      "scorable_retained_pairs": 91869,
+      "events": [],
+      "packet_stream_sha256": "10ca28c5681e86ce5266a4cc51e80a46cca837ff0b0b4f90915eef370be7c569"
+    }
+  },
+  "source_observations": 3675510,
+  "interpretation": "Training-only AR(1); both original endpoints must survive; all selected policies reported"
+}

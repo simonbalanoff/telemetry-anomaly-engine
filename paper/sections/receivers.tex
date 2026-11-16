@@ -1,0 +1,36 @@
+\subsection{Frozen receivers and temporal input availability}
+\label{sec:receivers}
+For training mean $\boldsymbol\mu$ and per-channel standard deviation
+$\boldsymbol\sigma$, let
+$\mathbf z_i=(\mathbf v_i-\boldsymbol\mu)/\boldsymbol\sigma$.
+Pointwise assessment uses
+\begin{equation}
+ s_{\mathrm{level}}(i)=\max_c|z_{i,c}|,\qquad
+ s_r(i)=\frac{1}{6}\left\|\mathbf z_i-Q_rQ_r^\top\mathbf z_i\right\|_2^2,
+ \quad r\in\{1,\ldots,5\},
+\end{equation}
+where $Q_r$ contains the leading standardized-covariance eigenvectors. Score
+thresholds are the eligible-training 0.999 quantiles, and assessment uses strict
+exceedance. Ranks share normalization and are correlated sensitivity analyses.
+They do not constitute six independent anomaly-detector families.
+
+The AR(1) receiver predicts a standardized observation from its original native
+predecessor using a six-channel linear map and intercept. Ridge fitting minimizes
+squared residuals plus $0.001n$ times the squared slope norm over $n$ eligible
+training pairs; the intercept is unpenalized. Per-channel training residual RMS
+scales normalize the maximum absolute forecast residual. Its threshold is also
+the training 0.999 quantile. Both endpoints must be eligible for fitting, and
+pairs with native gaps over 150 seconds are excluded. The first observation of a
+partition has no predecessor available to the receiver.
+
+Let $a_i$ indicate retention of original observation $i$, and let $h_i$ indicate
+that its full-archive temporal score exceeds the frozen threshold. Usable temporal
+evidence is
+\begin{equation}
+ u_i=a_{i-1}a_i h_i\,\mathbf 1\{t_i-t_{i-1}\leq150\ \mathrm{s}\}.
+ \label{eq:temporal-evidence}
+\end{equation}
+The predecessor is the immediately preceding original observation, not merely
+the preceding retained one. This explicit requirement prevents missing inputs
+from being repaired using unrecorded data. It also exposes a tradeoff that a
+pointwise event score alone cannot measure.

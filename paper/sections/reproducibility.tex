@@ -1,19 +1,33 @@
 \section*{Reproducibility and Data Availability}
-Source code, compact experiment reports, configuration and artifact hashes,
-generated tables and figures, and this manuscript are maintained in the project
+Code, compact JSON reports, full arm/per-event records, protocol text and locks,
+generated figures/tables, and this report are maintained in the project
 repository:\footnote{\url{https://github.com/simonbalanoff/telemetry-anomaly-engine}.}
-The benchmark guide documents native replay, receiver calibration, transport
-assumptions, resource profiling, and the independent-mission freeze/run workflow.
-The code uses Python with NumPy and pandas; plotting uses Matplotlib. Experiments
-record their numerical environment and refuse to overwrite completed outputs.
-The synthetic checks and small-data integration tests do not require mission data.
+The data source is the official ESA release~\citep{esa2025dataset}; original archives
+and large arrays/packet streams are obtained or generated separately and are not
+redistributed. Source hashes bind each native export and bundle to its inputs.
+The Mission2 report records the lock commit and verifies it again before temporal
+assessment and primary analysis. The local Git record makes changes traceable but
+cannot prove prior label blindness or substitute for public preregistration.
 
-Mission telemetry is obtained separately from the official ESA dataset
-release~\citep{kotowski2024esa}; raw archives and large packet streams are not
-redistributed in the repository. Native-cache and dataset hashes bind the reported
-experiments to their inputs. Generated manuscript tables are derived from completed
-reports rather than manually entered results. A source manifest binds the checked-in
-PDF and preview image to the manuscript, bibliography, tables, and figures.
-Protocol locks expose input or implementation changes but cannot establish prior
-label blindness. The Mission1 studies and the exploratory status of the pair
-control are reported explicitly; no independent-mission result is included.
+The implementation uses Python, NumPy, and pandas; plotting uses Matplotlib. The
+benchmark guide documents source preparation, capture, calibration, decoded
+assessment, and transport assumptions. Small synthetic integration cases run
+without mission data. The current 111-test suite includes budget and chronology
+invariants, native-value checks, split-edge censorship, input/code tampering,
+committed-protocol barriers, and empty-denominator handling. Software tests do
+not establish scientific generalization. Experiment reports record their numerical
+environment and refuse to overwrite completed outputs.
+
+All numerical tables are generated from completed reports. The Mission2 primary
+analysis is preserved separately from post-evaluation annotation-support and
+presentation checks. The latter independently verifies that raw CSV categories and
+split intersections agree with the prepared bundle; it does not select another
+subset or alter scoring. A snapshot manifest binds the repository PDF and preview
+to the manuscript, bibliography, generated tables, and figures. Version 1.0
+contained Mission1 evidence only; this revision adds the complete Mission2 attempt
+and narrows the generalization claim accordingly.
+
+
+\paragraph{Preparation assistance.}
+AI-assisted tools supported software implementation and manuscript drafting.
+This technical report has not undergone peer review or operational validation.

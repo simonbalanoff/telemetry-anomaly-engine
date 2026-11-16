@@ -2,8 +2,10 @@
 
 The next generalization test transfers fixed **retention settings**, while fitting
 normalization and receiver thresholds on the new mission's designated training
-observations. It is not zero-shot transfer of the Mission1 receiver. No independent
-mission result has been measured yet; only Mission1 archives are available locally.
+observations. It is not zero-shot transfer of the Mission1 receiver. A frozen Mission2 follow-up has now completed. Its metadata-selected subset contains
+no eligible anomaly labels, so fault-retention generalization remains unmeasured;
+[the report](results/mission2-study.md) separates that primary outcome from temporal
+input availability.
 
 ## Fixed decisions
 
@@ -120,3 +122,7 @@ delivery, a canonical settings digest and environment/code checks, and a separat
 AR(1) evaluation requiring retained native pairs. Its default independent study has
 148 capture arms and 36 selected temporal evaluations. The original runner above
 remains available for reproducing its narrower protocol.
+
+The original retention-only commands above reproduce strict legacy bundles. Use the
+extended study workflow for bundles declaring event-level boundary censorship; do
+not pass those annotations to a reader that ignores their declared policy.

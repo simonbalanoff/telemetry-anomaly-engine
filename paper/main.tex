@@ -5,20 +5,21 @@
 \usepackage{microtype}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{graphicx}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
-  pdftitle={Preserving Fault Evidence under Telemetry Budgets: A Causal Recorder and Evaluation Protocol},
+  pdftitle={Preserving Fault Evidence under Telemetry Budgets: Causal Retention and Receiver Requirements},
   pdfauthor={Simon Balanoff},
   pdfsubject={Causal telemetry retention, receiver mismatch, and temporal evidence},
   pdfkeywords={spacecraft telemetry, anomaly detection, adaptive sampling, reproducible research}
 }
 \urlstyle{same}
 \title{Preserving Fault Evidence under Telemetry Budgets:\\
-A Causal Recorder and Evaluation Protocol}
+Causal Retention and Receiver Requirements}
 \author{Simon Balanoff}
-\date{Technical Report, Version 1.0\\[0.25em]November 15, 2026}
+\date{Technical Report, Version 1.1\\[0.25em]November 15, 2026}
 \begin{document}
 \maketitle
 \input{sections/abstract}
@@ -28,30 +29,30 @@ A Causal Recorder and Evaluation Protocol}
 \input{sections/method}
 \input{sections/evaluation}
 \input{sections/native-study}
-\input{sections/randomized-study}
-\input{sections/ablation-study}
-\input{sections/mismatch-study}
+\input{sections/mission2-study}
+\input{sections/delivery-study}
 \input{sections/limitations}
 \section{Conclusion}
-Telemetry retention should be evaluated by the evidence available after decoding
-and delivery, including the inputs required by the downstream receiver. In this
-Mission1 development study, adaptive capture preserves more frozen-receiver event
-evidence and pre-event context than the tested uniform and seeded sampling
-controls under common byte caps. Component removals show that an unchanged event
-count can conceal substantial context loss. Receiver mismatch reveals a second
-limitation: isolated background observations can preserve pointwise evidence while
-providing no usable transitions to a forecasting receiver. An adjacent-pair control
-partially addresses that failure in an exploratory validation experiment.
+A recorder should be judged by the evidence available to a receiver after retention
+and delivery, including context and original temporal inputs. Mission1 development
+results show why high pointwise event coverage alone is insufficient: pre-context
+can disappear without changing the event count, and singleton background samples
+can supply no usable AR(1) transitions. Adjacent-pair capture partially addresses
+that observed failure while trading temporal spread for consecutive inputs.
 
-The practical result is an auditable evaluation framework and a specific research
-question: which retention choices preserve useful evidence when the downstream
-model changes? The present results do not settle that question across missions or
-establish a novel optimal recorder. Independent evaluation, stronger established
-comparisons, and operator assessment are the next sources of evidence.
+The frozen Mission2 follow-up validates execution and input availability on a
+second source but has no anomaly-label support for its primary comparison. It
+therefore contributes no estimate of cross-mission fault recovery. Reporting this
+empty denominator is part of the result, not a reason to substitute a favorable
+group. The resulting contribution is an auditable retention study and a concrete
+receiver-input tradeoff, with annotation-supported evaluation and operational
+validation still required before claims of general diagnostic benefit.
 \input{sections/reproducibility}
 \bibliographystyle{plainnat}
 \bibliography{references}
 \clearpage
 \appendix
 \input{sections/results}
+\clearpage
+\input{sections/extended-results}
 \end{document}

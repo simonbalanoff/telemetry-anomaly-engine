@@ -1,0 +1,33 @@
+\section{Illustrative Delivery and Resource Scope}
+\label{sec:delivery}
+Capture is not delivery. A store-and-forward simulation adds a byte-limited FIFO
+buffer, discrete contact service, drop-oldest or drop-newest eviction, framing
+costs, partial transfer progress, and completed-packet loss. Packets arrive at epoch
+end and enter before service at the same timestamp. Only complete delivered packets
+reach assessment; pending packets at the study end provide no evidence. Packet
+and payload conservation are checked. Buffer limits charge encoded payloads rather
+than Python object overhead, and partial wire progress abstracts physical frame
+timing without retransmission.
+
+The declared scenarios use six-hour contacts. Ample and lossy cases allow 32,768
+wire bytes per contact and a 16,384-byte buffer; congestion allows 2,048 and 4,096.
+Every 128 payload bytes incur 16 framing bytes. The lossy case uses probability
+0.1 and one declared seed. At the Mission1 1,024-byte cap, congestion reduces
+uniform PCA evidence from 5/11 to 4/11 while adaptive and coverage retain 11/11;
+the lossy realization reduces both latter policies to 10/11. These differences
+combine selection and unequal actual expenditure, not transport robustness at
+matched cost. The contact schedules are illustrative and one loss realization
+provides no uncertainty estimate. Mission2's empty anomaly denominator permits
+no analogous anomaly-delivery conclusion. Temporal pair counts in the preceding
+sections are measured before this transport stage.
+
+A separate 20,000-observation synthetic host profile measures timing without
+allocation tracing, then allocations in a second pass; both must reproduce the
+same packet hash. One local run processes approximately 396,000 observations per
+second for adaptive capture, 104,000 for coverage, and 313,000 for paired capture,
+including sample construction, encoding, and hashing but excluding disk I/O and
+receiver fitting. Latency percentiles are 1,000-observation block means, not
+per-observation tail latency. Python-traced allocations are neither total process
+memory nor embedded RAM. These measurements expose implementation cost without
+establishing flight suitability. Complete delivery tables and receiver sensitivity
+plots are retained in Appendix~\ref{app:extended}.

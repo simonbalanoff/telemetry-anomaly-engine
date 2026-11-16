@@ -1,0 +1,27 @@
+{
+  "phase": "Post-evaluation annotation-support verification; no channel/split changes",
+  "selected_channels": [
+    "channel_86",
+    "channel_87",
+    "channel_88",
+    "channel_89",
+    "channel_90",
+    "channel_91"
+  ],
+  "all_source_annotation_rows_by_category": {
+    "Rare Event": 252
+  },
+  "evaluation_annotation_rows_by_category": {
+    "Rare Event": 150
+  },
+  "evaluation_annotated_event_ids": 25,
+  "eligible_anomaly_events": 0,
+  "full_archive_scorable_pairs": 3675508,
+  "bundle_manifest_sha256": "66b268b00d52c5228d6b4884939164bd0213ebed619555e2df64c9853d1937b0",
+  "evaluation_annotations_sha256": "bf429c427b96f7fedd7bde665a1e736c9ee969a0412259eabc77a4df21402ef0",
+  "protocol_commit": "d5366f30b9e6e61c2374e6a94734ef05a47fab10",
+  "interpretation": "Metadata target flags do not establish anomaly-label support. Rare events remain nominal exclusions. Empty anomaly support permits no fault-retention recall estimate.",
+  "benchmark_sha256": "27393338566842bdc6cf0f2e36941318626951036b6c24fcea60804b81efc84a",
+  "temporal_sha256": "c1e8c68babc7f0801d106ba2e53cca568e0181d03b1bd03bb00a233e09a25a78",
+  "reporting_sha256": "3000d22e54a95f9076dc70c21c3d30e93f6558a959b71c10a45d381fb781cc6e"
+}

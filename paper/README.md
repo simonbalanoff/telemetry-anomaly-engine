@@ -1,30 +1,36 @@
 # Research report
 
-**Preserving Fault Evidence under Telemetry Budgets: A Causal Recorder and Evaluation Protocol**
+**Preserving Fault Evidence under Telemetry Budgets: Causal Retention and Receiver Requirements**
 
-**Simon Balanoff · Technical Report, Version 1.0 · November 15, 2026**
+**Simon Balanoff · Technical Report, Version 1.1 · November 15, 2026**
 
 [Read the current PDF](draft.pdf) · [LaTeX source](main.tex) ·
 [Research plan](research-plan.md) · [Claim/evidence ledger](claims.md)
 
-This version presents the completed Mission1 development studies as a coherent
-technical report. It is not a peer-reviewed publication or an independent-mission
-validation. The `draft.pdf` filename is retained so existing repository links keep
-working.
+This version integrates the Mission1 development studies and the completed,
+protocol-fixed Mission2 attempt. It is a technical report, not a peer-reviewed
+publication or a demonstrated cross-mission fault-recovery improvement. The
+`draft.pdf` filename remains compatible with existing repository links.
 
-## Scope of this version
+## Scope and central findings
 
-The report covers the byte contract and causal recorder, native Mission1 replay,
-seeded sampling controls, component ablations, capture/receiver mismatch, a temporal
-AR(1) receiver, exploratory adjacent-pair background capture, and illustrative
-finite-buffer delivery. Synthetic software checks are collected in an appendix.
-The central distinction is between retaining event samples, retaining context,
-and retaining the inputs required by a particular downstream receiver.
+Event counts, context, temporal input availability, and delivered evidence are
+different outcomes. Mission1 shows substantial context loss without an event-count
+change and a pointwise/temporal mismatch under a disabled trigger. An adjacent-pair
+control partially addresses the temporal failure on that same development archive.
 
-All mission results concern the same 11 validation events. The adjacent-pair control
-was developed after inspecting the temporal result. Independent-mission performance,
-novelty relative to established retention methods, and operational diagnostic value
-remain unestablished. Versioning the report does not change those evidence limits.
+The frozen Mission2 subset contains no anomaly labels: its 148 capture arms and
+36 temporal assessments yield an **uninformative primary fault-retention comparison**.
+The measured 45,935 paired inputs concern availability, not anomaly recovery. The
+report preserves this attempt, the fixed selection rule, and the source-category
+verification. It does not replace the group after viewing results.
+
+The main text emphasizes definitions, methods, the two evidence phases, and their
+limits. Complete Mission1 cap/control grids and synthetic checks appear in appendices.
+Related work now includes operational burst prioritization, anomaly-guided science
+downlink, the published ESA benchmark, OPS-SAT, compression, and streaming controls.
+These comparisons do not establish algorithmic novelty. The report also discloses
+AI-assisted implementation/drafting and its unreviewed technical-report status.
 
 ## Build and refresh
 
@@ -37,7 +43,7 @@ python python/snapshot_paper.py --check
 
 The build writes `paper/build/main.pdf`, then refreshes `paper/draft.pdf`,
 `paper/preview.jpg`, and `paper/snapshot.json`. Commit the three snapshot files
-with manuscript changes. The source manifest binds the PDF and preview to the
+with manuscript changes. The snapshot manifest binds the PDF and preview to the
 LaTeX, bibliography, generated tables, and figures. It does not require identical
 PDF bytes across compilers. The report date is fixed for this version; update it
 and the version deliberately for a future release.
@@ -66,3 +72,13 @@ actual byte expenditure, and the distinction between exploratory and independent
 results. The [implementation roadmap](../docs/roadmap.md) separates implemented
 software from external evidence still needed. Venue-specific formatting, affiliation,
 and any required disclosures should be resolved before preparing a submission.
+
+## Version record
+
+Version 1.0, preserved in Git before the Mission2 run, reported Mission1 development
+only. Version 1.1 adds the frozen follow-up and explicitly records its empty anomaly
+denominator. The source/preparation protocol commit is `3c1ed90`; the pre-evaluation
+lock commit is `d5366f3`. This local record is not third-party preregistration.
+The [Mission2 result](../docs/results/mission2-study.md) links all completed reports.
+`python/report_mission2_study.py` regenerates its qualification table and the
+cross-phase input-requirement figure from completed reports and the verified source.

@@ -1,24 +1,23 @@
 \begin{abstract}
-Telemetry reduction can remove the observations needed to detect or investigate a
-fault. We study causal retention under an explicit serialized-byte budget and
-separate capture decisions from assessment of decoded packets. A bounded recorder
-combines pre-trigger context, post-trigger capture, and detector-independent
-background sampling. Comparisons use native observations, source-fixed event
-denominators, and training-calibrated receivers that remain frozen across policies.
-On 3,248,700 Mission1 validation observations containing 11 eligible events, the
-recorder preserves three-component PCA evidence for 11/11 events using 6.30 MiB,
+A telemetry recorder can preserve samples that support one anomaly detector while
+losing the context or consecutive inputs required by another. We study causal
+retention under an explicit serialized-byte cap, using original timestamps,
+training-calibrated receivers, and source-fixed event denominators. In a Mission1
+development replay of 3,248,700 observations and 11 eligible events, adaptive
+capture retains three-component PCA evidence for 11/11 events using 6.30 MiB,
 compared with 5/11 using 25.04 MiB for uniform sampling at the same 1,024-byte
-hourly cap. Removing pre-trigger capture leaves the event count unchanged but
-reduces pre-event context coverage from 64.3\% to 1.8\%. Seeded controls,
-component ablations, and a 132-arm capture/receiver comparison examine the scope
-of these results. A separate AR(1) receiver exposes a temporal limitation:
-with the trigger disabled, singleton background sampling preserves PCA evidence
-for 4/11 events but temporal evidence for 0/11. An adjacent-pair background control,
-developed after inspecting this failure, recovers temporal evidence for 2/11.
-Illustrative finite-buffer delivery scenarios further distinguish captured from
-delivered evidence. The results show why event counts, context, receiver input
-requirements, and actual expenditure must be evaluated together. They remain
-development evidence on one mission; the exploratory pair control, independent-
-mission generalization, and operational diagnostic usefulness require further
-validation.
+hourly cap. Removing pre-trigger capture preserves the event count but reduces
+pre-event context from 64.3\% to 1.8\%. With the trigger deliberately disabled,
+singleton background sampling retains PCA evidence for 4/11 events but AR(1)
+evidence for 0/11; an exploratory adjacent-pair control recovers 2/11 temporal
+events. A protocol-fixed Mission2 follow-up completes 148 capture arms and 36
+temporal assessments on 3,675,510 observations. Its metadata-selected channels
+contain only rare nominal annotations, so the primary anomaly-retention comparison
+has an empty denominator and is uninformative. Pair capture supplies 45,935 usable
+consecutive inputs versus zero for singleton background, but this does not establish
+fault-recovery benefit. The combined results distinguish event evidence, context,
+temporal input availability, and delivery, while exposing the need to qualify
+annotation support before interpreting a transfer experiment. They support an
+auditable evaluation framework and specific retention tradeoffs, not a novel
+optimal recorder, demonstrated anomaly generalization, or operational diagnosis.
 \end{abstract}

@@ -39,9 +39,10 @@ be finished before research starts. The next release targets this question:
 
 ## External evidence still required
 
-An untouched independent-mission dataset, engineering requirements for a realistic
-contact model, and operator assessment of diagnostic usefulness are not present in
-this repository. Software and synthetic tests cannot substitute for those inputs.
+An anomaly-supported independent evaluation, engineering requirements for a realistic
+contact model, and operator assessment of diagnostic usefulness remain needed.
+The acquired Mission2 group has completed its frozen follow-up but contains no
+eligible anomalies; it cannot establish fault-retention generalization. Software and synthetic tests cannot substitute for those inputs.
 The current packet schema requires six synchronized channels. Asynchronous channels
 and arbitrary-width records require a separate versioned format and should follow
 a concrete dataset/deployment requirement, rather than silently changing the
@@ -57,3 +58,9 @@ mismatch arms, 28 temporal evaluations, and an eight-arm exploratory pair contro
 The software acceptance criteria above are covered by regression/integration tests.
 Actual external evidence listed above remains pending; do not mark those research
 questions complete because their runners exist.
+
+The [completed Mission2 follow-up](results/mission2-study.md) preserves an
+uninformative primary contrast and measurable temporal input availability. Future
+source qualification must establish annotation support without selecting for
+favorable algorithm scores, or cover the full intended target set. The empty
+attempt is retained rather than replaced after the outcome.

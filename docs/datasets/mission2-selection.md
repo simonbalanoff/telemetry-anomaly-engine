@@ -120,3 +120,14 @@ The complete 148 capture arms and 36 selected temporal evaluations are required.
 Results do not authorize retrospective channel, split, policy, or seed selection.
 The paper's Version 1.0 snapshot predates this evaluation and remains a Mission1
 technical report until a separately identified revision incorporates new evidence.
+
+## Completed follow-up and post-evaluation qualification
+
+All declared capture and temporal arms completed, followed by the frozen primary
+analysis. [The result](../results/mission2-study.md) is uninformative for anomaly
+retention: this fixed group has only Rare Event annotations, not eligible anomaly
+labels. [The post-evaluation support check](mission2-annotation-support.json)
+independently compares original CSV categories/intersections with the bundle.
+No channels, dates, settings, or categories were changed after observing this.
+The 45,935 scorable pairs measure captured input availability, not fault detection.
+Technical Report v1.1 incorporates both the Mission1 findings and this limitation.

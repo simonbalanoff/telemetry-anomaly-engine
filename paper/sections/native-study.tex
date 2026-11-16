@@ -1,77 +1,85 @@
-\section{Native Mission1 Validation Study}
+\section{Mission1 Development Results}
 \label{sec:native}
-\subsection{Data and fixed receiver configuration}
-The first native-data pilot uses all 3,248,700 original observations from
-2008--2010 in Mission1 channels 41--46, spanning 26,304 active hourly epochs.
-The native cache contains all 15,381,169 source observations and is bound to the
-actual archives and array bytes by SHA-256. Every occupied grid cell's final
-native value and occupancy were checked against the previously verified export.
-Capture consumes the original observations, including within-cell collisions;
-forward-filled grid values are never introduced as raw evidence.
+\subsection{Evidence and expenditure under common caps}
+The initial pilot serializes four policies at four caps before assessment. Every
+arm emits one packet per active hour and respects its encoded cap. Decoding checks
+raw values and timestamps exactly and summaries against their true source buckets.
+All 11 annotated evaluation anomalies have eligible original observations, so a
+retention failure remains a miss under a shared denominator.
 
-Training uses 8,713,221 native observations before 2008, excluding annotations
-for anomalies, rare events, and communication gaps in any selected channel.
-Normalization and standardized covariance are fitted on these observations.
-The two frozen receivers are maximum absolute training-reference deviation and
-three-component PCA reconstruction error. Each threshold is its eligible-training
-0.999 score quantile, with strict exceedance at evaluation. These receivers differ
-from the first-difference capture score but share normalization; this is not
-independence from all modeling assumptions.
+At 1,024 bytes per active hour, adaptive capture preserves PCA evidence for 11/11
+events using 6.30 MiB, compared with 5/11 and 25.04 MiB for uniform sampling.
+Pre-event context averages 64.3\% versus 22.9\%. The unconstrained format cost,
+calculated from source records and hourly headers rather than serialized as a
+fifth policy, is 112.34 MiB. Threshold-only capture uses 0.81 MiB and preserves
+10/11 events, exposing a cost/evidence tradeoff rather than a universal winner.
 
-Capture uses a fixed first-difference threshold of six training standard-deviation
-units and resets differences across gaps longer than 150 seconds. Each of the
-four policies runs at 256, 512, 1,024, and 2,048 bytes per active hour. Adaptive
-capture uses eight prior samples, four following samples, and a 0.2 background
-reservation. Context coverage uses the available eligible samples in the 300
-seconds before original event onset. These are development choices, not verified
-requirements from a spacecraft operator.
+\subsection{Seeded controls and component removals}
+Reservoir sampling uses Algorithm R; randomized-phase sampling shifts the equal-
+time targets and skips targets crossed by native gaps. Both use bounded epoch
+state and retain each observation at most once. Seeds 0--9, all four caps, and the
+two policies give 80 arms. Epoch-specific seeds prevent skipped epochs from shifting
+later random sequences; budgets share random numbers without guaranteeing nested
+reservoirs. All comparisons reuse the original frozen receiver parameters.
 
-\subsection{Decoded-packet results}
-All 16 packet streams were serialized before annotation-based evaluation.
-Concatenated TAER packets add no external framing bytes. Decoding verifies each
-retained timestamp and binary32 value against the source, and each summary against
-its true source bucket. Every arm emits one packet per active hour and respects
-its declared cap. All 11 annotated validation events have eligible source samples;
-retention failures therefore remain misses under a common denominator.
+At 1,024 bytes, reservoir retains a mean 5.1 PCA events (observed seed range 4--7)
+using 25.15 MiB, and randomized phase 5.4 (4--8) using 24.96 MiB. Their mean context
+coverage is 23.8\% and 21.8\%. Figure~\ref{fig:seeded} shows the four-cap tradeoff.
+These ranges describe variation on the same 11 events. Uniform's nonmonotonic
+coverage across caps is possible because changing strata changes phase.
 
-\begin{table}[ht]
-\centering\footnotesize
-\input{generated/native_results}
-\caption{Native validation pilot. Cap is application bytes per active hour; MiB
-is actual serialized expenditure. Raw events counts events with retained raw
-samples. Level and PCA count events with positive frozen-receiver evidence, not
-operational event precision. Summary raw receiver results are unsupported.}
-\end{table}
-
-At a 1,024-byte cap, adaptive capture retains PCA evidence for 11 of 11 events
-using 6.30 MiB; uniform sampling retains evidence for five using 25.04 MiB.
-Adaptive pre-event raw context coverage averages 64.3\%, versus 22.9\% for uniform.
-The unconstrained format cost is calculated as 112.34 MiB from raw record and
-hourly-header counts; it is not a measured fifth packet stream. Thus the adaptive
-stream uses approximately 5.60\% of that reference cost in this pilot.
-
-\begin{figure}[ht]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{generated/native_tradeoff.pdf}
-\caption{Evidence and context versus actual byte cost on validation. Only raw
-policies share the frozen PCA receiver. Annotations indicate per-hour caps; the
-full-archive reference cost is calculated. These curves are development outcomes,
-not independent generalization estimates.}
+\includegraphics[width=\linewidth]{generated/randomized_tradeoff.pdf}
+\caption{Mission1 evidence and context against actual encoded bytes. Shading is
+the observed seed range, not a confidence interval for new faults. Shared caps
+allow different actual expenditure.}
+\label{fig:seeded}
 \end{figure}
 
-\subsection{Failure modes and scope of the result}
-The adaptive 1,024-byte stream also contains 1,848 positive normal PCA observations,
-compared with 6,708 for uniform and 12,425 on the full archive. These are not alarm
-episode counts: sparse policies score different numbers of normal observations,
-and no operational false-alarm guarantee follows. Summary bounds overlap all 11
-events at coarse bucket resolution, but can associate unrelated extrema with an
-event; those counts are not raw receiver recall.
+Sixteen paired ablation arms remove one component at a time. Full arms reproduce
+the original adaptive packet bytes exactly. At 1,024 bytes, removing pre-trigger
+capture preserves 11/11 PCA events while reducing pre-context from 64.3\% to 1.8\%.
+Removing background reservation loses PCA evidence for event \texttt{id\_138} and
+reduces cost from 6.30 to 0.90 MiB. At 256 bytes, releasing the background quota
+instead increases pre-context from 24.2\% to 41.5\%. Thus reservation has a
+budget-dependent opportunity cost. Removing post-trigger capture leaves PCA event
+counts and pre-context unchanged at every cap; diagnostic post-event usefulness
+has not been established. These removals do not estimate component interactions.
 
-Uniform evidence coverage is nonmonotonic across caps because changing deterministic
-strata changes sample phase. The 2,048-byte arm misses a point event retained by a
-smaller-cap arm. Section~\ref{sec:seeded} evaluates randomized sampling controls, and
-Section~\ref{sec:mismatch} examines alternate capture and receiver choices. The study contains only 11 events on a mission already
-used in development, initially uses two simple receivers sharing normalization and does not
-measure physical diagnosis. Illustrative delivery is examined separately in
-Section~\ref{sec:mismatch}. A separate frozen mission
-study is required before claiming generalization or a new operational solution.
+\subsection{Receiver mismatch and the temporal limitation}
+\label{sec:mismatch}
+The expanded benchmark crosses four capture conditions with threshold, adaptive,
+and coverage recording, alongside uniform and seeded controls: 132 arms total.
+At 1,024 bytes, adaptive and coverage retain rank-three PCA evidence for 11/11
+events at approximately 6.30 MiB. Coverage raises pre-context from 64.3\% to
+66.3\% but reduces post-context from 40.2\% to 36.9\%. At PCA ranks four and
+five, coverage retains 11/11 and ordinary adaptive capture 10/11. With the trigger
+disabled, their rank-three counts are 6/11 and 4/11 at 6.22 MiB. These are
+correlated receiver sensitivities, not broad detector-independent guarantees.
+
+The AR(1) receiver is calibrated on 8,712,785 eligible training pairs. Full-archive
+input supplies evidence for all 11 events. Seven declared policies at four caps
+give 28 temporal assessments. At 1,024 bytes, adaptive context preserves temporal
+evidence for 10/11 events, uniform for 2/11, and threshold-only for 1/11. Disabled-
+trigger singleton background retains 0/11 temporal events despite 4/11 PCA events.
+Isolated retained values therefore cannot be treated as usable forecast transitions.
+
+The pair control is introduced after observing that validation failure and assessed
+in eight exploratory arms. Under enabled first-difference capture, it matches
+adaptive's 10/11 temporal events at the 1,024-byte cap. With the trigger disabled,
+it retains 2/11 temporal and 4/11 PCA events at 6.22 MiB. It partially addresses
+the measured input failure without establishing optimal allocation or general
+protection of unfamiliar faults. Table~\ref{tab:temporal} reports cost and input
+availability alongside event counts; Figure~\ref{fig:requirements} contrasts this
+development result with the frozen follow-up.
+
+\begin{table}[htbp]
+\centering\small
+\input{generated/temporal_results}
+\caption{Mission1 at 1,024 bytes per hour. Pairs require consecutive original
+observations within the gap limit; input counts include periods excluded from
+fault scoring. Burst rows are exploratory. Exact bytes and complete cap results
+are in the reports.}
+\label{tab:temporal}
+\end{table}

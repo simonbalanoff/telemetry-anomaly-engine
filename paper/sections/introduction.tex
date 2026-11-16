@@ -1,44 +1,40 @@
 \section{Introduction}
-A telemetry monitor acts on the information that survives acquisition, retention,
-and transmission. Evaluating a detector on a complete archive does not answer
-which measurements a recorder should preserve before an engineer knows that a
-fault has occurred. Onboard processing, storage, and compression between ground
-contacts are established responsibilities of spacecraft data
-systems~\citep{esa-data-systems}. These constraints motivate evaluating the retention
-decision as well as the downstream detector.
+An anomaly detector can act only on the information that survives acquisition,
+retention, and delivery. Evaluating a model on a complete archive does not answer
+which measurements a recorder should preserve before the nature of an event is
+known. Spacecraft data systems already manage onboard processing, storage, and
+compression between ground contacts~\citep{esa-data-systems}; the scientific question
+here is how to assess the evidence remaining after an explicit recording budget.
 
 Consider a short excursion followed by a return to the ordinary range. Keeping
-only the final observation of a reporting cell can erase the excursion. Extrema
-preserve magnitude but not necessarily exact timing, sequence, or cross-channel
-relationships. Conversely, recording every unusual interval can exhaust a budget
-on harmless changes. A useful recorder needs selective detail and a way to preserve
-observations outside its trigger's current understanding of abnormal behavior.
+only the last observation in a reporting cell can erase it. Extrema preserve
+magnitude but not necessarily time order or cross-channel relationships. Even
+retaining a positive detector sample may be insufficient: a later forecasting
+receiver can require its original predecessor, and an engineer can need the
+pre-event trajectory. Conversely, recording every unusual interval can spend the
+budget on harmless changes. Evidence retention therefore requires more than an
+anomaly score or a count of events with at least one retained sample.
 
-We ask: \emph{under an explicit byte cap and bounded recorder state, which causal
-retention choices preserve evidence useful to downstream receivers?} Here,
-``fault evidence'' means measurements and temporal context supporting subsequent
-assessment, not a validated root-cause diagnosis. A receiver may differ from the
-capture trigger, and its input requirements may change which retained observations
-are useful. Two isolated samples are not interchangeable with a consecutive pair
-needed by a forecasting model.
+We ask: \emph{under a declared byte cap and bounded recorder state, how do capture
+choices affect pointwise evidence, temporal inputs, and surrounding context?}
+``Fault evidence'' denotes measurements supporting subsequent assessment; it does
+not mean a validated physical fault or root-cause diagnosis. All empirical inputs
+are released, already downlinked telemetry, not a complete reconstruction of what
+an onboard instrument could have acquired.
 
-This report makes three contributions:
-\begin{enumerate}
-\item An explicit application-byte contract and decoded-packet evaluation protocol
-that preserve original timestamps and values, separate capture from labels, and
-keep source-eligible event denominators fixed across policies.
-\item A reproducible Mission1 development study with common byte caps, seeded
-sampling controls, component ablations, capture/receiver mismatch, and illustrative
-finite-buffer delivery. Both evidence and actual expenditure are reported.
-\item A measured distinction between pointwise and temporal evidence preservation,
-with an exploratory adjacent-pair control that partially addresses the observed
-failure of singleton background capture.
-\end{enumerate}
+The report makes three contributions. First, it specifies auditable application-
+byte accounting and decoded-packet assessment with fixed source eligibility and
+explicit receiver input requirements. Second, it measures how seeded sampling,
+component removals, capture/receiver mismatch, and illustrative delivery change
+those outcomes in Mission1 development data. Third, it records a frozen Mission2
+follow-up, including the empty anomaly denominator that prevents a performance
+claim and the separate measurement of temporal input availability.
 
-The analysis addresses three questions: how context changes when event counts do
-not; what survives when the capture trigger misses an event; and how receiver input
-requirements and delivery affect the evidence available for assessment. We do not
-claim that triggered buffering or anomaly-guided prioritization is new. All mission
-results concern the same 11 validation events, and the pair control was designed
-after observing those results. Independent-mission and operator validation remain
-necessary before claiming generalization or diagnostic benefit.
+The distinction between phases is central. The adjacent-pair background control
+was designed after observing a Mission1 temporal failure. Mission2 channel
+selection, splits, settings, and primary analysis were committed before evaluation,
+with receiver recalibration confined to training data. The selected Mission2 group
+has no anomaly labels, so that follow-up cannot confirm the Mission1 event result.
+It is retained as an uninformative primary comparison rather than replaced by a
+more favorable subset. Triggered buffering and anomaly-guided downlink are
+established precedents; neither is claimed as an invention of this work.

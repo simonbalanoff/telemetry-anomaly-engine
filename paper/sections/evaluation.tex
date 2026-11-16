@@ -1,86 +1,99 @@
-\section{Experimental Protocol}
+\section{Experimental Design and Evidence Definitions}
 \label{sec:protocol}
-\subsection{Separation of capture and assessment}
-Recorders receive observations and causal scores, never evaluation event labels.
-All packet streams in an experiment are captured before annotation-based
-assessment. Decoding checks retained timestamps and binary32 values against the
-native source. Receiver normalization and thresholds are fitted on eligible
-training observations and frozen across retention policies. The initial level and
-three-component PCA receivers share normalization with capture; this separates
-decisions without claiming independence from every modeling assumption. Additional
-PCA ranks and an AR(1) receiver test sensitivity to downstream assessment.
+\subsection{Native source and study phases}
+The source is the ESA Anomaly Dataset~\citep{esa2025dataset,kotowski2026esa}.
+Dates below refer to its anonymized timeline rather than disclosed operational
+calendar dates. Each study uses six synchronized numeric channels and original
+observations, including samples that a fixed-rate grid would discard. Timestamps
+and values are verified against source arrays; filled grid values never become
+raw evidence. Table~\ref{tab:study-data} separates the development and follow-up
+phases.
 
-Positive-duration annotations use half-open intervals; point annotations refer to
-an exact native instant. Rare-event and communication-gap annotations exclude
-observations from the eligible event evidence. Boundary-censored events and events
-without eligible native observations are reported separately. A policy that loses
-all observations from an otherwise eligible event receives a miss, not a smaller
-denominator.
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+Quantity & Mission1 development & Mission2 frozen follow-up \\
+\midrule
+Channels & 41--46 & 86--91 \\
+Eligible training observations & 8,713,221 & 3,698,356 \\
+Evaluation observations & 3,248,700 & 3,675,510 \\
+Active hourly epochs & 26,304 & 15,312 \\
+Source-eligible anomaly events & 11 & 0 \\
+Training ends & 2008-01-01 & 2001-10-01 \\
+Evaluation ends (exclusive) & 2011-01-01 & 2003-07-01 \\
+\bottomrule
+\end{tabular}
+\caption{Released native inputs. Training excludes annotated intervals on any
+selected channel. The empty Mission2 anomaly denominator permits no event-recall
+estimate; its source qualification is discussed in Section~\ref{sec:mission2}.}
+\label{tab:study-data}
+\end{table}
+
+Mission1 configuration and method development use the 2008--2010 validation
+interval. Its previously examined historical test period is excluded. The Mission2
+subset was selected by a metadata-only rule: the lowest numbered complete group
+with exactly six numeric target channels. Group 13 gives channels 86--91. Selection
+and the chronological boundary were fixed before annotation conversion, without
+using model outcomes or selecting a group for favorable anomaly counts.
+The final evaluation endpoint is the first hourly boundary after the last source
+observation. Receiver training uses earlier data only; transfer is not zero-shot
+reuse of a Mission1 receiver.
+
+Shared settings are one-hour epochs, caps of 256, 512, 1,024, and 2,048 bytes per
+active epoch, eight prior and four following context samples, background fraction
+0.2, and 300-second pre/post-event assessment windows. First-difference capture
+uses six training standard-deviation units and resets across gaps over 150 seconds.
+The alternate level trigger uses six standardized units; PCA capture reaches the
+trigger boundary at its training-calibrated threshold. The disabled trigger supplies
+zero scores under a positive threshold as an explicit stress control.
+
+\input{sections/receivers}
+
+\subsection{Capture, eligibility, and annotation boundaries}
+Recorders receive observations and causal scores, never evaluation labels. All
+capture streams in an experiment are complete before label-based assessment.
+Normalization and receiver thresholds use eligible training data and remain fixed
+across retention policies. Rare nominal events and communication-gap annotations
+are exclusions, not faults relabeled to improve a result.
+
+Positive-duration annotations are half-open; point annotations refer to their exact
+native instant. Event IDs group selected-channel rows, including disjoint spans.
+Mission2 preserves original intervals and marks an event boundary-censored if any
+selected-channel part lies outside the split, even when its rows do not individually
+cross the boundary. Censored events remain in detail reports but outside the common
+eligible denominator. Their intersecting training intervals still mask fitting data.
+Boundary placement is not changed after examining labels. Events without eligible
+source observations are separately unavailable, rather than silently imputed.
 
 \subsection{Outcomes and denominators}
-Let $I_e$ contain the eligible source-observation indices in event $e$, $R$ the
-indices recovered from decoded raw records, and $J_e(w)$ the eligible observations
-in the $w$ time units before onset. Raw event-sample and pre-event coverage are
+Let $I_e$ be the eligible source indices of event $e$, $R$ the indices decoded from
+raw records, and $J_e(w)$ the eligible observations in the $w$ units before onset.
+Raw event-sample and pre-event coverage are
 \begin{equation}
  C_e=\frac{|I_e\cap R|}{|I_e|},\qquad
  Q_e(w)=\frac{|J_e(w)\cap R|}{|J_e(w)|}.
 \end{equation}
-Empty source denominators are unavailable; nonempty source denominators with no
-retained observations yield zero. Context is macro-averaged over eligible events
-with available context. Post-event coverage is defined analogously, with truncated
-windows flagged. Raw onset error is $\min_{i\in I_e\cap R}(t_i-t_e)$; a missing
-retained onset is a failure rather than a silently omitted comparison.
+Context is macro-averaged over eligible events with available context. Post-event
+coverage is analogous, with truncated windows flagged. A nonempty source denominator
+with no retained observations yields zero; an empty denominator is unavailable.
+Raw onset error is the first retained event time minus annotated onset, with missing
+onsets reported as failures.
 
-The primary evidence count is the number of source-eligible events with at least
-one positive frozen-receiver observation. All policies share the same overall
-denominator. Receiver-specific full-archive evidence provides a separate reference:
-retention cannot recover a fault the receiver cannot recognize even with complete
-input. For the AR(1) receiver, both consecutive original endpoints must survive;
-nonadjacent retained observations are not stitched together. Packet availability
-determines delivery delay, separately from raw onset localization.
+Event evidence counts source-eligible events with a positive frozen-receiver
+observation. Full-archive recoverability is reported separately: retention cannot
+recover a fault the receiver cannot recognize with complete input. Normal-score
+positives are reported with their scored exposure, not as deduplicated operational
+alarms. Summary extrema provide coarse bucket evidence and are not compatible with
+the raw-input PCA or AR(1) receiver. Available consecutive pairs count captured
+inputs meeting adjacency/gap requirements, including intervals excluded from fault
+scoring; they are neither anomaly detections nor delivered-packet counts.
 
-Positive normal observations are reported alongside scored normal exposure. They
-are not deduplicated operational alarm episodes. Summary extrema provide only
-coarse bucket evidence: an overlapping extremum does not establish exact event
-timing, raw-sample coverage, or compatibility with a raw-input receiver.
-
-\begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{ll}
-\toprule
-Design variable & Native development configuration \\
-\midrule
-Training observations & Before 2008; annotated intervals excluded \\
-Evaluation interval & 2008--2010 Mission1 validation \\
-Reporting epoch & One hour \\
-Application-byte cap & 256, 512, 1,024, or 2,048 bytes per active epoch \\
-Pre/post-trigger context & Eight prior and four following native samples \\
-Background reservation & 0.2 of raw capacity, rounded up \\
-First-difference trigger & Six training standard-deviation units \\
-Capture/forecast gap reset & 150 seconds \\
-Receiver threshold quantile & 0.999 on eligible training scores \\
-Pre/post-event evaluation window & 300 seconds \\
-\bottomrule
-\end{tabular}
-\caption{Shared development settings. Component removals and alternate capture
-scores are specified in their respective experiments. These settings are not
-validated spacecraft operating requirements.}
-\label{tab:configuration}
-\end{table}
-
-\subsection{Scope and interpretation}
-The native source, inclusion rules, and initial results appear in
-Section~\ref{sec:native}; subsequent sections examine sampling phase, component
-removals, receiver mismatch, and delivery. Synthetic protocol checks are reported
-in Appendix~\ref{app:checks}. Repeated caps, seeds, and receiver ranks reuse the
-same events; they do not create independent fault examples. Seed ranges describe
-sampling variation, not confidence intervals for new-event performance.
-
-The six-channel Mission1 subset is a development setting. Its historical test
-period was previously examined during detector development and is excluded from
-these studies. A fresh generalization estimate requires an independent mission,
-with channel selection, splits, retention settings, and analysis locked before
-evaluation. Receiver recalibration on that mission's designated training data is
-permitted by the transfer protocol and does not constitute zero-shot transfer of
-the Mission1 receiver.
+The Mission2 primary contrast was fixed to disabled-trigger pair versus singleton
+background at the 1,024-byte cap, assessed with AR(1). The analysis reports paired
+event outcomes (both, pair only, singleton only, neither), full-archive support,
+and actual expenditure. No eligible or recoverable events makes it uninformative.
+Other caps, models, context outcomes, and transport scenarios are secondary.
+All arms are reported. Repeated frames, seeds, caps, and correlated PCA ranks do
+not create additional independent fault examples; seed ranges are not new-event
+confidence intervals.

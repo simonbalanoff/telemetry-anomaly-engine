@@ -1,0 +1,23 @@
+{
+  "primary_contrast": "disabled-trigger pair versus singleton background; AR(1), 1024-byte cap",
+  "source_eligible_events": 0,
+  "full_archive_recoverable_events": 0,
+  "informative": false,
+  "paired_counts": {
+    "both": 0,
+    "pair_only": 0,
+    "singleton_only": 0,
+    "neither": 0
+  },
+  "singleton_events": 0,
+  "pair_events": 0,
+  "actual_encoded_bytes": {
+    "1024-disabled-adaptive": 3797268,
+    "1024-disabled-burst": 3797304
+  },
+  "events": [],
+  "interpretation": "Shared cap, not equal expenditure; descriptive paired counts, no independence or significance claim. Empty eligibility/recoverability is uninformative, not success.",
+  "benchmark_sha256": "27393338566842bdc6cf0f2e36941318626951036b6c24fcea60804b81efc84a",
+  "temporal_sha256": "c1e8c68babc7f0801d106ba2e53cca568e0181d03b1bd03bb00a233e09a25a78",
+  "analysis_sha256": "58b8b245c30d1e2afc275bd01e46aacc04bf7ea06ad73a489e5f07a8640f928b"
+}

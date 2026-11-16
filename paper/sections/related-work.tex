@@ -1,23 +1,50 @@
 \section{Related Work and Positioning}
-Anomaly-based data prioritization has spacecraft precedent. Finley and
-colleagues investigate inexpensive anomaly detection for prioritizing in situ
-observations~\citep{finley2023prioritization,finley2024generalized}. Our focus is engineering-fault context under explicit recording budgets, rather than
-claiming anomaly-guided downlink selection itself as a contribution. The evaluation therefore concerns retained evidence under a declared byte
-contract, without claiming anomaly-guided downlink selection as a new contribution.
+Spacecraft data selection precedes the current study. The MMS operations system
+combines onboard burst-data prioritization with scientist-in-the-loop selection
+under a limited downlink allocation~\citep{baker2016burst}. Finley and colleagues
+use PCA and one-class support vector machines to prioritize in situ science
+observations~\citep{finley2023prioritization,finley2024generalized}. These works
+establish that triggered storage and anomaly-guided downlink are not new ideas.
+Our comparison concerns the engineering-event evidence available after a declared
+application-byte cap, including the inputs required by a different receiver.
+It is not a reproduction of MMS operations or a performance comparison against
+Finley's science-prioritization method.
 
-Joint compression and anomaly detection has also been studied in networked sensor
-systems~\citep{elsayed2023compression}. Our first implementation uses transparent
-raw and extrema records rather than a learned codec. This makes metadata costs
-and retained information auditable, while leaving stronger compression baselines
-for the full evaluation.
+ESA-ADB supplies the annotated multi-mission source and an operationally motivated
+anomaly-detection benchmark~\citep{kotowski2026esa}. Its channel-specific event IDs
+can span multiple disjoint intervals; we preserve that grouping and do not turn
+separate channel rows into independent faults. The release anonymizes mission
+identities, units, and timelines, limiting physical interpretation of a detected
+event. Our source-fixed retention outcomes do not replace the benchmark's official
+hierarchical metrics. The related OPS-SAT benchmark evaluates annotated univariate
+telemetry fragments~\citep{ruszczak2025opssat}; those fragments are not treated here
+as a continuous synchronized six-channel mission stream.
 
-ESA-ADB supplies annotated mission telemetry and a hierarchical evaluation
-framework~\citep{kotowski2024esa}. We use its native Mission1 observations for retention experiments. Detector performance on a complete archive and evidence
-preservation after budgeted capture are different questions. The retention-specific outcomes do not replace its official hierarchical
-anomaly-detection metrics, which are not reported here.
-Reservoir sampling provides a classical detector-independent streaming control
-when the final observation count is unknown~\citep{vitter1985reservoir}. We use
-Algorithm R rather than Algorithm Z and add randomized temporal phase to test
-alignment sensitivity. These are established controls, not claimed innovations.
-The present comparisons do not establish novelty or superiority relative to
-stronger adaptive acquisition, compression, or established onboard fault recorders.
+Joint adaptive compression and anomaly detection also appears in networked sensor
+systems~\citep{elsayed2023compression}. We instead use explicit raw and extrema
+records to expose retained inputs and metadata costs. This transparency does not
+establish superiority over learned or conventional compression. Reservoir sampling
+provides a classical streaming control~\citep{vitter1985reservoir}; Algorithm R
+and randomized temporal phase are comparison tools, not claimed innovations.
+Table~\ref{tab:positioning} summarizes the resulting scope. Established adaptive
+acquisition and compression methods remain important direct competitors beyond
+the reference policies evaluated here.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}}
+\toprule
+Precedent & Main emphasis & Scope of this study \\
+\midrule
+MMS burst operations & Prioritized science segments and human review & No operational reproduction or hardware claim \\
+Finley et al. & Anomaly-guided science-data prioritization & Evidence under receiver mismatch and byte caps \\
+ESA-ADB / OPS-SAT & Annotated telemetry and detector assessment & Retained native inputs and source-fixed event counts \\
+Adaptive compression & Joint coding and anomaly assessment & Transparent raw-record costs; no codec superiority claim \\
+Reservoir sampling & Uniform streaming sample without replacement & Detector-independent, seeded control \\
+\bottomrule
+\end{tabular}
+\caption{Positioning relative to prior work. This is a scope comparison, not an
+exhaustive novelty review or a numerical ranking of the cited methods.}
+\label{tab:positioning}
+\end{table}

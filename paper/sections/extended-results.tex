@@ -1,0 +1,56 @@
+\section{Complete Mission1 Comparisons}
+\label{app:extended}
+The following generated tables preserve the complete cap sweep behind the focused
+main-text comparisons. Event denominators remain the same 11 Mission1 validation
+anomalies. Costs are actual encoded MiB under shared caps, not matched expenditure.
+Repeated arms, caps, and receiver ranks are not independent faults.
+
+\begin{table}[htbp]
+\centering\footnotesize
+\input{generated/native_results}
+\caption{Original four-policy, four-cap native pilot. Summary bounds are coarse
+bucket evidence and do not supply raw-input receiver events.}
+\label{tab:native-complete}
+\end{table}
+
+\begin{table}[htbp]
+\centering\footnotesize
+\input{generated/randomized_results}
+\caption{All four caps for the seeded controls. Ranges are observed seed minima
+and maxima on the same events, not generalization confidence intervals.}
+\label{tab:seeded-complete}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\input{generated/ablation_results}
+\caption{Paired single-component removals. No-background releases its reserved
+quota to trigger/context capture. Full arms match the original packet bytes.}
+\label{tab:ablation-complete}
+\end{table}
+
+\begin{table}[htbp]
+\centering\scriptsize
+\input{generated/mismatch_results}
+\caption{The 1,024-byte capture mismatch matrix. Blind-event counts refer to
+within-event trigger crossings and receiver-specific full-archive support; nearby
+triggers may still retain event samples as context.}
+\label{tab:mismatch-complete}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\input{generated/delivery_results}
+\caption{Illustrative delivery at the 1,024-byte recording cap. Wire expenditure
+includes overhead and unsuccessful or partial transmissions.}
+\label{tab:delivery-complete}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{generated/receiver_mismatch.pdf}
+\caption{Mission1 pointwise receiver sensitivity and illustrative delivery.
+Correlated ranks and shared events restrict inference. These plotted counts do
+not constitute validation against independent future detector families.}
+\label{fig:mismatch-complete}
+\end{figure}

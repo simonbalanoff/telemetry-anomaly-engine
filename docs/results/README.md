@@ -1,5 +1,11 @@
 # Historical detector results and current retention studies
 
+The [frozen Mission2 follow-up](mission2-study.md) completed 148 capture arms and
+36 temporal evaluations. Its primary anomaly comparison is uninformative because
+the fixed metadata-selected subset has no anomaly labels. It measures temporal
+input availability separately and does not establish cross-mission fault recovery.
+
+
 The [receiver-mismatch benchmark](receiver-mismatch.md) and
 [temporal/pair-control study](temporal-retention.md) extend the current Python research results: the [native pilot](native-retention.md),
 [seeded sampling comparison](randomized-retention.md), and

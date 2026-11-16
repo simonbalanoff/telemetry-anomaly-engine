@@ -99,3 +99,14 @@ profile. The independent benchmark freezes 148 capture arms and 36 temporal
 assessments. Software/integration checks do not complete the independent-mission
 or operator-validation research milestones. The paired-background policy was
 motivated by the observed validation failure and must be frozen before confirmation.
+
+## Frozen Mission2 follow-up completed
+
+The declared 148 capture arms and 36 temporal assessments have completed. The
+[primary contrast](../docs/results/mission2-primary.json) is uninformative because
+the fixed group has no eligible anomaly annotations. The paired control supplies
+45,935 consecutive inputs, but no fault-recovery conclusion follows. Version 1.1
+reports this attempt and the post-evaluation annotation-support verification.
+The next independent evidence milestone needs a declared support qualification
+or broader source representation; do not silently substitute an outcome-favorable
+group or reinterpret rare nominal events as faults.

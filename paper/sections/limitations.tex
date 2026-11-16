@@ -1,39 +1,53 @@
-\section{Limitations and Future Work}
+\section{Discussion, Limitations, and Next Evidence}
 \label{sec:limitations}
-\paragraph{Statistical scope.}
-All mission findings concern 11 validation events from six synchronized channels
-on a mission already used for development. Correlated frames, PCA ranks, budget
-caps, and repeated seeds do not increase the number of independent faults.
-The adjacent-pair policy was designed after observing a temporal validation
-failure; its eight-arm result is exploratory. A frozen independent-mission
-assessment is the next test of generalization. The available transfer interface
-has been exercised on synthetic bundles only.
+\paragraph{What is supported.}
+Mission1 shows that an unchanged event count can conceal lost pre-event context,
+and that pointwise evidence can survive while temporal input requirements fail.
+The paired control changes the available transition structure under the same cap;
+the Mission2 follow-up reproduces that structural distinction. These observations
+support evaluating the retained inputs required by a receiver, not ranking a
+recorder solely by the anomaly score that selected its samples.
 
-\paragraph{Receiver and diagnostic scope.}
-The pointwise receivers share normalization, and the AR(1) receiver is a simple
-linear model. Evidence under these models does not establish compatibility with
-arbitrary future detectors. Event coverage and raw context are not validated
-root-cause explanations or measures of operator usefulness. Summary extrema can
-associate unrelated observations with an event. Stronger temporal receivers,
-established adaptive-retention competitors, and engineering assessment are needed
-before asserting broader diagnostic benefit or superiority over prior methods.
+\paragraph{What is not established.}
+The Mission1 event findings remain development results on 11 anomalies. The pair
+control was designed after inspecting them. Mission2 has no eligible anomaly
+labels in the fixed source subset and therefore cannot confirm or refute an event-
+recovery improvement. Its millions of observations and completed arm count do not
+repair that empty denominator. Correlated frames, repeated seeds, caps, and PCA
+ranks are not independent faults. We report descriptive paired counts and observed
+seed ranges without treating them as generalization confidence intervals.
 
-\paragraph{Recorder design.}
-Background phase is deterministic, context lengths are counted in samples rather
-than elapsed time, and recorder state resets at epoch boundaries. Trigger capacity
-is spent chronologically rather than through an optimized eviction rule. Pairing
-trades temporal spread for consecutive inputs and can leave odd quota slots unused.
-Single-component removals do not identify interactions or optimal allocations.
-The current schema requires six synchronized channels; asynchronous observations
-and arbitrary channel counts require explicit source and format extensions.
+\paragraph{Data qualification and scope.}
+The six-channel synchronized interface constrained source selection, and metadata
+alone failed to establish label support. A future protocol should qualify anomaly
+coverage independently of algorithm scores or cover the complete intended target
+set with an explicit asynchronous/variable-width representation. The present
+attempt remains reported rather than being replaced after outcomes were known.
+Both sources belong to the same curated ESA collection, with anonymized identities,
+units, and timelines. Released ground telemetry is not evidence that every original
+onboard observation was available, and archive replay does not validate a physical
+acquisition or downlink system. No result establishes root-cause diagnosis or
+operator usefulness.
 
-\paragraph{Resource and delivery scope.}
-The application-byte contract excludes physical link framing. The separate
-simulator charges illustrative overhead and finite-buffer contacts, but its
-schedule lacks mission-specific requirements and its single loss seed does not
-support an uncertainty estimate. Partial wire progress abstracts physical frame
-timing; retransmission is not modeled. Congestion comparisons also reflect
-unequal actual expenditure under shared caps. Python-traced allocations and
-single-run host throughput do not establish total memory, embedded latency, or
-flight suitability. A compiled implementation would require a measured deployment
-need rather than serving as evidence of one.
+\paragraph{Method limitations.}
+Calibration assumes that annotated training exclusions are available; operational
+training quality may differ. The pointwise receiver bank shares normalization,
+and AR(1) is a simple linear
+model selected for its consecutive-input requirement. The disabled trigger is a
+controlled stress case, not an estimated probability of onboard failure. Two-sample
+bursts are tailored to that requirement and do not protect arbitrary forecasting
+windows or unknown future models. Background phase is deterministic, context is
+counted in samples, and recorder state resets at epoch boundaries. Capacity is
+spent chronologically rather than through an optimized trigger-record eviction
+policy. Single removals do not establish interactions or an optimal allocation.
+
+\paragraph{Resources and comparison.}
+Shared recording caps permit unequal actual expenditure. The contact schedules
+are illustrative; partial wire progress is not a physical radio model, and one
+loss seed supports no uncertainty claim. Temporal availability is measured before
+delivery. Host throughput and traced allocations do not establish embedded RAM,
+latency, or flight suitability. Learned codecs, stronger temporal models, and
+established adaptive-retention methods remain direct competitors not implemented
+in this comparison. An annotation-supported frozen evaluation, engineering link
+requirements, and operator assessment are needed before broader performance or
+deployment claims.

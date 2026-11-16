@@ -139,7 +139,9 @@ and NumPy versions against the lock. It calibrates all receivers from training
 only and parses evaluation annotations after every capture completes. Changing
 settings, code, or inputs requires an explicit new lock. Preserve and report all
 attempts; a lock cannot prove that someone has never inspected labels. This
-workflow has been tested on synthetic bundles; real cross-mission results are pending.
+workflow has also completed the [frozen Mission2 follow-up](results/mission2-study.md).
+Its fixed subset has no eligible anomaly labels, so the primary fault comparison is
+uninformative. Temporal input availability is measured separately.
 
 ## Resource profile
 
@@ -149,3 +151,13 @@ Both passes must produce identical packet hashes. Measurements include synthetic
 sample creation, encoding, and hashing but exclude disk I/O and receiver training.
 Traced allocations are not process RSS, total native allocations, or embedded RAM.
 One local run does not establish deployment capacity or reliable tail latency.
+
+## Completed Mission2 attempt
+
+The [protocol](../protocols/mission2-study-v1.md), [input lock](../protocols/mission2-study-v1.lock.json),
+and [results](results/mission2-study.md) preserve the complete 148/36-arm follow-up.
+The empty eligible anomaly denominator is not a reason to relabel rare events or
+substitute another group. The annotation-support check is explicitly post-evaluation.
+`report_mission2_study.py` generates descriptive paper artifacts; it does not alter
+scoring or replace the locked primary analysis. See the source-selection record for
+exact reproduction commands and the two local pre-evaluation commits.

@@ -19,8 +19,12 @@
 | Seed ranges are generalization confidence intervals | Unsupported | Sampling variation is conditional on the same 11 events |
 | The retention study requires C++ | False | Capture, decoding, frozen receivers, and study orchestration are Python; the former native runtime has been retired |
 | Pre-trigger buffering preserves pre-event context in the pilot | Measured component ablation | `docs/results/ablation-retention.json`; 64.3% to 1.8% at 1,024 bytes; same validation events |
-| Cross-mission generalization is measured | Not established | Hash-locked runner tested with synthetic bundles only; independent mission data still needed |
+| Mission2 fault-retention generalization is established | Not established | Frozen follow-up completed, but the fixed subset has zero eligible anomaly events; primary analysis is uninformative |
 | Receiver mismatch is evaluated | Measured on validation only | `docs/results/receiver-mismatch.json`; six correlated pointwise receivers, four capture conditions, 132 arms |
 | Singleton background evidence supports arbitrary future temporal models | Unsupported | `docs/results/temporal-retention.json`; disabled-trigger adaptive retains 0/11 AR(1) events despite 4/11 PCA events |
 | Adjacent-pair background can preserve some temporal evidence under a disabled trigger | Exploratory validation result | `docs/results/burst-retention.json`; 2/11 AR(1) events at 1,024 bytes; policy developed after inspecting validation |
 | Host resource measurements demonstrate onboard capacity | Unsupported | `docs/results/retention-resource-profile.json`; synthetic host timing/traced allocations only |
+| A real Mission2 follow-up completed under the frozen protocol | Measured/executed | `docs/results/mission2-benchmark.json` and `mission2-temporal.json`; 148 capture and 36 temporal arms; lock commit `d5366f3` |
+| Paired background supplies temporal inputs on Mission2 | Measured input availability only | 45,935 versus zero scorable native pairs at the 1,024-byte cap; this is not anomaly recall |
+| Zero eligible events implies successful or failed event detection | Unsupported | `docs/results/mission2-primary.json` sets `informative=false`; event recall is unavailable |
+| The Mission2 subset contains only rare nominal annotations | Independently checked after evaluation | `docs/datasets/mission2-annotation-support.json`; 252 source rows, 150 evaluation rows, no anomaly rows; raw CSV agrees with bundle |

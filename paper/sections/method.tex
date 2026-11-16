@@ -1,34 +1,63 @@
-\section{Causal Recorder}
+\section{Causal Recorder and Background Controls}
+\label{sec:method}
 \subsection{Reference policies}
-\textbf{Uniform} retains the first available native sample in each of $K$ equal
-time strata, where $K=\lfloor(B-32)/36\rfloor$. It neither interpolates missing
-samples nor chooses a sample using future observations. \textbf{Summaries} divide
-an epoch into $\lfloor(B-32)/64\rfloor$ strata and record extrema and counts for
-nonempty strata. This preserves bounds at coarse resolution, not a raw trajectory.
-\textbf{Threshold} retains samples whose causal capture score reaches or exceeds a fixed
-threshold, stopping when the packet is full.
+\textbf{Uniform} retains the first available original observation in each of
+$K=\lfloor(B-32)/36\rfloor$ equal time strata. Missing observations are not
+interpolated. \textbf{Summaries} partition the epoch into
+$\lfloor(B-32)/64\rfloor$ strata and record extrema and counts for nonempty
+strata. They preserve bounds, not a raw trajectory. \textbf{Threshold} retains
+observations whose causal score reaches or exceeds a fixed trigger boundary,
+stopping when raw capacity is exhausted.
 
-\subsection{Adaptive capture with reserved background capacity}
+\subsection{Seeded detector-independent controls}
+Reservoir sampling uses Algorithm R~\citep{vitter1985reservoir} to retain a uniform
+sample without replacement of up to $K$ observations without knowing the final
+count. Randomized-phase sampling draws integer $\phi$ uniformly in $[0,T)$ and
+targets offsets $(jT+\phi)/K$. It takes the first available observation at or after
+a target, skips targets crossed by gaps, and never duplicates an observation.
+The latter is uniform in time, not equal-probability sampling of irregular
+observations. Seeds 0--9 are all reported. A SHA-256 key per policy/seed/epoch
+isolates skipped epochs; omitting the cap couples random draws across budgets
+without requiring nested sample sets. An unused initial-fill reservoir draw
+preserves that coupling without changing Algorithm R's marginal rule.
+
+\subsection{Adaptive context with reserved background capacity}
 The adaptive policy reserves $K_b=\lceil\rho K\rceil$ raw slots for background
-sampling and $K-K_b$ for triggered detail. Background samples are the first
-available samples in $K_b$ time strata, selected independently of anomaly scores.
-This is deterministic coverage sampling, not randomized exploration. A trigger
-cannot consume the reserved capacity. Unused reserved slots are not reclaimed in
-the current prototype.
+observations and $K-K_b$ for triggered detail. Its baseline background rule takes
+the first available observation in each of $K_b$ time strata independently of
+anomaly scores. A trigger cannot consume this reservation, and unused slots are
+not reclaimed by detail capture.
 
-On a threshold crossing, the recorder first reserves room for the current sample,
-then adds the most recent affordable, not-yet-retained observations from its
-pre-trigger ring. It records subsequent observations for a configured post-trigger
-sample count. Repeated triggers may exhaust the detail quota, but cannot overflow
-the serialized budget or eliminate the independent background reservation.
-Records are deduplicated by native timestamp and sorted when an epoch is finalized.
-The ring resets at epoch boundaries; cross-epoch history is not retained.
-Finalized epochs cannot be reopened to reset their budget.
+On a trigger, the recorder reserves room for the current observation and adds
+the most recent affordable, not-yet-retained samples from its bounded pre-trigger
+ring. A configured number of following samples may then be retained. Repeated
+triggers can exhaust detail capacity but cannot exceed the encoded cap. Records
+are deduplicated by timestamp and sorted at finalization. The ring and quotas
+reset at epoch boundaries; finalized epochs cannot be reopened.
 
-\subsection{Capture and delivery timing}
-The policy is causal, although packet finalization occurs at epoch end. Selecting
-an older buffered observation after a trigger is permitted: the observation was
-already available and occupied bounded memory. Capture-only comparisons assume instantaneous packet delivery at epoch end and
-measure epoch-batching delay rather than detection reaction time. The separate
-store-and-forward experiment in Section~\ref{sec:mismatch} instead accounts for
-finite queues, contact service, eviction, and packet loss.
+\subsection{Coverage and adjacent-pair controls}
+The coverage control retains the same background quota but may replace its current
+stratum's background candidate. It prefers a larger minimum squared distance from
+previously retained background vectors, measured in frozen training-standardized
+units. The first stratum supplies an initial anchor; records already requested as
+trigger/context are protected from replacement. The control is a bounded diversity
+heuristic, not a claimed novel or optimal sampling algorithm.
+
+The pair control allocates $\lfloor K_b/2\rfloor$ background strata to adjacent
+original observations. A pending sample is committed with its next native neighbor
+only if both lie in the same stratum and epoch and their gap is at most 150 seconds.
+Unpaired samples are not emitted as background, and an odd quota slot is left
+unused. Trigger/context capture remains unchanged. At the 1,024-byte cap,
+$K=27$ and $K_b=6$: singleton background spreads six samples across an hour,
+whereas the pair control targets three consecutive pairs. This deliberately trades
+temporal spread for inputs usable by a first-order forecasting receiver. It was
+developed after inspecting the Mission1 temporal result.
+
+\subsection{Causality and delivery}
+An older buffered observation can be selected after a trigger because it was
+already available and occupied bounded memory. Replacement also uses only the
+observations seen so far. Packets are finalized at epoch end; capture-only
+assessment therefore measures batching delay rather than immediate detection
+reaction time. A separate finite-buffer simulator evaluates complete delivered
+packets under declared contacts and loss. Its assumptions are distinguished from
+the recording cap in Section~\ref{sec:delivery}.
