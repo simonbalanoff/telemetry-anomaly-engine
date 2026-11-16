@@ -1,0 +1,125 @@
+{
+  "protocol": "independent-receiver-mismatch-v1",
+  "settings": {
+    "protocol": "cross-mission-retention-v1",
+    "development_mission": "ESA-Mission1",
+    "epoch_us": 3600000000,
+    "budgets": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "threshold": 6.0,
+    "pre_trigger_samples": 8,
+    "post_trigger_samples": 4,
+    "background_fraction": 0.2,
+    "context_us": 300000000,
+    "receiver_quantile": 0.999,
+    "pca_components": 3,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  "study_protocol": {
+    "path": "protocols/mission2-study-v1.md",
+    "sha256": "cb28b0d1b80c8f81a41dfa5aaddefeaef62c9f6619e31f5f384de8f3a731fc80"
+  },
+  "settings_digest": "13db94323f498bef6b60c04e0d3d4ff018d85bcb6d8f604e29109c5862592880",
+  "target_mission": "ESA-Mission2",
+  "bundle_manifest_sha256": "66b268b00d52c5228d6b4884939164bd0213ebed619555e2df64c9853d1937b0",
+  "scripts": {
+    "retention/__init__.py": "e6c058331dd991fe856526ac29a191b7cc856f283b496e6b013b13063e9ade3e",
+    "retention/benchmark_metrics.py": "9b5fb0677e684ae6ecfbd3fa4cef4f4689d140036fcf85c3bb93b87cb926f6df",
+    "retention/burst.py": "d466406fa88d1b679fe9ae361e230a8deb99aeb6c9fc04f812122161f67cbee5",
+    "retention/codec.py": "9401522d4f06cadc64a490ba28a6f6de134cb2b3b39f39eff58240fc9f318246",
+    "retention/coverage.py": "46068e0671aeb3f4560a1619f8adc2e53b84dde311c425fc571b8c103812b56e",
+    "retention/diagnostics.py": "060d65d7899752a7b9af525220bde8bf013ee2b9e409daf3a8bc1407cf361af8",
+    "retention/downlink.py": "08217a57fc616b76eeeb623b5ee5ceac9fafe20a641b618fa1d74c26c199ddda",
+    "retention/evaluation.py": "fbf4ebe1b85b9d69f36bcc5f448c98663f00e02c0643d8bacc4d47bc810cb8a2",
+    "retention/forecast.py": "cea39da26b98ea022b6422602468370c8a9ec2f119244827186dbdf3ff5ab78a",
+    "retention/mission.py": "6c7b3cdb64f1396314b8c3908559d1bb1f0c3505f31960c11cceca6aacb6d5c6",
+    "retention/native_metrics.py": "7fbf686fdc247e603cf389dc4713f977d2a397e8eec3d6725a29d0a4635de854",
+    "retention/native_model.py": "8a4b116973d32896f3620c7c7db47f40b5a5570cc20356bf04207fbc4e12a437",
+    "retention/native_source.py": "c4cbce405b7ef959705471095217ec74b783f187acc9d323676335e5a5ae34f8",
+    "retention/partitioned_events.py": "71b7a303bfbdb36d04aec39b98d19874c70070f8e8a2fc04d1130af2155e783f",
+    "retention/randomized.py": "ebc4c3722ead3f374d13ffc19bb96fc41298088a938f1735eef789a993b5358f",
+    "retention/receiver_bank.py": "2669ee1021b4f1d6316354e0642a96f05e79036b01913f14c5ae3e084ee42377",
+    "retention/recorder.py": "f6062284ec5ca868f842e73ac41b8daaa71887a95e45c1cab1941ccec292fdfc",
+    "retention/stream.py": "e3280eb30e57697f249f893b70112da968177af88e874ae24207f44aa3b3a992",
+    "run_retention_bundle_benchmark.py": "c9d5d28250cd54606898de560f21fa38ca31f4d7712253b42fafbf82e7d584ef",
+    "run_retention_sequence.py": "4b2487b059e7f9a98dd074e32b61e3d9f1a255e8a69aa094750ad5424f1e2447",
+    "run_retention_benchmark.py": "79f39fd61748db7aa7173f8d4eddcfe17b6871d609faae9d330ef23c033dd385",
+    "run_retention_transfer.py": "16e9018c5a832c89afc5fcc2e57866bd06002bcc13e4fbea82049cf56f1bb158",
+    "run_retention_randomized.py": "33024b79697d11176ff4c00e2f0c1e0b7054d077321d4f9f0892be913dce279c",
+    "run_retention_pilot.py": "53dc06922508d1dd7ec1eeb4d3105f891eb28c4685e49ab5697b36e262d61b1c",
+    "dataset.py": "9b1b9ebc58b0235dbbaee7491c299c7fd8722642ac0145f9de297f7a7336bc59",
+    "requirements-core.txt": "356174c043afa2ba780bdafc15d0149ce0167d20643c510cd7a122df772be623",
+    "prepare_mission2_bundle.py": "db3132671f9bf05b45768490af1f19dc5b87d26bf59974f1820cb84aacf9296d",
+    "summarize_independent_retention.py": "58b8b245c30d1e2afc275bd01e46aacc04bf7ea06ad73a489e5f07a8640f928b"
+  },
+  "python": "3.12.2",
+  "numpy": "2.5.4",
+  "capture_models": [
+    "difference",
+    "level",
+    "pca_3",
+    "disabled"
+  ],
+  "receivers": [
+    "level",
+    "pca_1",
+    "pca_2",
+    "pca_3",
+    "pca_4",
+    "pca_5"
+  ],
+  "policies": [
+    "threshold",
+    "adaptive",
+    "coverage",
+    "burst"
+  ],
+  "temporal_receiver": "training-only ridge AR(1), both original endpoints required",
+  "link_scenarios": {
+    "ample": {
+      "contact_interval_us": 21600000000,
+      "wire_bytes_per_contact": 32768,
+      "buffer_bytes": 16384,
+      "frame_payload_bytes": 128,
+      "frame_overhead_bytes": 16,
+      "loss_probability": 0.0,
+      "eviction": "drop_oldest",
+      "seed": 0
+    },
+    "congested": {
+      "contact_interval_us": 21600000000,
+      "wire_bytes_per_contact": 2048,
+      "buffer_bytes": 4096,
+      "frame_payload_bytes": 128,
+      "frame_overhead_bytes": 16,
+      "loss_probability": 0.0,
+      "eviction": "drop_oldest",
+      "seed": 0
+    },
+    "lossy": {
+      "contact_interval_us": 21600000000,
+      "wire_bytes_per_contact": 32768,
+      "buffer_bytes": 16384,
+      "frame_payload_bytes": 128,
+      "frame_overhead_bytes": 16,
+      "loss_probability": 0.1,
+      "eviction": "drop_oldest",
+      "seed": 0
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "study_protocol_sha256": "cb28b0d1b80c8f81a41dfa5aaddefeaef62c9f6619e31f5f384de8f3a731fc80",
+  "retention_settings_digest": "13db94323f498bef6b60c04e0d3d4ff018d85bcb6d8f604e29109c5862592880",
+  "native_manifest_sha256": "d9d53c2920c125658f974a7d2e0f38d03bdcc5d932c2aafb6a12790b75ed6cfc",
+  "converter_sha256": "db3132671f9bf05b45768490af1f19dc5b87d26bf59974f1820cb84aacf9296d",
+  "protocol_and_implementation_commit": "3c1ed90a56c003ac93477e548479f802b45b0dc2",
+  "phase": "Input preparation only; no receiver trained or Mission2 detection outcome calculated",
+  "source": "ESA Anomaly Dataset v2, Mission2, channels 86\u201391",
+  "bundle_manifest": "docs/datasets/mission2-bundle-manifest.json"
+}

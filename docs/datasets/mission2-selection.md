@@ -87,3 +87,36 @@ boundary censorship without clipping, the full declared comparisons, and the
 primary disabled-trigger temporal contrast. The annotation-policy extension keeps
 the legacy strict reader and Mission1 core evaluator unchanged. Preparation and
 lock artifacts are added after that protocol/implementation has been committed.
+
+## Prepared and frozen inputs
+
+The channel/split rules and necessary implementation were committed as `3c1ed90`
+before annotation conversion. [The bundle manifest](mission2-bundle-manifest.json)
+and [preparation record](mission2-preparation.json) bind the original arrays,
+source annotation files, converter, unchanged retention settings, and study text.
+Original intervals and IDs are preserved. No receiver was fitted and no detection
+outcome was calculated during preparation.
+
+The complete local bundle is `data/mission2-bundle-v1/`.
+[The evaluation lock](../../protocols/mission2-study-v1.lock.json) freezes its inputs,
+code, numerical environment, and the study protocol. It is committed before the
+first evaluation; runtime checks enforce that ordering and record its commit.
+The later temporal and primary analyses verify the same committed study.
+
+```bash
+python python/run_retention_bundle_benchmark.py run \
+  --bundle data/mission2-bundle-v1 --lock protocols/mission2-study-v1.lock.json \
+  --output data/results/mission2-benchmark-v1
+python python/run_retention_sequence.py --bundle data/mission2-bundle-v1 \
+  --benchmark data/results/mission2-benchmark-v1 \
+  --output data/results/mission2-temporal-v1
+python python/summarize_independent_retention.py \
+  --benchmark data/results/mission2-benchmark-v1/report.json \
+  --temporal data/results/mission2-temporal-v1/report.json \
+  --output data/results/mission2-primary-v1.json
+```
+
+The complete 148 capture arms and 36 selected temporal evaluations are required.
+Results do not authorize retrospective channel, split, policy, or seed selection.
+The paper's Version 1.0 snapshot predates this evaluation and remains a Mission1
+technical report until a separately identified revision incorporates new evidence.

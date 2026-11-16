@@ -1,0 +1,33 @@
+{
+  "format": "TAE-MISSION",
+  "version": 1,
+  "mission": "ESA-Mission2",
+  "channels": [
+    "channel_86",
+    "channel_87",
+    "channel_88",
+    "channel_89",
+    "channel_90",
+    "channel_91"
+  ],
+  "observation_semantics": "synchronized-native-no-fill",
+  "annotation_policy": "original-intervals-event-censorship-v1",
+  "training_end_us": 1001894400000000,
+  "evaluation_start_us": 1001894400000000,
+  "evaluation_end_us": 1057017600000000,
+  "study_protocol_sha256": "cb28b0d1b80c8f81a41dfa5aaddefeaef62c9f6619e31f5f384de8f3a731fc80",
+  "retention_settings_digest": "13db94323f498bef6b60c04e0d3d4ff018d85bcb6d8f604e29109c5862592880",
+  "native_manifest_sha256": "d9d53c2920c125658f974a7d2e0f38d03bdcc5d932c2aafb6a12790b75ed6cfc",
+  "converter_sha256": "db3132671f9bf05b45768490af1f19dc5b87d26bf59974f1820cb84aacf9296d",
+  "source_annotation_sha256": {
+    "labels.csv": "4e0c27e566c3d1585cd527f57a19617aba97afec5dca6cf87f94135ad64d2794",
+    "anomaly_types.csv": "3da0dd5f6640a277549e56852d1e41cf16842c0d4997307f16e33f7270a8e5a5"
+  },
+  "files": {
+    "training_events.json": "e892384d6c16273ce61fcfc04096ed5ee0498be2d5044b4537a3903f8ca827f8",
+    "evaluation_events.json": "bf429c427b96f7fedd7bde665a1e736c9ee969a0412259eabc77a4df21402ef0",
+    "timestamps.npy": "292232cd413266ef188ee354d8d93f21bb8e09e861d3389f99cc723ae32f241c",
+    "values.npy": "7d16922fe9807e0eae0ffc86a24c20dc81d46e4380b380ec9914e007abfc2260"
+  },
+  "interpretation": "Original intervals and IDs preserved; group-level censorship excludes crossing events from source-eligible recall, never from training exclusion masks"
+}
